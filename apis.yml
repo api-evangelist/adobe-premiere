@@ -1,7 +1,7 @@
 aid: adobe-premiere
 url: >-
   https://raw.githubusercontent.com/api-evangelist/adobe-premiere/refs/heads/main/apis.yml
-name: Adobe Premiere Pro API
+name: Adobe Premiere Pro
 description: APIs for Adobe Premiere Pro, a professional video editing software that enables programmatic access to video editing, project management, and content creation workflows
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 type: Index
