@@ -1,9 +1,13 @@
+aid: adobe-premiere
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/adobe-premiere/refs/heads/main/apis.yml
 name: Adobe Premiere Pro API
 description: APIs for Adobe Premiere Pro, a professional video editing software that enables programmatic access to video editing, project management, and content creation workflows
-image: https://www.adobe.com/content/dam/cc/icons/premiere.svg
-url: https://developer.adobe.com/premiere-pro/
-created: '2024'
-modified: '2024'
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+type: Index
+created: '2024-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
 apis:
 - name: Adobe Premiere Pro API
   description: Core API for automating video editing workflows, managing projects, and integrating with Adobe Premiere Pro
@@ -42,9 +46,8 @@ apis:
   - type: OpenAPI
     url: https://developer.adobe.com/creative-cloud-libraries/api/
 maintainers:
-- FN: Adobe
-  email: developer@adobe.com
-  url: https://developer.adobe.com/
+  - FN: Kin Lane
+    email: kin@apievangelist.com
 tags:
 - video editing
 - creative cloud
