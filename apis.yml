@@ -19,19 +19,18 @@ apis:
     humanURL: https://developer.adobe.com/premiere-pro/
     baseURL: https://api.adobe.io/premiere
     tags:
-      - video editing
-      - creative cloud
-      - automation
-      - video production
-      - media
+      - Automation
+      - Creative Cloud
+      - Media
+      - Video Editing
+      - Video Production
     properties:
       - type: Documentation
         url: https://developer.adobe.com/premiere-pro/docs/
       - type: OpenAPI
         url: https://developer.adobe.com/premiere-pro/docs/api/
       - type: Authentication
-        url: 
-          https://developer.adobe.com/developer-console/docs/guides/authentication/
+        url: https://developer.adobe.com/developer-console/docs/guides/authentication/
     contact:
       - FN: Adobe Developer Support
         email: dev-support@adobe.com
@@ -43,10 +42,10 @@ apis:
     humanURL: https://developer.adobe.com/creative-cloud-libraries/
     baseURL: https://api.adobe.io/libraries
     tags:
-      - assets
-      - creative cloud
-      - libraries
-      - media management
+      - Assets
+      - Creative Cloud
+      - Libraries
+      - Media Management
     properties:
       - type: Documentation
         url: https://developer.adobe.com/creative-cloud-libraries/docs/
@@ -56,10 +55,10 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 tags:
-  - video editing
-  - creative cloud
-  - adobe
-  - premiere pro
-  - video production
-  - automation
-  - media
+  - Adobe
+  - Automation
+  - Creative Cloud
+  - Media
+  - Premiere Pro
+  - Video Editing
+  - Video Production
