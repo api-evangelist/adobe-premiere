@@ -1,0 +1,245 @@
+rules:
+
+  # INFO / METADATA
+  info-title-adobe-prefix:
+    description: API title must start with "Adobe"
+    severity: warn
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Adobe"
+
+  info-description-required:
+    description: API must have a description
+    severity: error
+    given: $.info
+    then:
+      field: description
+      function: truthy
+
+  info-version-required:
+    description: API must declare a version
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+
+  info-contact-required:
+    description: API info should include contact details
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+
+  # OPENAPI VERSION
+  openapi-version-3:
+    description: Must use OpenAPI 3.x
+    severity: error
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  # SERVERS
+  servers-defined:
+    description: API must define servers
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+
+  servers-https:
+    description: Server URLs must use HTTPS
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  # PATHS
+  paths-no-trailing-slash:
+    description: Paths must not end with trailing slash
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"
+
+  # OPERATIONS
+  operation-summary-required:
+    description: Every operation must have a summary
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-adobe-prefix:
+    description: Summaries should start with "Adobe Premiere"
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Adobe Premiere"
+
+  operation-description-required:
+    description: Every operation must have a description
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+
+  operation-id-required:
+    description: Every operation must have an operationId
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+
+  operation-id-camelcase:
+    description: operationId should use camelCase
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  operation-tags-required:
+    description: Every operation must have tags
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+
+  # PARAMETERS
+  parameter-description-required:
+    description: Parameters must have descriptions
+    severity: error
+    given: $.paths[*][*].parameters[*]
+    then:
+      field: description
+      function: truthy
+
+  parameter-schema-required:
+    description: Parameters must have schemas
+    severity: error
+    given: $.paths[*][*].parameters[*]
+    then:
+      field: schema
+      function: truthy
+
+  # REQUEST BODIES
+  request-body-description:
+    description: Request bodies should have descriptions
+    severity: warn
+    given: $.paths[*][post,put,patch].requestBody
+    then:
+      field: description
+      function: truthy
+
+  # RESPONSES
+  response-success-required:
+    description: Operations must define 2xx responses
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: responses
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["200"]
+            - required: ["201"]
+            - required: ["204"]
+
+  response-description-required:
+    description: Responses must have descriptions
+    severity: error
+    given: $.paths[*][*].responses[*]
+    then:
+      field: description
+      function: truthy
+
+  response-error-401:
+    description: Operations should define 401 error response
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["401"]
+            - required: ["400"]
+
+  # SCHEMAS
+  schema-description:
+    description: Component schemas should have descriptions
+    severity: warn
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: truthy
+
+  schema-type-defined:
+    description: Schemas should define a type
+    severity: warn
+    given: $.components.schemas[*]
+    then:
+      field: type
+      function: truthy
+
+  # SECURITY
+  security-schemes-defined:
+    description: API must define security schemes
+    severity: error
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy
+
+  security-global-defined:
+    description: API should define global security
+    severity: warn
+    given: $
+    then:
+      field: security
+      function: truthy
+
+  # HTTP METHOD CONVENTIONS
+  get-no-request-body:
+    description: GET must not have request body
+    severity: error
+    given: $.paths[*].get
+    then:
+      field: requestBody
+      function: falsy
+
+  delete-no-request-body:
+    description: DELETE should not have request body
+    severity: warn
+    given: $.paths[*].delete
+    then:
+      field: requestBody
+      function: falsy
+
+  # GENERAL QUALITY
+  no-empty-descriptions:
+    description: Descriptions must not be empty
+    severity: error
+    given: $..description
+    then:
+      function: truthy

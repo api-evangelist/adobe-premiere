@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe-premiere/refs/heads/main/json-structure/creative-cloud-libraries-element-list-structure.json",
+  "name": "ElementList",
+  "description": "Paginated list of library elements.",
+  "type": "object",
+  "properties": {
+    "elements": {
+      "type": "array",
+      "description": "Array of element objects.",
+      "items": {
+        "$ref": "#/components/schemas/Element"
+      }
+    },
+    "total_count": {
+      "type": "int32",
+      "description": "Total number of elements in the library.",
+      "example": 8
+    },
+    "start": {
+      "type": "int32",
+      "description": "Starting index of current page.",
+      "example": 0
+    },
+    "limit": {
+      "type": "int32",
+      "description": "Maximum results per page.",
+      "example": 20
+    }
+  }
+}

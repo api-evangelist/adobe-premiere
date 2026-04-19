@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe-premiere/refs/heads/main/json-schema/creative-cloud-libraries-links-schema.json",
+  "title": "Links",
+  "description": "Hypermedia links for a resource.",
+  "type": "object",
+  "properties": {
+    "self": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the resource itself.",
+      "example": "https://cc-libraries.adobe.io/api/v1/libraries/lib-abc123"
+    }
+  }
+}

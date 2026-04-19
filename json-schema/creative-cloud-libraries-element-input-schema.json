@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe-premiere/refs/heads/main/json-schema/creative-cloud-libraries-element-input-schema.json",
+  "title": "ElementInput",
+  "description": "Request body for creating a library element.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the element.",
+      "example": "Brand Red"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of the element.",
+      "enum": [
+        "color",
+        "characterstyle",
+        "brushstyle",
+        "graphic",
+        "pattern",
+        "video"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "type"
+  ]
+}

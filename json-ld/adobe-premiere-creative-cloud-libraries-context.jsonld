@@ -1,0 +1,71 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "apc": "https://developer.adobe.com/premiere/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Representation": "apc:Representation",
+    "LibraryInput": "apc:LibraryInput",
+    "Element": "apc:Element",
+    "ElementList": "apc:ElementList",
+    "Links": "apc:Links",
+    "Library": "apc:Library",
+    "ElementInput": "apc:ElementInput",
+    "LibraryList": "apc:LibraryList",
+    "id": {
+      "@id": "apc:id",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "apc:type",
+      "@type": "xsd:string"
+    },
+    "content": {
+      "@id": "apc:content",
+      "@type": "@id"
+    },
+    "name": "schema:name",
+    "created_date": "schema:dateCreated",
+    "modified_date": "schema:dateModified",
+    "representations": {
+      "@id": "apc:representations",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "elements": {
+      "@id": "apc:elements",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "totalCount": {
+      "@id": "apc:total_count",
+      "@type": "xsd:integer"
+    },
+    "start": {
+      "@id": "apc:start",
+      "@type": "xsd:integer"
+    },
+    "limit": {
+      "@id": "apc:limit",
+      "@type": "xsd:integer"
+    },
+    "self": {
+      "@id": "apc:self",
+      "@type": "@id"
+    },
+    "totalElements": {
+      "@id": "apc:total_elements",
+      "@type": "xsd:integer"
+    },
+    "links": {
+      "@id": "apc:links",
+      "@type": "xsd:string"
+    },
+    "libraries": {
+      "@id": "apc:libraries",
+      "@container": "@set",
+      "@type": "xsd:string"
+    }
+  }
+}

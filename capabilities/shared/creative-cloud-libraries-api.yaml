@@ -1,0 +1,189 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Adobe Creative Cloud Libraries API"
+  description: "REST API for managing Creative Cloud Libraries and their elements (colors, graphics, fonts, brushes, patterns, videos) shared across Adobe Creative applications."
+  tags:
+    - Adobe Premiere
+    - Creative Cloud
+    - Libraries
+    - Media Assets
+    - Design
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ADOBE_CC_ACCESS_TOKEN: ADOBE_CC_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: cc-libraries
+      baseUri: https://cc-libraries.adobe.io
+      description: "Adobe Creative Cloud Libraries REST API."
+      authentication:
+        type: bearer
+        token: "{{ADOBE_CC_ACCESS_TOKEN}}"
+      resources:
+        - name: libraries
+          path: /api/v1/libraries
+          description: "Creative Cloud Libraries."
+          operations:
+            - name: list-libraries
+              method: GET
+              description: "List all Creative Cloud Libraries for the authenticated user."
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of libraries to return."
+                - name: start
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Starting index for pagination."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-library
+              method: POST
+              description: "Create a new Creative Cloud Library."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+
+        - name: library-elements
+          path: /api/v1/libraries/{libraryId}/elements
+          description: "Elements within a Creative Cloud Library."
+          operations:
+            - name: list-elements
+              method: GET
+              description: "List elements in a Creative Cloud Library."
+              inputParameters:
+                - name: libraryId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Library ID."
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of elements to return."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-element
+              method: POST
+              description: "Add a new element to a Creative Cloud Library."
+              inputParameters:
+                - name: libraryId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Library ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.elementName}}"
+                  type: "{{tools.elementType}}"
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: cc-libraries-rest
+      resources:
+        - path: /v1/libraries
+          name: libraries
+          description: "Creative Cloud Libraries."
+          operations:
+            - method: GET
+              name: list-libraries
+              description: "List Creative Cloud Libraries."
+              call: "cc-libraries.list-libraries"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/libraries/{libraryId}/elements
+          name: elements
+          description: "Library elements."
+          operations:
+            - method: GET
+              name: list-elements
+              description: "List library elements."
+              call: "cc-libraries.list-elements"
+              with:
+                libraryId: "rest.libraryId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: cc-libraries-mcp
+      transport: http
+      tools:
+        - name: list-libraries
+          description: "List Creative Cloud Libraries accessible in Adobe Premiere Pro."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "cc-libraries.list-libraries"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-library
+          description: "Create a new Creative Cloud Library for organizing brand assets."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "cc-libraries.create-library"
+          with:
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-library-elements
+          description: "List elements (colors, graphics, fonts) within a Creative Cloud Library."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "cc-libraries.list-elements"
+          with:
+            libraryId: "tools.libraryId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: add-library-element
+          description: "Add a new design element to a Creative Cloud Library."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "cc-libraries.create-element"
+          with:
+            libraryId: "tools.libraryId"
+            elementName: "tools.elementName"
+            elementType: "tools.elementType"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe-premiere/refs/heads/main/json-structure/creative-cloud-libraries-element-structure.json",
+  "name": "Element",
+  "description": "A design element within a Creative Cloud Library.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the element.",
+      "example": "elem-xyz789"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the element.",
+      "example": "Brand Blue Color"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of the element.",
+      "enum": [
+        "color",
+        "characterstyle",
+        "brushstyle",
+        "graphic",
+        "pattern",
+        "video"
+      ],
+      "example": "color"
+    },
+    "created_date": {
+      "type": "datetime",
+      "description": "Timestamp when the element was created.",
+      "example": "2025-03-15T14:30:00Z"
+    },
+    "modified_date": {
+      "type": "datetime",
+      "description": "Timestamp when the element was last modified.",
+      "example": "2025-03-15T14:30:00Z"
+    },
+    "representations": {
+      "type": "array",
+      "description": "Renditions and format-specific representations of the element.",
+      "items": {
+        "$ref": "#/components/schemas/Representation"
+      }
+    }
+  }
+}

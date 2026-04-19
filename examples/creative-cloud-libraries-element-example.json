@@ -1,0 +1,10 @@
+{
+  "id": "lib-abc123",
+  "name": "Brand Assets Library",
+  "type": "color",
+  "created_date": "2025-03-15T14:30:00Z",
+  "modified_date": "2025-03-15T14:30:00Z",
+  "representations": [
+    "example"
+  ]
+}

@@ -1,0 +1,153 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Adobe Premiere"
+  description: "Vocabulary for Adobe Premiere Pro developer ecosystem covering Creative Cloud Libraries REST API, UXP plugin framework, and CEP extension capabilities."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: cc-libraries
+      name: Adobe Creative Cloud Libraries API
+      version: "1"
+      baseUrl: https://cc-libraries.adobe.io
+      status: active
+    - namespace: premiere-uxp
+      name: Adobe Premiere Pro UXP Plugin API
+      version: "1"
+      baseUrl: https://developer.adobe.com/premiere-pro/docs/
+      status: active
+    - namespace: premiere-cep
+      name: Adobe Premiere Pro CEP Extension API
+      version: "9"
+      baseUrl: https://developer.adobe.com/premiere-pro/docs/
+      status: active
+
+  resources:
+    - name: libraries
+      description: "Creative Cloud Libraries for shared design assets."
+      apis: [cc-libraries]
+      actions: [list, get, create, update, delete]
+    - name: library-elements
+      description: "Design elements within Creative Cloud Libraries."
+      apis: [cc-libraries]
+      actions: [list, get, create, delete]
+    - name: representations
+      description: "Format-specific renditions of library elements."
+      apis: [cc-libraries]
+      actions: [get]
+    - name: uxp-plugins
+      description: "UXP-based Premiere Pro plugins and extensions."
+      apis: [premiere-uxp]
+      actions: [install, configure, invoke]
+    - name: cep-panels
+      description: "CEP extension panels for Premiere Pro workspace."
+      apis: [premiere-cep]
+      actions: [install, configure, invoke]
+
+  actions:
+    - name: list
+      description: "Retrieve a paginated collection."
+      httpMethod: GET
+      pattern: read
+    - name: get
+      description: "Retrieve a single resource."
+      httpMethod: GET
+      pattern: read
+    - name: create
+      description: "Create a new resource."
+      httpMethod: POST
+      pattern: write
+    - name: update
+      description: "Update an existing resource."
+      httpMethod: PATCH
+      pattern: write
+    - name: delete
+      description: "Remove a resource."
+      httpMethod: DELETE
+      pattern: destructive
+    - name: install
+      description: "Install a plugin or extension."
+      httpMethod: POST
+      pattern: write
+    - name: configure
+      description: "Configure a plugin or extension."
+      httpMethod: PATCH
+      pattern: write
+    - name: invoke
+      description: "Invoke a plugin function or script."
+      httpMethod: POST
+      pattern: write
+
+  schemas:
+    libraries:
+      - name: Library
+        description: "A Creative Cloud Library containing shared design assets."
+        keyProperties: [id, name, created_date, modified_date, total_elements]
+      - name: Element
+        description: "A design element within a Creative Cloud Library."
+        keyProperties: [id, name, type, representations]
+      - name: Representation
+        description: "A format-specific rendition of a library element."
+        keyProperties: [id, type, content]
+
+  enums:
+    elementTypes:
+      - color
+      - characterstyle
+      - brushstyle
+      - graphic
+      - pattern
+      - video
+    pluginFrameworks:
+      - UXP
+      - CEP
+      - C++ SDK
+
+  authentication:
+    schemes:
+      - name: OAuth 2.0
+        type: oauth2
+        apis: [cc-libraries]
+        description: "Adobe IMS OAuth 2.0 authorization code flow via Developer Console."
+
+capability:
+  workflows:
+    - name: Creative Asset Management
+      file: capabilities/creative-asset-management.yaml
+      description: "Manage Creative Cloud Libraries and assets for Premiere Pro video production."
+      apisComposed: [cc-libraries]
+      toolCount: 4
+      personas:
+        - Video Producer
+        - Media Asset Manager
+      domains:
+        - Asset Management
+        - Video Production
+
+  personas:
+    - id: video-producer
+      name: Video Producer
+      description: "Video editor and producer using Adobe Premiere Pro for content creation."
+      workflows: [Creative Asset Management]
+    - id: media-asset-manager
+      name: Media Asset Manager
+      description: "Manager responsible for organizing shared brand assets in Creative Cloud."
+      workflows: [Creative Asset Management]
+
+  domains:
+    - name: Asset Management
+      description: "Creative Cloud Libraries for shared production assets."
+      resources: [libraries, library-elements, representations]
+    - name: Video Production
+      description: "Premiere Pro plugin and extension ecosystem."
+      resources: [uxp-plugins, cep-panels]
+
+crossReference:
+  - resource: libraries
+    workflows: [Creative Asset Management]
+    personas: [Video Producer, Media Asset Manager]
+  - resource: library-elements
+    workflows: [Creative Asset Management]
+    personas: [Video Producer, Media Asset Manager]

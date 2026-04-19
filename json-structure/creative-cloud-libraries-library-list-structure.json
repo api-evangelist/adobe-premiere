@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe-premiere/refs/heads/main/json-structure/creative-cloud-libraries-library-list-structure.json",
+  "name": "LibraryList",
+  "description": "Paginated list of Creative Cloud Libraries.",
+  "type": "object",
+  "properties": {
+    "libraries": {
+      "type": "array",
+      "description": "Array of library objects.",
+      "items": {
+        "$ref": "#/components/schemas/Library"
+      }
+    },
+    "total_count": {
+      "type": "int32",
+      "description": "Total number of libraries available.",
+      "example": 15
+    },
+    "start": {
+      "type": "int32",
+      "description": "Starting index of the current page.",
+      "example": 0
+    },
+    "limit": {
+      "type": "int32",
+      "description": "Maximum results per page.",
+      "example": 20
+    }
+  }
+}

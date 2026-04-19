@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe-premiere/refs/heads/main/json-schema/creative-cloud-libraries-representation-schema.json",
+  "title": "Representation",
+  "description": "A format-specific representation or rendition of a library element.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the representation.",
+      "example": "rep-001"
+    },
+    "type": {
+      "type": "string",
+      "description": "Format type of the representation.",
+      "example": "application/vnd.adobe.element.color+dcx"
+    },
+    "content": {
+      "type": "object",
+      "description": "Representation content payload (format depends on element type)."
+    }
+  }
+}

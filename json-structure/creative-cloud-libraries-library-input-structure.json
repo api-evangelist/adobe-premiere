@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/adobe-premiere/refs/heads/main/json-structure/creative-cloud-libraries-library-input-structure.json",
+  "name": "LibraryInput",
+  "description": "Request body for creating or updating a library.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the library.",
+      "example": "New Video Assets Library"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
