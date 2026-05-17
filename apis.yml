@@ -141,5 +141,5 @@ common:
   url: capabilities/creative-asset-management.yaml
 - type: Vocabulary
   url: vocabulary/adobe-premiere-vocabulary.yaml
-- type: JSON-LD
+- type: JSONLD
   url: json-ld/adobe-premiere-creative-cloud-libraries-context.jsonld
