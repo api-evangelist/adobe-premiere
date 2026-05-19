@@ -1,0 +1,94 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Adobe Creative Cloud Libraries API — Representations
+  description: 'Adobe Creative Cloud Libraries API — Representations. 1 operations. Lead operation: Adobe Premiere Get an
+    Element Representation. Self-contained Naftiko capability covering one Adobe Premiere business surface.'
+  tags:
+  - Adobe Premiere
+  - Representations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ADOBE_PREMIERE_API_KEY: ADOBE_PREMIERE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: creative-cloud-libraries-representations
+    baseUri: https://cc-libraries.adobe.io
+    description: Adobe Creative Cloud Libraries API — Representations business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-libraries-libraryId-elements-elementId-representations-representationId
+      path: /api/v1/libraries/{libraryId}/elements/{elementId}/representations/{representationId}
+      operations:
+      - name: getelementrepresentation
+        method: GET
+        description: Adobe Premiere Get an Element Representation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: libraryId
+          in: path
+          type: string
+          description: Unique identifier of the library.
+          required: true
+        - name: elementId
+          in: path
+          type: string
+          description: Unique identifier of the element.
+          required: true
+        - name: representationId
+          in: path
+          type: string
+          description: Unique identifier of the representation.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ADOBE_PREMIERE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: creative-cloud-libraries-representations-rest
+    port: 8080
+    description: REST adapter for Adobe Creative Cloud Libraries API — Representations. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v1/libraries/{libraryid}/elements/{elementid}/representations/{representationid}
+      name: api-v1-libraries-libraryid-elements-elementid-representations-representationid
+      description: REST surface for api-v1-libraries-libraryId-elements-elementId-representations-representationId.
+      operations:
+      - method: GET
+        name: getelementrepresentation
+        description: Adobe Premiere Get an Element Representation
+        call: creative-cloud-libraries-representations.getelementrepresentation
+        with:
+          libraryId: rest.libraryId
+          elementId: rest.elementId
+          representationId: rest.representationId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: creative-cloud-libraries-representations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Adobe Creative Cloud Libraries API — Representations. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: adobe-premiere-get-element-representation
+      description: Adobe Premiere Get an Element Representation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: creative-cloud-libraries-representations.getelementrepresentation
+      with:
+        libraryId: tools.libraryId
+        elementId: tools.elementId
+        representationId: tools.representationId
+      outputParameters:
+      - type: object
+        mapping: $.

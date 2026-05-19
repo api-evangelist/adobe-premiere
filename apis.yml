@@ -69,6 +69,8 @@ tags:
 - Video Editing
 - Video Production
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/adobepremierepro
 - type: Portal
   url: https://developer.adobe.com/premiere-pro/
 - type: Documentation

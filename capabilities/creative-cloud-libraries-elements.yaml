@@ -1,0 +1,225 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Adobe Creative Cloud Libraries API — Elements
+  description: 'Adobe Creative Cloud Libraries API — Elements. 4 operations. Lead operation: Adobe Premiere List Library Elements.
+    Self-contained Naftiko capability covering one Adobe Premiere business surface.'
+  tags:
+  - Adobe Premiere
+  - Elements
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ADOBE_PREMIERE_API_KEY: ADOBE_PREMIERE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: creative-cloud-libraries-elements
+    baseUri: https://cc-libraries.adobe.io
+    description: Adobe Creative Cloud Libraries API — Elements business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-libraries-libraryId-elements
+      path: /api/v1/libraries/{libraryId}/elements
+      operations:
+      - name: getlibraryelements
+        method: GET
+        description: Adobe Premiere List Library Elements
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: libraryId
+          in: path
+          type: string
+          description: Unique identifier of the library.
+          required: true
+        - name: start
+          in: query
+          type: integer
+          description: The first result to include for a paged response.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of elements to return.
+      - name: createlibraryelement
+        method: POST
+        description: Adobe Premiere Create a Library Element
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: libraryId
+          in: path
+          type: string
+          description: Unique identifier of the library.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v1-libraries-libraryId-elements-elementId
+      path: /api/v1/libraries/{libraryId}/elements/{elementId}
+      operations:
+      - name: getlibraryelement
+        method: GET
+        description: Adobe Premiere Get a Library Element
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: libraryId
+          in: path
+          type: string
+          description: Unique identifier of the library.
+          required: true
+        - name: elementId
+          in: path
+          type: string
+          description: Unique identifier of the element.
+          required: true
+      - name: deletelibraryelement
+        method: DELETE
+        description: Adobe Premiere Delete a Library Element
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: libraryId
+          in: path
+          type: string
+          description: Unique identifier of the library.
+          required: true
+        - name: elementId
+          in: path
+          type: string
+          description: Unique identifier of the element.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ADOBE_PREMIERE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: creative-cloud-libraries-elements-rest
+    port: 8080
+    description: REST adapter for Adobe Creative Cloud Libraries API — Elements. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v1/libraries/{libraryid}/elements
+      name: api-v1-libraries-libraryid-elements
+      description: REST surface for api-v1-libraries-libraryId-elements.
+      operations:
+      - method: GET
+        name: getlibraryelements
+        description: Adobe Premiere List Library Elements
+        call: creative-cloud-libraries-elements.getlibraryelements
+        with:
+          libraryId: rest.libraryId
+          start: rest.start
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createlibraryelement
+        description: Adobe Premiere Create a Library Element
+        call: creative-cloud-libraries-elements.createlibraryelement
+        with:
+          libraryId: rest.libraryId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/libraries/{libraryid}/elements/{elementid}
+      name: api-v1-libraries-libraryid-elements-elementid
+      description: REST surface for api-v1-libraries-libraryId-elements-elementId.
+      operations:
+      - method: GET
+        name: getlibraryelement
+        description: Adobe Premiere Get a Library Element
+        call: creative-cloud-libraries-elements.getlibraryelement
+        with:
+          libraryId: rest.libraryId
+          elementId: rest.elementId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletelibraryelement
+        description: Adobe Premiere Delete a Library Element
+        call: creative-cloud-libraries-elements.deletelibraryelement
+        with:
+          libraryId: rest.libraryId
+          elementId: rest.elementId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: creative-cloud-libraries-elements-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Adobe Creative Cloud Libraries API — Elements. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: adobe-premiere-list-library-elements
+      description: Adobe Premiere List Library Elements
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: creative-cloud-libraries-elements.getlibraryelements
+      with:
+        libraryId: tools.libraryId
+        start: tools.start
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: adobe-premiere-create-library-element
+      description: Adobe Premiere Create a Library Element
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: creative-cloud-libraries-elements.createlibraryelement
+      with:
+        libraryId: tools.libraryId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: adobe-premiere-get-library-element
+      description: Adobe Premiere Get a Library Element
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: creative-cloud-libraries-elements.getlibraryelement
+      with:
+        libraryId: tools.libraryId
+        elementId: tools.elementId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: adobe-premiere-delete-library-element
+      description: Adobe Premiere Delete a Library Element
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: creative-cloud-libraries-elements.deletelibraryelement
+      with:
+        libraryId: tools.libraryId
+        elementId: tools.elementId
+      outputParameters:
+      - type: object
+        mapping: $.
