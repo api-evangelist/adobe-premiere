@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: Adobe Premiere Catalog Creative Cloud Library Elements
+  summary: Resolve a library then list a page of its elements.
+  description: >-
+    A resolve-then-list flow for the Adobe Creative Cloud Libraries API used by
+    Premiere Pro. The workflow first reads the target library to confirm it
+    exists and learn how many elements it holds, then retrieves a paginated page
+    of that library's elements for cataloging. Each step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: creativeCloudLibrariesApi
+  url: ../openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+  type: openapi
+workflows:
+- workflowId: catalog-library-elements
+  summary: Confirm a library exists then page through its elements.
+  description: >-
+    Reads the library by id to confirm it is retrievable and to capture its
+    total element count, then lists a window of its elements using the supplied
+    start and limit paging controls.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - libraryId
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token for the Creative Cloud Libraries API.
+      libraryId:
+        type: string
+        description: Identifier of the library whose elements should be cataloged.
+      start:
+        type: integer
+        description: Zero-based index of the first element to return.
+        default: 0
+      limit:
+        type: integer
+        description: Maximum number of elements to return.
+        default: 20
+  steps:
+  - stepId: getLibrary
+    description: >-
+      Read the library to confirm it exists and to capture its total element
+      count before paging.
+    operationId: getLibrary
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: libraryId
+      in: path
+      value: $inputs.libraryId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      libraryId: $response.body#/id
+      totalElements: $response.body#/total_elements
+  - stepId: listElements
+    description: >-
+      Retrieve a paginated page of elements within the confirmed library.
+    operationId: getLibraryElements
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: libraryId
+      in: path
+      value: $steps.getLibrary.outputs.libraryId
+    - name: start
+      in: query
+      value: $inputs.start
+    - name: limit
+      in: query
+      value: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      elements: $response.body#/elements
+      totalCount: $response.body#/total_count
+  outputs:
+    libraryId: $steps.getLibrary.outputs.libraryId
+    elements: $steps.listElements.outputs.elements
+    totalCount: $steps.listElements.outputs.totalCount

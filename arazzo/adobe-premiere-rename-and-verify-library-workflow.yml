@@ -1,0 +1,98 @@
+arazzo: 1.0.1
+info:
+  title: Adobe Premiere Rename and Verify Creative Cloud Library
+  summary: Read a library, update its name, then read it back to confirm the change.
+  description: >-
+    A read-update-verify flow for the Adobe Creative Cloud Libraries API used by
+    Premiere Pro. The workflow reads the current state of a library, patches its
+    name with the supplied value, and then re-reads the library to confirm the
+    new name was persisted and the modified timestamp advanced. Each step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: creativeCloudLibrariesApi
+  url: ../openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+  type: openapi
+workflows:
+- workflowId: rename-and-verify-library
+  summary: Capture a library's current name, patch it, then verify the rename.
+  description: >-
+    Reads the library to capture its current name and modified timestamp,
+    updates the library with the new name, and re-reads it to confirm the rename
+    took effect.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - libraryId
+    - newName
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token for the Creative Cloud Libraries API.
+      libraryId:
+        type: string
+        description: Identifier of the library to rename.
+      newName:
+        type: string
+        description: New name to assign to the library.
+  steps:
+  - stepId: readBefore
+    description: Read the library to capture its current name before renaming.
+    operationId: getLibrary
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: libraryId
+      in: path
+      value: $inputs.libraryId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      libraryId: $response.body#/id
+      previousName: $response.body#/name
+  - stepId: renameLibrary
+    description: Patch the library with the new name.
+    operationId: updateLibrary
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: libraryId
+      in: path
+      value: $steps.readBefore.outputs.libraryId
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.newName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      libraryId: $response.body#/id
+      name: $response.body#/name
+  - stepId: readAfter
+    description: >-
+      Re-read the library to confirm the new name was persisted and capture the
+      updated modified timestamp.
+    operationId: getLibrary
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: libraryId
+      in: path
+      value: $steps.renameLibrary.outputs.libraryId
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/name == $inputs.newName
+    outputs:
+      libraryId: $response.body#/id
+      name: $response.body#/name
+      modifiedDate: $response.body#/modified_date
+  outputs:
+    libraryId: $steps.readAfter.outputs.libraryId
+    previousName: $steps.readBefore.outputs.previousName
+    name: $steps.readAfter.outputs.name
+    modifiedDate: $steps.readAfter.outputs.modifiedDate

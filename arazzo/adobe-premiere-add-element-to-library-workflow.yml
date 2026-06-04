@@ -1,0 +1,108 @@
+arazzo: 1.0.1
+info:
+  title: Adobe Premiere Add Element to Creative Cloud Library
+  summary: Create a library, add an element to it, then read the element back.
+  description: >-
+    A three-step authoring flow for the Adobe Creative Cloud Libraries API used
+    by Premiere Pro. The workflow creates a new library, adds a typed element
+    (color, graphic, video, or other supported type) to that library, and then
+    fetches the created element by id to confirm it persisted and to expose its
+    representations. Each step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: creativeCloudLibrariesApi
+  url: ../openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+  type: openapi
+workflows:
+- workflowId: add-element-to-library
+  summary: Provision a library and add a typed element, then verify the element.
+  description: >-
+    Creates a new library, captures its id, creates an element of the supplied
+    type and name inside that library, and finally reads the element back to
+    confirm creation and surface its representations.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - libraryName
+    - elementName
+    - elementType
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token for the Creative Cloud Libraries API.
+      libraryName:
+        type: string
+        description: Name to assign to the new Creative Cloud Library.
+      elementName:
+        type: string
+        description: Display name for the new element.
+      elementType:
+        type: string
+        description: >-
+          Element type. One of color, characterstyle, brushstyle, graphic,
+          pattern, or video.
+  steps:
+  - stepId: createLibrary
+    description: Create the library that will hold the new element.
+    operationId: createLibrary
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.libraryName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      libraryId: $response.body#/id
+  - stepId: createElement
+    description: >-
+      Add a typed element to the newly created library using the supplied name
+      and type.
+    operationId: createLibraryElement
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: libraryId
+      in: path
+      value: $steps.createLibrary.outputs.libraryId
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.elementName
+        type: $inputs.elementType
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      elementId: $response.body#/id
+  - stepId: getElement
+    description: >-
+      Read the created element back to confirm it persisted and to expose its
+      representations.
+    operationId: getLibraryElement
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: libraryId
+      in: path
+      value: $steps.createLibrary.outputs.libraryId
+    - name: elementId
+      in: path
+      value: $steps.createElement.outputs.elementId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      elementId: $response.body#/id
+      elementName: $response.body#/name
+      elementType: $response.body#/type
+      representations: $response.body#/representations
+  outputs:
+    libraryId: $steps.createLibrary.outputs.libraryId
+    elementId: $steps.getElement.outputs.elementId
+    elementType: $steps.getElement.outputs.elementType

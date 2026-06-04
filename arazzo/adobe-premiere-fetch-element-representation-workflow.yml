@@ -1,0 +1,92 @@
+arazzo: 1.0.1
+info:
+  title: Adobe Premiere Fetch Library Element Representation
+  summary: Resolve an element then fetch one of its representations by id.
+  description: >-
+    A resolve-then-fetch flow for the Adobe Creative Cloud Libraries API used by
+    Premiere Pro. The workflow reads a library element to confirm it exists and
+    to enumerate its available representations, then fetches a single named
+    representation (rendition) of that element. Each step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: creativeCloudLibrariesApi
+  url: ../openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+  type: openapi
+workflows:
+- workflowId: fetch-element-representation
+  summary: Read an element, then retrieve a specific representation of it.
+  description: >-
+    Reads the element by id to confirm it is retrievable and to expose its
+    representations array, then fetches one representation by its identifier to
+    obtain the format-specific content payload.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - libraryId
+    - elementId
+    - representationId
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token for the Creative Cloud Libraries API.
+      libraryId:
+        type: string
+        description: Identifier of the library that contains the element.
+      elementId:
+        type: string
+        description: Identifier of the element to read.
+      representationId:
+        type: string
+        description: Identifier of the representation (rendition) to fetch.
+  steps:
+  - stepId: getElement
+    description: >-
+      Read the element to confirm it exists and to expose its available
+      representations.
+    operationId: getLibraryElement
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: libraryId
+      in: path
+      value: $inputs.libraryId
+    - name: elementId
+      in: path
+      value: $inputs.elementId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      elementId: $response.body#/id
+      representations: $response.body#/representations
+  - stepId: getRepresentation
+    description: >-
+      Fetch a single representation of the confirmed element to obtain its
+      format type and content payload.
+    operationId: getElementRepresentation
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: libraryId
+      in: path
+      value: $inputs.libraryId
+    - name: elementId
+      in: path
+      value: $steps.getElement.outputs.elementId
+    - name: representationId
+      in: path
+      value: $inputs.representationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      representationId: $response.body#/id
+      representationType: $response.body#/type
+      content: $response.body#/content
+  outputs:
+    elementId: $steps.getElement.outputs.elementId
+    representationId: $steps.getRepresentation.outputs.representationId
+    representationType: $steps.getRepresentation.outputs.representationType

@@ -69,6 +69,30 @@ tags:
   - Video Editing
   - Video Production
 common:
+  - type: ArazzoWorkflows
+    url: arazzo/
+    workflows:
+    - url: arazzo/adobe-premiere-add-element-to-library-workflow.yml
+      name: Adobe Premiere Add Element to Creative Cloud Library
+      summary: Create a library, add an element to it, then read the element back.
+    - url: arazzo/adobe-premiere-catalog-library-elements-workflow.yml
+      name: Adobe Premiere Catalog Creative Cloud Library Elements
+      summary: Resolve a library then list a page of its elements.
+    - url: arazzo/adobe-premiere-fetch-element-representation-workflow.yml
+      name: Adobe Premiere Fetch Library Element Representation
+      summary: Resolve an element then fetch one of its representations by id.
+    - url: arazzo/adobe-premiere-find-or-create-library-workflow.yml
+      name: Adobe Premiere Find or Create Creative Cloud Library
+      summary: Search libraries by name and reuse the match, or create one when none exists.
+    - url: arazzo/adobe-premiere-provision-library-workflow.yml
+      name: Adobe Premiere Provision Creative Cloud Library
+      summary: Create a Creative Cloud Library and read it back to confirm it exists.
+    - url: arazzo/adobe-premiere-purge-library-workflow.yml
+      name: Adobe Premiere Purge Creative Cloud Library
+      summary: List a library's elements, delete the first one, then delete the library.
+    - url: arazzo/adobe-premiere-rename-and-verify-library-workflow.yml
+      name: Adobe Premiere Rename and Verify Creative Cloud Library
+      summary: Read a library, update its name, then read it back to confirm the change.
   - type: LinkedIn
     url: https://www.linkedin.com/company/adobepremierepro
   - type: Portal

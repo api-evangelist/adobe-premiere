@@ -1,0 +1,121 @@
+arazzo: 1.0.1
+info:
+  title: Adobe Premiere Find or Create Creative Cloud Library
+  summary: Search libraries by name and reuse the match, or create one when none exists.
+  description: >-
+    An idempotent provisioning flow for the Adobe Creative Cloud Libraries API
+    used by Premiere Pro. The workflow lists the user's libraries, branches on
+    whether the first returned library matches, and either reuses the existing
+    library by reading it back or creates a new library when the list is empty.
+    Because the list endpoint offers no name filter, callers should pass an
+    orderBy that surfaces the candidate; the branch is driven off whether any
+    library was returned. Each step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: creativeCloudLibrariesApi
+  url: ../openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+  type: openapi
+workflows:
+- workflowId: find-or-create-library
+  summary: Reuse an existing library if one is returned, otherwise create a new one.
+  description: >-
+    Lists libraries for the authenticated user, then branches: when at least one
+    library is returned it reads the first one back to reuse it, and when the
+    list is empty it creates a new library with the supplied name.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - name
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token for the Creative Cloud Libraries API.
+      name:
+        type: string
+        description: Name to assign to the library if a new one must be created.
+      orderBy:
+        type: string
+        description: Sort option used when listing libraries.
+        default: "-modified_date"
+      limit:
+        type: integer
+        description: Maximum number of libraries to list.
+        default: 20
+  steps:
+  - stepId: listLibraries
+    description: >-
+      List the authenticated user's libraries to determine whether one already
+      exists to reuse.
+    operationId: getLibraries
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: orderBy
+      in: query
+      value: $inputs.orderBy
+    - name: limit
+      in: query
+      value: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      candidateLibraryId: $response.body#/libraries/0/id
+      totalCount: $response.body#/total_count
+    onSuccess:
+    - name: libraryExists
+      type: goto
+      stepId: reuseLibrary
+      criteria:
+      - context: $response.body
+        condition: $.libraries.length > 0
+        type: jsonpath
+    - name: libraryMissing
+      type: goto
+      stepId: createLibrary
+      criteria:
+      - context: $response.body
+        condition: $.libraries.length == 0
+        type: jsonpath
+  - stepId: reuseLibrary
+    description: >-
+      Read the first returned library back to reuse it and surface its metadata.
+    operationId: getLibrary
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: libraryId
+      in: path
+      value: $steps.listLibraries.outputs.candidateLibraryId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      libraryId: $response.body#/id
+      name: $response.body#/name
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createLibrary
+    description: >-
+      Create a new library with the supplied name when no existing library was
+      returned.
+    operationId: createLibrary
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      libraryId: $response.body#/id
+      name: $response.body#/name
+  outputs:
+    reusedLibraryId: $steps.reuseLibrary.outputs.libraryId
+    createdLibraryId: $steps.createLibrary.outputs.libraryId
