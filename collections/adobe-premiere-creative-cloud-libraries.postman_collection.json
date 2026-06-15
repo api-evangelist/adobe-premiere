@@ -1,0 +1,1768 @@
+{
+  "item": [
+    {
+      "id": "ddab07b5-32f5-4028-ada7-bf02aec0cda5",
+      "name": "Libraries",
+      "description": {
+        "content": "Manage Creative Cloud Libraries",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "397b3909-9629-446d-a288-f87dc6491166",
+          "name": "Adobe Premiere List Creative Cloud Libraries",
+          "request": {
+            "name": "Adobe Premiere List Creative Cloud Libraries",
+            "description": {
+              "content": "Retrieve a paginated list of Creative Cloud Libraries accessible to the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "libraries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "orderBy",
+                  "value": "-modified_date",
+                  "description": "Sorting option for the response list."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "0",
+                  "description": "The first result to include for a paged response, 0-based."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The maximum number of results to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6af083f-c26c-468b-99a2-152919713f36",
+              "name": "List of Creative Cloud Libraries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orderBy",
+                      "value": "-modified_date"
+                    },
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"libraries\": [\n    {\n      \"id\": \"lib-abc123\",\n      \"name\": \"Premiere Pro Brand Assets\",\n      \"created_date\": \"2025-03-15T14:30:00Z\",\n      \"modified_date\": \"2025-03-15T14:30:00Z\",\n      \"total_elements\": 42,\n      \"links\": {\n        \"self\": \"https://cc-libraries.adobe.io/api/v1/libraries/lib-abc123\"\n      }\n    },\n    {\n      \"id\": \"lib-abc123\",\n      \"name\": \"Premiere Pro Brand Assets\",\n      \"created_date\": \"2025-03-15T14:30:00Z\",\n      \"modified_date\": \"2025-03-15T14:30:00Z\",\n      \"total_elements\": 42,\n      \"links\": {\n        \"self\": \"https://cc-libraries.adobe.io/api/v1/libraries/lib-abc123\"\n      }\n    }\n  ],\n  \"total_count\": 15,\n  \"start\": 0,\n  \"limit\": 20\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf32a3e1-966c-4b15-a632-85fa67457a39",
+              "name": "Unauthorized - invalid or missing access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orderBy",
+                      "value": "-modified_date"
+                    },
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"NOT_FOUND\",\n  \"message\": \"The requested library was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62ddc5d1-8346-4ec9-9403-194d1d7428db",
+          "name": "Adobe Premiere Create a Creative Cloud Library",
+          "request": {
+            "name": "Adobe Premiere Create a Creative Cloud Library",
+            "description": {
+              "content": "Create a new Creative Cloud Library for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "libraries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa9a9eda-fad3-4824-b4d8-71d0651c57e3",
+              "name": "Library created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New Video Assets Library\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"lib-abc123\",\n  \"name\": \"Premiere Pro Brand Assets\",\n  \"created_date\": \"2025-03-15T14:30:00Z\",\n  \"modified_date\": \"2025-03-15T14:30:00Z\",\n  \"total_elements\": 42,\n  \"links\": {\n    \"self\": \"https://cc-libraries.adobe.io/api/v1/libraries/lib-abc123\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "806d73b6-99a7-4f99-be30-adaf99b4510d",
+              "name": "Invalid request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New Video Assets Library\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"NOT_FOUND\",\n  \"message\": \"The requested library was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a17b93a2-3a09-4b3e-b110-e00705226512",
+          "name": "Adobe Premiere Get a Creative Cloud Library",
+          "request": {
+            "name": "Adobe Premiere Get a Creative Cloud Library",
+            "description": {
+              "content": "Retrieve details of a specific Creative Cloud Library by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "libraries",
+                ":libraryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "libraryId",
+                  "description": "(Required) Unique identifier of the library."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10a955cb-7144-4239-9979-bc4fbcaf4f4c",
+              "name": "Library details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"lib-abc123\",\n  \"name\": \"Premiere Pro Brand Assets\",\n  \"created_date\": \"2025-03-15T14:30:00Z\",\n  \"modified_date\": \"2025-03-15T14:30:00Z\",\n  \"total_elements\": 42,\n  \"links\": {\n    \"self\": \"https://cc-libraries.adobe.io/api/v1/libraries/lib-abc123\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ee78d63-fc99-4a78-aad4-84d492bf91a0",
+              "name": "Library not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"NOT_FOUND\",\n  \"message\": \"The requested library was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04fa186c-f984-4740-a285-5a071d0680b2",
+          "name": "Adobe Premiere Update a Creative Cloud Library",
+          "request": {
+            "name": "Adobe Premiere Update a Creative Cloud Library",
+            "description": {
+              "content": "Update metadata of a Creative Cloud Library.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "libraries",
+                ":libraryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "libraryId",
+                  "description": "(Required) Unique identifier of the library."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b43b1366-7cb0-4134-9768-d36ce381113b",
+              "name": "Library updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New Video Assets Library\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"lib-abc123\",\n  \"name\": \"Premiere Pro Brand Assets\",\n  \"created_date\": \"2025-03-15T14:30:00Z\",\n  \"modified_date\": \"2025-03-15T14:30:00Z\",\n  \"total_elements\": 42,\n  \"links\": {\n    \"self\": \"https://cc-libraries.adobe.io/api/v1/libraries/lib-abc123\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccc7e386-1269-487e-ae0f-986df672ebe0",
+          "name": "Adobe Premiere Delete a Creative Cloud Library",
+          "request": {
+            "name": "Adobe Premiere Delete a Creative Cloud Library",
+            "description": {
+              "content": "Delete a Creative Cloud Library.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "libraries",
+                ":libraryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "libraryId",
+                  "description": "(Required) Unique identifier of the library."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c605d944-db4e-4c8d-898b-3332eeec79f9",
+              "name": "Library deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b15e0932-be41-4f97-87e0-517a28218708",
+              "name": "Library not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"NOT_FOUND\",\n  \"message\": \"The requested library was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b8f127a3-9d10-4afc-88dc-8721cf0b43ea",
+      "name": "Elements",
+      "description": {
+        "content": "Manage library elements (colors, graphics, fonts, etc.)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "654a21b1-b026-41f9-99d9-2611e99e6eac",
+          "name": "Adobe Premiere List Library Elements",
+          "request": {
+            "name": "Adobe Premiere List Library Elements",
+            "description": {
+              "content": "Retrieve a paginated list of elements within a Creative Cloud Library. Elements include colors, character styles, brushes, graphics, patterns, and videos.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "libraries",
+                ":libraryId",
+                "elements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "0",
+                  "description": "The first result to include for a paged response."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of elements to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "libraryId",
+                  "description": "(Required) Unique identifier of the library."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82dced32-4f10-41bc-99b0-af57651cdfe8",
+              "name": "List of library elements.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId",
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"elements\": [\n    {\n      \"id\": \"elem-xyz789\",\n      \"name\": \"Brand Blue Color\",\n      \"type\": \"color\",\n      \"created_date\": \"2025-03-15T14:30:00Z\",\n      \"modified_date\": \"2025-03-15T14:30:00Z\",\n      \"representations\": [\n        {\n          \"id\": \"rep-001\",\n          \"type\": \"application/vnd.adobe.element.color+dcx\",\n          \"content\": {}\n        },\n        {\n          \"id\": \"rep-001\",\n          \"type\": \"application/vnd.adobe.element.color+dcx\",\n          \"content\": {}\n        }\n      ]\n    },\n    {\n      \"id\": \"elem-xyz789\",\n      \"name\": \"Brand Blue Color\",\n      \"type\": \"color\",\n      \"created_date\": \"2025-03-15T14:30:00Z\",\n      \"modified_date\": \"2025-03-15T14:30:00Z\",\n      \"representations\": [\n        {\n          \"id\": \"rep-001\",\n          \"type\": \"application/vnd.adobe.element.color+dcx\",\n          \"content\": {}\n        },\n        {\n          \"id\": \"rep-001\",\n          \"type\": \"application/vnd.adobe.element.color+dcx\",\n          \"content\": {}\n        }\n      ]\n    }\n  ],\n  \"total_count\": 8,\n  \"start\": 0,\n  \"limit\": 20\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d21cb0c0-f87e-4031-b1a0-d4cd4acce872",
+              "name": "Library not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId",
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"NOT_FOUND\",\n  \"message\": \"The requested library was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fae3b466-5aa7-4544-a13c-10dc2d7e5e69",
+          "name": "Adobe Premiere Create a Library Element",
+          "request": {
+            "name": "Adobe Premiere Create a Library Element",
+            "description": {
+              "content": "Add a new element to a Creative Cloud Library.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "libraries",
+                ":libraryId",
+                "elements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "libraryId",
+                  "description": "(Required) Unique identifier of the library."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "18aad917-6843-4e05-962c-8b063aff23a1",
+              "name": "Element created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId",
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Brand Red\",\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"elem-xyz789\",\n  \"name\": \"Brand Blue Color\",\n  \"type\": \"color\",\n  \"created_date\": \"2025-03-15T14:30:00Z\",\n  \"modified_date\": \"2025-03-15T14:30:00Z\",\n  \"representations\": [\n    {\n      \"id\": \"rep-001\",\n      \"type\": \"application/vnd.adobe.element.color+dcx\",\n      \"content\": {}\n    },\n    {\n      \"id\": \"rep-001\",\n      \"type\": \"application/vnd.adobe.element.color+dcx\",\n      \"content\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3c6325c-f5e7-4299-8a51-5e50c885ad1e",
+              "name": "Invalid element data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId",
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Brand Red\",\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"NOT_FOUND\",\n  \"message\": \"The requested library was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a42bd9e-53bb-4413-9d57-583637921ebc",
+          "name": "Adobe Premiere Get a Library Element",
+          "request": {
+            "name": "Adobe Premiere Get a Library Element",
+            "description": {
+              "content": "Retrieve details of a specific element in a Creative Cloud Library.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "libraries",
+                ":libraryId",
+                "elements",
+                ":elementId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "libraryId",
+                  "description": "(Required) Unique identifier of the library."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "elementId",
+                  "description": "(Required) Unique identifier of the element."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4b59986-f6af-4bd5-a15a-5e7af26ab3c1",
+              "name": "Element details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId",
+                    "elements",
+                    ":elementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "elementId",
+                      "description": "(Required) Unique identifier of the element."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"elem-xyz789\",\n  \"name\": \"Brand Blue Color\",\n  \"type\": \"color\",\n  \"created_date\": \"2025-03-15T14:30:00Z\",\n  \"modified_date\": \"2025-03-15T14:30:00Z\",\n  \"representations\": [\n    {\n      \"id\": \"rep-001\",\n      \"type\": \"application/vnd.adobe.element.color+dcx\",\n      \"content\": {}\n    },\n    {\n      \"id\": \"rep-001\",\n      \"type\": \"application/vnd.adobe.element.color+dcx\",\n      \"content\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2689dfba-fcc0-40e2-8f60-68d2c5689a0c",
+              "name": "Element or library not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId",
+                    "elements",
+                    ":elementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "elementId",
+                      "description": "(Required) Unique identifier of the element."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"NOT_FOUND\",\n  \"message\": \"The requested library was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1071c7db-3734-4569-97f6-5cc96d6809eb",
+          "name": "Adobe Premiere Delete a Library Element",
+          "request": {
+            "name": "Adobe Premiere Delete a Library Element",
+            "description": {
+              "content": "Remove an element from a Creative Cloud Library.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "libraries",
+                ":libraryId",
+                "elements",
+                ":elementId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "libraryId",
+                  "description": "(Required) Unique identifier of the library."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "elementId",
+                  "description": "(Required) Unique identifier of the element."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c4f0f09-566b-4bab-9565-61dde5a3f245",
+              "name": "Element deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId",
+                    "elements",
+                    ":elementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "elementId",
+                      "description": "(Required) Unique identifier of the element."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e19c682f-dbca-46e0-9d84-f54e9c51ebe0",
+              "name": "Element or library not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId",
+                    "elements",
+                    ":elementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "elementId",
+                      "description": "(Required) Unique identifier of the element."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"NOT_FOUND\",\n  \"message\": \"The requested library was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8cbeca3e-99d1-4a9b-a2dd-aac412155676",
+      "name": "Representations",
+      "description": {
+        "content": "Manage element representations and renditions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3719736b-fe1f-4efd-9f97-1d54ba075ec9",
+          "name": "Adobe Premiere Get an Element Representation",
+          "request": {
+            "name": "Adobe Premiere Get an Element Representation",
+            "description": {
+              "content": "Retrieve a specific representation or rendition of a library element.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "libraries",
+                ":libraryId",
+                "elements",
+                ":elementId",
+                "representations",
+                ":representationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "libraryId",
+                  "description": "(Required) Unique identifier of the library."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "elementId",
+                  "description": "(Required) Unique identifier of the element."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "representationId",
+                  "description": "(Required) Unique identifier of the representation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aef3ad6d-63ed-4e42-a7b8-9108b7553c00",
+              "name": "Representation details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId",
+                    "elements",
+                    ":elementId",
+                    "representations",
+                    ":representationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "elementId",
+                      "description": "(Required) Unique identifier of the element."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "representationId",
+                      "description": "(Required) Unique identifier of the representation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"rep-001\",\n  \"type\": \"application/vnd.adobe.element.color+dcx\",\n  \"content\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1a1c9d0-97db-4e9c-b9a8-0323f2f05f31",
+              "name": "Representation not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "libraries",
+                    ":libraryId",
+                    "elements",
+                    ":elementId",
+                    "representations",
+                    ":representationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "libraryId",
+                      "description": "(Required) Unique identifier of the library."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "elementId",
+                      "description": "(Required) Unique identifier of the element."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "representationId",
+                      "description": "(Required) Unique identifier of the representation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"NOT_FOUND\",\n  \"message\": \"The requested library was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cc-libraries.adobe.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "creative_sdk openid profile"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://ims-na1.adobelogin.com/ims/token/v3"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://ims-na1.adobelogin.com/ims/authorize/v2"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a74a4f86-67fb-4375-82eb-ff190f28813e",
+    "name": "Adobe Creative Cloud Libraries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Adobe Creative Cloud Libraries API provides programmatic access to Creative Cloud Libraries, enabling applications to list, create, and manage libraries and their elements (colors, character styles, brushes, graphics, patterns, and videos) for use across Adobe Creative applications including Premiere Pro, Photoshop, Illustrator, and After Effects. Authentication uses OAuth 2.0.\n\nContact Support:\n Name: Adobe Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

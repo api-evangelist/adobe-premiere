@@ -1,0 +1,288 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Adobe Creative Cloud Libraries API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Libraries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Premiere List Creative Cloud Libraries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries",
+            "params": [
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Sorting option for the response list."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "The first result to include for a paged response, 0-based."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return."
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of Creative Cloud Libraries accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Adobe Premiere Create a Creative Cloud Library",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Creative Cloud Library for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Adobe Premiere Get a Creative Cloud Library",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries/:libraryId",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the library."
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific Creative Cloud Library by ID."
+        },
+        {
+          "info": {
+            "name": "Adobe Premiere Update a Creative Cloud Library",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries/:libraryId",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the library."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update metadata of a Creative Cloud Library."
+        },
+        {
+          "info": {
+            "name": "Adobe Premiere Delete a Creative Cloud Library",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries/:libraryId",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the library."
+              }
+            ]
+          },
+          "docs": "Delete a Creative Cloud Library."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Elements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Premiere List Library Elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries/:libraryId/elements",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the library."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "The first result to include for a paged response."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of elements to return."
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of elements within a Creative Cloud Library. Elements include colors, character styles, brushes, graphics, patterns, and videos."
+        },
+        {
+          "info": {
+            "name": "Adobe Premiere Create a Library Element",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries/:libraryId/elements",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the library."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new element to a Creative Cloud Library."
+        },
+        {
+          "info": {
+            "name": "Adobe Premiere Get a Library Element",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries/:libraryId/elements/:elementId",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the library."
+              },
+              {
+                "name": "elementId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the element."
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific element in a Creative Cloud Library."
+        },
+        {
+          "info": {
+            "name": "Adobe Premiere Delete a Library Element",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries/:libraryId/elements/:elementId",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the library."
+              },
+              {
+                "name": "elementId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the element."
+              }
+            ]
+          },
+          "docs": "Remove an element from a Creative Cloud Library."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Representations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Premiere Get an Element Representation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries/:libraryId/elements/:elementId/representations/:representationId",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the library."
+              },
+              {
+                "name": "elementId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the element."
+              },
+              {
+                "name": "representationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the representation."
+              }
+            ]
+          },
+          "docs": "Retrieve a specific representation or rendition of a library element."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1704 @@
+{
+  "info": {
+    "_postman_id": "f2da42b0-1f78-414e-99f6-f5a4d7aa4c78",
+    "name": "Adobe Creative Cloud Libraries API",
+    "description": "The Adobe Creative Cloud Libraries API provides programmatic access to Creative Cloud Libraries, enabling applications to list, create, and manage libraries and their elements (colors, character styles, brushes, graphics, patterns, and videos) for use across Adobe Creative applications including Premiere Pro, Photoshop, Illustrator, and After Effects. Authentication uses OAuth 2.0.\n\nContact Support:\n Name: Adobe Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:02:48.000Z",
+    "updatedAt": "2026-06-05T15:02:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f2da42b0-1f78-414e-99f6-f5a4d7aa4c78"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "libraries",
+              "item": [
+                {
+                  "name": "{libraryId}",
+                  "item": [
+                    {
+                      "name": "elements",
+                      "item": [
+                        {
+                          "name": "{elementId}",
+                          "item": [
+                            {
+                              "name": "representations",
+                              "item": [
+                                {
+                                  "name": "{representationId}",
+                                  "item": [
+                                    {
+                                      "name": "Adobe Premiere Get an Element Representation",
+                                      "id": "66ef609c-d966-4663-9fa5-1afb8147cc04",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements/:elementId/representations/:representationId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "libraries",
+                                            ":libraryId",
+                                            "elements",
+                                            ":elementId",
+                                            "representations",
+                                            ":representationId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "485fbe1c-c469-47f5-8bff-0e37a83ae524",
+                                              "key": "libraryId",
+                                              "value": "<string>",
+                                              "description": "(Required) Unique identifier of the library."
+                                            },
+                                            {
+                                              "id": "92953732-1378-4dcf-92bc-43e02fb64340",
+                                              "key": "elementId",
+                                              "value": "<string>",
+                                              "description": "(Required) Unique identifier of the element."
+                                            },
+                                            {
+                                              "id": "cad464a6-407c-4244-8e87-dd62e7adc141",
+                                              "key": "representationId",
+                                              "value": "<string>",
+                                              "description": "(Required) Unique identifier of the representation."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Retrieve a specific representation or rendition of a library element."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "8a0ae8a9-e9bf-4214-943e-fd8bf7c7300a",
+                                          "name": "Representation details.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements/:elementId/representations/:representationId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "libraries",
+                                                ":libraryId",
+                                                "elements",
+                                                ":elementId",
+                                                "representations",
+                                                ":representationId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "libraryId"
+                                                },
+                                                {
+                                                  "key": "elementId"
+                                                },
+                                                {
+                                                  "key": "representationId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"content\": {}\n}",
+                                          "createdAt": "2026-06-05T15:02:48.000Z",
+                                          "updatedAt": "2026-06-05T15:02:48.000Z",
+                                          "uid": "35240-8a0ae8a9-e9bf-4214-943e-fd8bf7c7300a"
+                                        },
+                                        {
+                                          "id": "1635db34-2be0-463e-8700-a8b3af107469",
+                                          "name": "Representation not found.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements/:elementId/representations/:representationId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v1",
+                                                "libraries",
+                                                ":libraryId",
+                                                "elements",
+                                                ":elementId",
+                                                "representations",
+                                                ":representationId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "libraryId"
+                                                },
+                                                {
+                                                  "key": "elementId"
+                                                },
+                                                {
+                                                  "key": "representationId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Not Found",
+                                          "code": 404,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-06-05T15:02:48.000Z",
+                                          "updatedAt": "2026-06-05T15:02:48.000Z",
+                                          "uid": "35240-1635db34-2be0-463e-8700-a8b3af107469"
+                                        }
+                                      ],
+                                      "createdAt": "2026-06-05T15:02:48.000Z",
+                                      "updatedAt": "2026-06-05T15:02:48.000Z",
+                                      "uid": "35240-66ef609c-d966-4663-9fa5-1afb8147cc04"
+                                    }
+                                  ],
+                                  "id": "63e88f33-272a-47e6-8e74-834080d772d9",
+                                  "createdAt": "2026-06-05T15:02:48.000Z",
+                                  "updatedAt": "2026-06-05T15:02:48.000Z",
+                                  "uid": "35240-63e88f33-272a-47e6-8e74-834080d772d9"
+                                }
+                              ],
+                              "id": "a24cc11c-4c45-4818-993c-433c0b5cca1f",
+                              "createdAt": "2026-06-05T15:02:48.000Z",
+                              "updatedAt": "2026-06-05T15:02:48.000Z",
+                              "uid": "35240-a24cc11c-4c45-4818-993c-433c0b5cca1f"
+                            },
+                            {
+                              "name": "Adobe Premiere Get a Library Element",
+                              "id": "6210ed84-cc66-42a2-a1c3-aa29872cc9e9",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements/:elementId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "libraries",
+                                    ":libraryId",
+                                    "elements",
+                                    ":elementId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6dec77dc-36e1-409d-8d48-7c1326c38003",
+                                      "key": "libraryId",
+                                      "value": "<string>",
+                                      "description": "(Required) Unique identifier of the library."
+                                    },
+                                    {
+                                      "id": "72e8f838-a98b-4430-8c74-6b3ad2c875de",
+                                      "key": "elementId",
+                                      "value": "<string>",
+                                      "description": "(Required) Unique identifier of the element."
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve details of a specific element in a Creative Cloud Library."
+                              },
+                              "response": [
+                                {
+                                  "id": "151d123e-837d-44d7-89d0-183c089e30eb",
+                                  "name": "Element details.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements/:elementId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "libraries",
+                                        ":libraryId",
+                                        "elements",
+                                        ":elementId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "libraryId"
+                                        },
+                                        {
+                                          "key": "elementId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"video\",\n  \"created_date\": \"<dateTime>\",\n  \"modified_date\": \"<dateTime>\",\n  \"representations\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"content\": {}\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"content\": {}\n    }\n  ]\n}",
+                                  "createdAt": "2026-06-05T15:02:48.000Z",
+                                  "updatedAt": "2026-06-05T15:02:48.000Z",
+                                  "uid": "35240-151d123e-837d-44d7-89d0-183c089e30eb"
+                                },
+                                {
+                                  "id": "508832fb-1417-48d8-87fc-99193708f263",
+                                  "name": "Element or library not found.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements/:elementId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "libraries",
+                                        ":libraryId",
+                                        "elements",
+                                        ":elementId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "libraryId"
+                                        },
+                                        {
+                                          "key": "elementId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:02:48.000Z",
+                                  "updatedAt": "2026-06-05T15:02:48.000Z",
+                                  "uid": "35240-508832fb-1417-48d8-87fc-99193708f263"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:02:48.000Z",
+                              "updatedAt": "2026-06-05T15:02:48.000Z",
+                              "uid": "35240-6210ed84-cc66-42a2-a1c3-aa29872cc9e9"
+                            },
+                            {
+                              "name": "Adobe Premiere Delete a Library Element",
+                              "id": "0a790cdb-a5b2-4d65-aaf0-b363e9c3c089",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements/:elementId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "libraries",
+                                    ":libraryId",
+                                    "elements",
+                                    ":elementId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "edb730e3-d901-4b4b-bdec-f9867a7e7ac7",
+                                      "key": "libraryId",
+                                      "value": "<string>",
+                                      "description": "(Required) Unique identifier of the library."
+                                    },
+                                    {
+                                      "id": "d5c0af31-2e1c-48ca-95e7-75d05a630da4",
+                                      "key": "elementId",
+                                      "value": "<string>",
+                                      "description": "(Required) Unique identifier of the element."
+                                    }
+                                  ]
+                                },
+                                "description": "Remove an element from a Creative Cloud Library."
+                              },
+                              "response": [
+                                {
+                                  "id": "3a620349-e54f-46e5-a827-2800adb22c05",
+                                  "name": "Element deleted successfully.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements/:elementId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "libraries",
+                                        ":libraryId",
+                                        "elements",
+                                        ":elementId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "libraryId"
+                                        },
+                                        {
+                                          "key": "elementId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:02:48.000Z",
+                                  "updatedAt": "2026-06-05T15:02:48.000Z",
+                                  "uid": "35240-3a620349-e54f-46e5-a827-2800adb22c05"
+                                },
+                                {
+                                  "id": "252967f1-29ea-48c9-9e1b-2d120c0bec59",
+                                  "name": "Element or library not found.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements/:elementId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "libraries",
+                                        ":libraryId",
+                                        "elements",
+                                        ":elementId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "libraryId"
+                                        },
+                                        {
+                                          "key": "elementId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:02:48.000Z",
+                                  "updatedAt": "2026-06-05T15:02:48.000Z",
+                                  "uid": "35240-252967f1-29ea-48c9-9e1b-2d120c0bec59"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:02:48.000Z",
+                              "updatedAt": "2026-06-05T15:02:48.000Z",
+                              "uid": "35240-0a790cdb-a5b2-4d65-aaf0-b363e9c3c089"
+                            }
+                          ],
+                          "id": "c8bc3a5c-a561-45e5-a9ca-8c58c5727f1f",
+                          "createdAt": "2026-06-05T15:02:48.000Z",
+                          "updatedAt": "2026-06-05T15:02:48.000Z",
+                          "uid": "35240-c8bc3a5c-a561-45e5-a9ca-8c58c5727f1f"
+                        },
+                        {
+                          "name": "Adobe Premiere List Library Elements",
+                          "id": "49ae2144-4b88-4d19-b09b-22d4b9684ae2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements?start=0&limit=20",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "libraries",
+                                ":libraryId",
+                                "elements"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The first result to include for a paged response.",
+                                  "key": "start",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Maximum number of elements to return.",
+                                  "key": "limit",
+                                  "value": "20"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8e677638-734f-4827-bdb9-a7a54a3a5a1e",
+                                  "key": "libraryId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the library."
+                                }
+                              ]
+                            },
+                            "description": "Retrieve a paginated list of elements within a Creative Cloud Library. Elements include colors, character styles, brushes, graphics, patterns, and videos."
+                          },
+                          "response": [
+                            {
+                              "id": "c329ae32-2aae-45f1-8b0d-b22afdf98701",
+                              "name": "List of library elements.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements?start=0&limit=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "libraries",
+                                    ":libraryId",
+                                    "elements"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The first result to include for a paged response.",
+                                      "key": "start",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Maximum number of elements to return.",
+                                      "key": "limit",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "libraryId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"elements\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"characterstyle\",\n      \"created_date\": \"<dateTime>\",\n      \"modified_date\": \"<dateTime>\",\n      \"representations\": [\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"content\": {}\n        },\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"content\": {}\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"characterstyle\",\n      \"created_date\": \"<dateTime>\",\n      \"modified_date\": \"<dateTime>\",\n      \"representations\": [\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"content\": {}\n        },\n        {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\",\n          \"content\": {}\n        }\n      ]\n    }\n  ],\n  \"total_count\": \"<integer>\",\n  \"start\": \"<integer>\",\n  \"limit\": \"<integer>\"\n}",
+                              "createdAt": "2026-06-05T15:02:48.000Z",
+                              "updatedAt": "2026-06-05T15:02:48.000Z",
+                              "uid": "35240-c329ae32-2aae-45f1-8b0d-b22afdf98701"
+                            },
+                            {
+                              "id": "07bb3be1-6e6b-4301-96f4-1757e1f8b2b2",
+                              "name": "Library not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements?start=0&limit=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "libraries",
+                                    ":libraryId",
+                                    "elements"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The first result to include for a paged response.",
+                                      "key": "start",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Maximum number of elements to return.",
+                                      "key": "limit",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "libraryId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:02:48.000Z",
+                              "updatedAt": "2026-06-05T15:02:48.000Z",
+                              "uid": "35240-07bb3be1-6e6b-4301-96f4-1757e1f8b2b2"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:02:48.000Z",
+                          "updatedAt": "2026-06-05T15:02:48.000Z",
+                          "uid": "35240-49ae2144-4b88-4d19-b09b-22d4b9684ae2"
+                        },
+                        {
+                          "name": "Adobe Premiere Create a Library Element",
+                          "id": "cacf2dd8-60b6-4728-9af9-9e6a8c3211dd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"graphic\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "libraries",
+                                ":libraryId",
+                                "elements"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ed4dec2c-8932-4a8a-b304-145f9ab323f7",
+                                  "key": "libraryId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the library."
+                                }
+                              ]
+                            },
+                            "description": "Add a new element to a Creative Cloud Library."
+                          },
+                          "response": [
+                            {
+                              "id": "6fb96c2f-c342-4bff-b95a-309212325a10",
+                              "name": "Element created successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"graphic\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "libraries",
+                                    ":libraryId",
+                                    "elements"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "libraryId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"video\",\n  \"created_date\": \"<dateTime>\",\n  \"modified_date\": \"<dateTime>\",\n  \"representations\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"content\": {}\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"content\": {}\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T15:02:48.000Z",
+                              "updatedAt": "2026-06-05T15:02:48.000Z",
+                              "uid": "35240-6fb96c2f-c342-4bff-b95a-309212325a10"
+                            },
+                            {
+                              "id": "d0bcec04-cfbe-4c95-a422-85f9a9862257",
+                              "name": "Invalid element data.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"graphic\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/libraries/:libraryId/elements",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "libraries",
+                                    ":libraryId",
+                                    "elements"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "libraryId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:02:48.000Z",
+                              "updatedAt": "2026-06-05T15:02:48.000Z",
+                              "uid": "35240-d0bcec04-cfbe-4c95-a422-85f9a9862257"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:02:48.000Z",
+                          "updatedAt": "2026-06-05T15:02:48.000Z",
+                          "uid": "35240-cacf2dd8-60b6-4728-9af9-9e6a8c3211dd"
+                        }
+                      ],
+                      "id": "2dfac822-7d92-4c22-ba9d-bfe3b9f9d6e7",
+                      "createdAt": "2026-06-05T15:02:48.000Z",
+                      "updatedAt": "2026-06-05T15:02:48.000Z",
+                      "uid": "35240-2dfac822-7d92-4c22-ba9d-bfe3b9f9d6e7"
+                    },
+                    {
+                      "name": "Adobe Premiere Get a Creative Cloud Library",
+                      "id": "063f290f-b1bc-4e16-b7d1-314111122b69",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/libraries/:libraryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "libraries",
+                            ":libraryId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "153ce5b8-b137-48bd-b3d2-e4a44e64cb7b",
+                              "key": "libraryId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the library."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve details of a specific Creative Cloud Library by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "e673a8c7-4f2c-4ae7-84e2-3e426da7bf96",
+                          "name": "Library details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/libraries/:libraryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "libraries",
+                                ":libraryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "libraryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"created_date\": \"<dateTime>\",\n  \"modified_date\": \"<dateTime>\",\n  \"total_elements\": \"<integer>\",\n  \"links\": {\n    \"self\": \"<uri>\"\n  }\n}",
+                          "createdAt": "2026-06-05T15:02:48.000Z",
+                          "updatedAt": "2026-06-05T15:02:48.000Z",
+                          "uid": "35240-e673a8c7-4f2c-4ae7-84e2-3e426da7bf96"
+                        },
+                        {
+                          "id": "709926dd-8902-4ce8-87b0-92ce4d8c1927",
+                          "name": "Library not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/libraries/:libraryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "libraries",
+                                ":libraryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "libraryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:02:48.000Z",
+                          "updatedAt": "2026-06-05T15:02:48.000Z",
+                          "uid": "35240-709926dd-8902-4ce8-87b0-92ce4d8c1927"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:02:48.000Z",
+                      "updatedAt": "2026-06-05T15:02:48.000Z",
+                      "uid": "35240-063f290f-b1bc-4e16-b7d1-314111122b69"
+                    },
+                    {
+                      "name": "Adobe Premiere Update a Creative Cloud Library",
+                      "id": "26f8e36d-0ede-4bdc-beee-308e406dd6a2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/libraries/:libraryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "libraries",
+                            ":libraryId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0e83f4e0-9db5-4cac-8da9-f12e92194a0a",
+                              "key": "libraryId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the library."
+                            }
+                          ]
+                        },
+                        "description": "Update metadata of a Creative Cloud Library."
+                      },
+                      "response": [
+                        {
+                          "id": "b70b1572-6c56-4b75-a680-a524d172d46a",
+                          "name": "Library updated.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/libraries/:libraryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "libraries",
+                                ":libraryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "libraryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"created_date\": \"<dateTime>\",\n  \"modified_date\": \"<dateTime>\",\n  \"total_elements\": \"<integer>\",\n  \"links\": {\n    \"self\": \"<uri>\"\n  }\n}",
+                          "createdAt": "2026-06-05T15:02:48.000Z",
+                          "updatedAt": "2026-06-05T15:02:48.000Z",
+                          "uid": "35240-b70b1572-6c56-4b75-a680-a524d172d46a"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:02:48.000Z",
+                      "updatedAt": "2026-06-05T15:02:48.000Z",
+                      "uid": "35240-26f8e36d-0ede-4bdc-beee-308e406dd6a2"
+                    },
+                    {
+                      "name": "Adobe Premiere Delete a Creative Cloud Library",
+                      "id": "6cda4ba1-f29e-4e1a-942b-0d66e7df4334",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/libraries/:libraryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "libraries",
+                            ":libraryId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ca4da40a-2df0-4647-9789-f24124928912",
+                              "key": "libraryId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the library."
+                            }
+                          ]
+                        },
+                        "description": "Delete a Creative Cloud Library."
+                      },
+                      "response": [
+                        {
+                          "id": "b7e8f527-52ce-4654-8d3a-f96c6ff5ba47",
+                          "name": "Library deleted successfully.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/libraries/:libraryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "libraries",
+                                ":libraryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "libraryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:02:48.000Z",
+                          "updatedAt": "2026-06-05T15:02:48.000Z",
+                          "uid": "35240-b7e8f527-52ce-4654-8d3a-f96c6ff5ba47"
+                        },
+                        {
+                          "id": "6adf9d42-13d8-4a2a-8ea2-c2e17ce87965",
+                          "name": "Library not found.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/libraries/:libraryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "libraries",
+                                ":libraryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "libraryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:02:48.000Z",
+                          "updatedAt": "2026-06-05T15:02:48.000Z",
+                          "uid": "35240-6adf9d42-13d8-4a2a-8ea2-c2e17ce87965"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:02:48.000Z",
+                      "updatedAt": "2026-06-05T15:02:48.000Z",
+                      "uid": "35240-6cda4ba1-f29e-4e1a-942b-0d66e7df4334"
+                    }
+                  ],
+                  "id": "45f5bb1e-9ed1-48f5-bf50-f6832ae5234d",
+                  "createdAt": "2026-06-05T15:02:48.000Z",
+                  "updatedAt": "2026-06-05T15:02:48.000Z",
+                  "uid": "35240-45f5bb1e-9ed1-48f5-bf50-f6832ae5234d"
+                },
+                {
+                  "name": "Adobe Premiere List Creative Cloud Libraries",
+                  "id": "2582f1f9-232d-439d-9adc-7f439720eae3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/libraries?orderBy=-modified_date&start=0&limit=20",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "libraries"
+                      ],
+                      "query": [
+                        {
+                          "description": "Sorting option for the response list.",
+                          "key": "orderBy",
+                          "value": "-modified_date"
+                        },
+                        {
+                          "description": "The first result to include for a paged response, 0-based.",
+                          "key": "start",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of results to return.",
+                          "key": "limit",
+                          "value": "20"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a paginated list of Creative Cloud Libraries accessible to the authenticated user."
+                  },
+                  "response": [
+                    {
+                      "id": "c4d5bfa2-3ec4-4b6b-89df-5174e6fca978",
+                      "name": "List of Creative Cloud Libraries.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/libraries?orderBy=-modified_date&start=0&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "libraries"
+                          ],
+                          "query": [
+                            {
+                              "description": "Sorting option for the response list.",
+                              "key": "orderBy",
+                              "value": "-modified_date"
+                            },
+                            {
+                              "description": "The first result to include for a paged response, 0-based.",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "The maximum number of results to return.",
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"libraries\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"created_date\": \"<dateTime>\",\n      \"modified_date\": \"<dateTime>\",\n      \"total_elements\": \"<integer>\",\n      \"links\": {\n        \"self\": \"<uri>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"created_date\": \"<dateTime>\",\n      \"modified_date\": \"<dateTime>\",\n      \"total_elements\": \"<integer>\",\n      \"links\": {\n        \"self\": \"<uri>\"\n      }\n    }\n  ],\n  \"total_count\": \"<integer>\",\n  \"start\": \"<integer>\",\n  \"limit\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:02:48.000Z",
+                      "updatedAt": "2026-06-05T15:02:48.000Z",
+                      "uid": "35240-c4d5bfa2-3ec4-4b6b-89df-5174e6fca978"
+                    },
+                    {
+                      "id": "a8371680-036c-4f60-8fef-8a9dfb0fb4d3",
+                      "name": "Unauthorized - invalid or missing access token.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/libraries?orderBy=-modified_date&start=0&limit=20",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "libraries"
+                          ],
+                          "query": [
+                            {
+                              "description": "Sorting option for the response list.",
+                              "key": "orderBy",
+                              "value": "-modified_date"
+                            },
+                            {
+                              "description": "The first result to include for a paged response, 0-based.",
+                              "key": "start",
+                              "value": "0"
+                            },
+                            {
+                              "description": "The maximum number of results to return.",
+                              "key": "limit",
+                              "value": "20"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:02:48.000Z",
+                      "updatedAt": "2026-06-05T15:02:48.000Z",
+                      "uid": "35240-a8371680-036c-4f60-8fef-8a9dfb0fb4d3"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:48.000Z",
+                  "updatedAt": "2026-06-05T15:02:48.000Z",
+                  "uid": "35240-2582f1f9-232d-439d-9adc-7f439720eae3"
+                },
+                {
+                  "name": "Adobe Premiere Create a Creative Cloud Library",
+                  "id": "e8c0c6a3-149e-4054-b793-0e296ac2575e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/libraries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "libraries"
+                      ]
+                    },
+                    "description": "Create a new Creative Cloud Library for the authenticated user."
+                  },
+                  "response": [
+                    {
+                      "id": "1246e816-5f66-480f-802f-ff17f2bc547f",
+                      "name": "Library created successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/libraries",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "libraries"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"created_date\": \"<dateTime>\",\n  \"modified_date\": \"<dateTime>\",\n  \"total_elements\": \"<integer>\",\n  \"links\": {\n    \"self\": \"<uri>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:02:48.000Z",
+                      "updatedAt": "2026-06-05T15:02:48.000Z",
+                      "uid": "35240-1246e816-5f66-480f-802f-ff17f2bc547f"
+                    },
+                    {
+                      "id": "b25a3545-5ac2-4a80-9305-510aa5448968",
+                      "name": "Invalid request body.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/libraries",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "libraries"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:02:48.000Z",
+                      "updatedAt": "2026-06-05T15:02:48.000Z",
+                      "uid": "35240-b25a3545-5ac2-4a80-9305-510aa5448968"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:02:48.000Z",
+                  "updatedAt": "2026-06-05T15:02:48.000Z",
+                  "uid": "35240-e8c0c6a3-149e-4054-b793-0e296ac2575e"
+                }
+              ],
+              "id": "6e87c8ac-ad86-4c7e-af0e-4f91fffa61e2",
+              "createdAt": "2026-06-05T15:02:48.000Z",
+              "updatedAt": "2026-06-05T15:02:48.000Z",
+              "uid": "35240-6e87c8ac-ad86-4c7e-af0e-4f91fffa61e2"
+            }
+          ],
+          "id": "93cc02aa-5028-4973-b304-423ca47bce5a",
+          "createdAt": "2026-06-05T15:02:48.000Z",
+          "updatedAt": "2026-06-05T15:02:48.000Z",
+          "uid": "35240-93cc02aa-5028-4973-b304-423ca47bce5a"
+        }
+      ],
+      "id": "37d6fa81-3fc0-4956-a00f-fc2583f5c61c",
+      "createdAt": "2026-06-05T15:02:48.000Z",
+      "updatedAt": "2026-06-05T15:02:48.000Z",
+      "uid": "35240-37d6fa81-3fc0-4956-a00f-fc2583f5c61c"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "creative_sdk openid profile",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://ims-na1.adobelogin.com/ims/token/v3",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cc-libraries.adobe.io"
+    }
+  ]
+}
