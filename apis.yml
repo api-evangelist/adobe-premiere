@@ -4,7 +4,7 @@ name: Adobe Premiere Pro
 description: >-
   APIs for Adobe Premiere Pro, a professional video editing software that enables programmatic access to video editing,
   project management, and content creation workflows.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 type: Index
 created: '2024-01-01'
 modified: '2026-04-19'
