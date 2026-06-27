@@ -2,13 +2,17 @@
   "repo": "adobe-premiere",
   "feeds": [
     {
-      "source": "https://blog.developer.adobe.com/",
+      "source": "https://blog.developer.adobe.com/rss.xml",
       "feed_url": "https://blog.developer.adobe.com/rss.xml",
-      "title": "Adobe Developer Blog",
-      "saved": 1,
+      "title": "",
+      "saved": 2,
       "method": "feed"
+    },
+    {
+      "source": "https://developer.adobe.com/premiere-pro/docs/",
+      "error": "HTTPError"
     }
   ],
-  "post_count": 56,
-  "fetched": "2026-06-21T17:00:00Z"
+  "post_count": 58,
+  "fetched": "2026-06-27T12:03:07Z"
 }
