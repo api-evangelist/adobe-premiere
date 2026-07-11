@@ -70,6 +70,12 @@ tags:
   - Video Editing
   - Video Production
 common:
+  - type: VulnerabilityDisclosure
+    url: security/adobe-premiere-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/adobe-premiere-domain-security.yml
+  - type: Authentication
+    url: authentication/adobe-premiere-authentication.yml
   - type: OAuthScopes
     url: scopes/adobe-premiere-scopes.yml
   - type: PostmanWorkspace
