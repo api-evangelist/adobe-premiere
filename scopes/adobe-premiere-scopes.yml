@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+    tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+scopes:
+- scope: creative_sdk
+  description: Access Creative Cloud Libraries
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+- scope: openid
+  description: OpenID Connect
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+- scope: profile
+  description: User profile access
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/adobe-premiere-creative-cloud-libraries-openapi.yml

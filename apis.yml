@@ -70,6 +70,8 @@ tags:
   - Video Editing
   - Video Production
 common:
+  - type: OAuthScopes
+    url: scopes/adobe-premiere-scopes.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/adobe-premiere-pro/overview
   - type: Arazzo
