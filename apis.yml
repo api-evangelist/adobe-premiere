@@ -70,6 +70,8 @@ tags:
   - Video Editing
   - Video Production
 common:
+  - type: AgenticAccess
+    url: agentic-access/adobe-premiere-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/adobe-premiere-vulnerability-disclosure.yml
   - type: DomainSecurity
