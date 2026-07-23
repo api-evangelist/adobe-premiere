@@ -1,0 +1,106 @@
+openapi: 3.0.3
+info:
+  title: Adobe Creative Cloud Libraries Elements Representations API
+  description: The Adobe Creative Cloud Libraries API provides programmatic access to Creative Cloud Libraries, enabling applications to list, create, and manage libraries and their elements (colors, character styles, brushes, graphics, patterns, and videos) for use across Adobe Creative applications including Premiere Pro, Photoshop, Illustrator, and After Effects. Authentication uses OAuth 2.0.
+  version: '1'
+  contact:
+    name: Adobe Developer Support
+    url: https://developer.adobe.com/support/
+  termsOfService: https://www.adobe.com/legal/terms.html
+  license:
+    name: Adobe Terms of Use
+    url: https://www.adobe.com/legal/terms.html
+servers:
+- url: https://cc-libraries.adobe.io
+  description: Adobe Creative Cloud Libraries API
+security:
+- oauth2: []
+tags:
+- name: Representations
+  description: Manage element representations and renditions
+paths:
+  /api/v1/libraries/{libraryId}/elements/{elementId}/representations/{representationId}:
+    get:
+      operationId: getElementRepresentation
+      summary: Adobe Premiere Get an Element Representation
+      description: Retrieve a specific representation or rendition of a library element.
+      tags:
+      - Representations
+      parameters:
+      - name: libraryId
+        in: path
+        required: true
+        description: Unique identifier of the library.
+        schema:
+          type: string
+      - name: elementId
+        in: path
+        required: true
+        description: Unique identifier of the element.
+        schema:
+          type: string
+      - name: representationId
+        in: path
+        required: true
+        description: Unique identifier of the representation.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Representation details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Representation'
+        '404':
+          description: Representation not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Representation:
+      type: object
+      description: A format-specific representation or rendition of a library element.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the representation.
+          example: rep-001
+        type:
+          type: string
+          description: Format type of the representation.
+          example: application/vnd.adobe.element.color+dcx
+        content:
+          type: object
+          description: Representation content payload (format depends on element type).
+    ErrorResponse:
+      type: object
+      description: API error response.
+      properties:
+        error_code:
+          type: string
+          description: Machine-readable error code.
+          example: NOT_FOUND
+        message:
+          type: string
+          description: Human-readable error description.
+          example: The requested library was not found.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            creative_sdk: Access Creative Cloud Libraries
+            openid: OpenID Connect
+            profile: User profile access
+externalDocs:
+  description: Adobe Creative Cloud Libraries API Documentation
+  url: https://developer.adobe.com/creative-cloud-libraries/docs/
