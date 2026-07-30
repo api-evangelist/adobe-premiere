@@ -4,60 +4,108 @@ name: Adobe Premiere Pro
 description: >-
   APIs for Adobe Premiere Pro, a professional video editing software that enables programmatic access to video editing,
   project management, and content creation workflows.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/adobe-premiere.png
 type: Index
 created: '2024-01-01'
 modified: '2026-04-19'
 specificationVersion: '0.19'
 apis:
-  - name: Adobe Premiere Pro API
-    description: >-
-      Adobe Premiere Pro extension APIs using UXP (Unified Extensibility Platform) and CEP (Common Extensibility
-      Platform) for building plugins and panels that automate video editing workflows, add custom effects, integrate
-      with external hardware, and extend the Premiere Pro user interface.
-    image: https://www.adobe.com/content/dam/cc/icons/premiere.svg
-    humanURL: https://developer.adobe.com/premiere-pro/
-    baseURL: https://api.adobe.io/premiere
-    tags:
-      - Automation
-      - Creative Cloud
-      - Media
-      - Video Editing
-      - Video Production
-    properties:
-      - type: Documentation
-        url: https://developer.adobe.com/premiere-pro/docs/
-      - type: SDKs
-        url: https://developer.adobe.com/developer-console/docs/guides/
-      - type: Authentication
-        url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-      - type: GettingStarted
-        url: https://developer.adobe.com/premiere-pro/docs/getting-started/
-  - name: Adobe Creative Cloud Libraries API
-    description: >-
-      REST API for accessing and managing Adobe Creative Cloud Libraries that store shared design assets (colors,
-      graphics, fonts, brushes, patterns, and videos) for use across Adobe Creative applications including Premiere Pro,
-      Photoshop, Illustrator, and After Effects.
-    humanURL: https://developer.adobe.com/creative-cloud-libraries/docs/
-    baseURL: https://api.adobe.io/libraries
-    tags:
-      - Assets
-      - Creative Cloud
-      - Libraries
-      - Media Management
-    properties:
-      - type: Documentation
-        url: https://developer.adobe.com/creative-cloud-libraries/docs/
-      - type: OpenAPI
-        url: openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
-      - type: Authentication
-        url: https://developer.adobe.com/developer-console/docs/guides/authentication/
-      - type: JSONSchema
-        url: json-schema/creative-cloud-libraries-element-input-schema.json
-      - type: JSONSchema
-        url: json-schema/creative-cloud-libraries-element-list-schema.json
-      - type: JSONSchema
-        url: json-schema/creative-cloud-libraries-element-schema.json
+- name: Adobe Premiere Pro API
+  description: >-
+    Adobe Premiere Pro extension APIs using UXP (Unified Extensibility Platform) and CEP (Common Extensibility
+    Platform) for building plugins and panels that automate video editing workflows, add custom effects,
+    integrate with external hardware, and extend the Premiere Pro user interface.
+  image: https://www.adobe.com/content/dam/cc/icons/premiere.svg
+  humanURL: https://developer.adobe.com/premiere-pro/
+  baseURL: https://api.adobe.io/premiere
+  tags:
+  - Automation
+  - Creative Cloud
+  - Media
+  - Video Editing
+  - Video Production
+  properties:
+  - type: Documentation
+    url: https://developer.adobe.com/premiere-pro/docs/
+  - type: SDKs
+    url: https://developer.adobe.com/developer-console/docs/guides/
+  - type: Authentication
+    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
+  - type: GettingStarted
+    url: https://developer.adobe.com/premiere-pro/docs/getting-started/
+- aid: adobe-premiere:adobe-premiere-elements-api
+  name: Adobe Premiere Pro Elements API
+  description: Manage library elements (colors, graphics, fonts, etc.)
+  humanURL: https://developer.adobe.com/premiere-pro/
+  baseURL: https://api.adobe.io/premiere
+  tags:
+  - Elements
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-premiere-elements-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/creative-cloud-libraries/docs/
+  - type: Authentication
+    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
+  - type: JSONSchema
+    url: json-schema/creative-cloud-libraries-element-input-schema.json
+  - type: JSONSchema
+    url: json-schema/creative-cloud-libraries-element-list-schema.json
+  - type: JSONSchema
+    url: json-schema/creative-cloud-libraries-element-schema.json
+- aid: adobe-premiere:adobe-premiere-libraries-api
+  name: Adobe Premiere Pro Libraries API
+  description: Manage Creative Cloud Libraries
+  humanURL: https://developer.adobe.com/premiere-pro/
+  baseURL: https://api.adobe.io/premiere
+  tags:
+  - Libraries
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-premiere-libraries-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/creative-cloud-libraries/docs/
+  - type: Authentication
+    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
+  - type: JSONSchema
+    url: json-schema/creative-cloud-libraries-element-input-schema.json
+  - type: JSONSchema
+    url: json-schema/creative-cloud-libraries-element-list-schema.json
+  - type: JSONSchema
+    url: json-schema/creative-cloud-libraries-element-schema.json
+- aid: adobe-premiere:adobe-premiere-representations-api
+  name: Adobe Premiere Pro Representations API
+  description: Manage element representations and renditions
+  humanURL: https://developer.adobe.com/premiere-pro/
+  baseURL: https://api.adobe.io/premiere
+  tags:
+  - Representations
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-premiere-representations-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/creative-cloud-libraries/docs/
+  - type: Authentication
+    url: https://developer.adobe.com/developer-console/docs/guides/authentication/
+  - type: JSONSchema
+    url: json-schema/creative-cloud-libraries-element-input-schema.json
+  - type: JSONSchema
+    url: json-schema/creative-cloud-libraries-element-list-schema.json
+  - type: JSONSchema
+    url: json-schema/creative-cloud-libraries-element-schema.json
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
