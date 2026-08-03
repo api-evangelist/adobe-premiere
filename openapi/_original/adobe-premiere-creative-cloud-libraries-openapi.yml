@@ -1,0 +1,564 @@
+openapi: 3.0.3
+info:
+  title: Adobe Creative Cloud Libraries API
+  description: >-
+    The Adobe Creative Cloud Libraries API provides programmatic access to Creative Cloud
+    Libraries, enabling applications to list, create, and manage libraries and their elements
+    (colors, character styles, brushes, graphics, patterns, and videos) for use across
+    Adobe Creative applications including Premiere Pro, Photoshop, Illustrator, and After Effects.
+    Authentication uses OAuth 2.0.
+  version: "1"
+  contact:
+    name: Adobe Developer Support
+    url: https://developer.adobe.com/support/
+  termsOfService: https://www.adobe.com/legal/terms.html
+  license:
+    name: Adobe Terms of Use
+    url: https://www.adobe.com/legal/terms.html
+externalDocs:
+  description: Adobe Creative Cloud Libraries API Documentation
+  url: https://developer.adobe.com/creative-cloud-libraries/docs/
+servers:
+  - url: https://cc-libraries.adobe.io
+    description: Adobe Creative Cloud Libraries API
+tags:
+  - name: Libraries
+    description: Manage Creative Cloud Libraries
+  - name: Elements
+    description: Manage library elements (colors, graphics, fonts, etc.)
+  - name: Representations
+    description: Manage element representations and renditions
+security:
+  - oauth2: []
+paths:
+  /api/v1/libraries:
+    get:
+      operationId: getLibraries
+      summary: Adobe Premiere List Creative Cloud Libraries
+      description: "Retrieve a paginated list of Creative Cloud Libraries accessible to the authenticated user."
+      tags:
+        - Libraries
+      parameters:
+        - name: orderBy
+          in: query
+          description: "Sorting option for the response list."
+          schema:
+            type: string
+            default: "-modified_date"
+        - name: start
+          in: query
+          description: "The first result to include for a paged response, 0-based."
+          schema:
+            type: string
+            default: "0"
+        - name: limit
+          in: query
+          description: "The maximum number of results to return."
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: "List of Creative Cloud Libraries."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LibraryList'
+        '401':
+          description: "Unauthorized - invalid or missing access token."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createLibrary
+      summary: Adobe Premiere Create a Creative Cloud Library
+      description: "Create a new Creative Cloud Library for the authenticated user."
+      tags:
+        - Libraries
+      requestBody:
+        required: true
+        description: "Library creation request."
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LibraryInput'
+      responses:
+        '201':
+          description: "Library created successfully."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Library'
+        '400':
+          description: "Invalid request body."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/v1/libraries/{libraryId}:
+    get:
+      operationId: getLibrary
+      summary: Adobe Premiere Get a Creative Cloud Library
+      description: "Retrieve details of a specific Creative Cloud Library by ID."
+      tags:
+        - Libraries
+      parameters:
+        - name: libraryId
+          in: path
+          required: true
+          description: "Unique identifier of the library."
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Library details."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Library'
+        '404':
+          description: "Library not found."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      operationId: updateLibrary
+      summary: Adobe Premiere Update a Creative Cloud Library
+      description: "Update metadata of a Creative Cloud Library."
+      tags:
+        - Libraries
+      parameters:
+        - name: libraryId
+          in: path
+          required: true
+          description: "Unique identifier of the library."
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: "Library update request."
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LibraryInput'
+      responses:
+        '200':
+          description: "Library updated."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Library'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteLibrary
+      summary: Adobe Premiere Delete a Creative Cloud Library
+      description: "Delete a Creative Cloud Library."
+      tags:
+        - Libraries
+      parameters:
+        - name: libraryId
+          in: path
+          required: true
+          description: "Unique identifier of the library."
+          schema:
+            type: string
+      responses:
+        '204':
+          description: "Library deleted successfully."
+        '404':
+          description: "Library not found."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/v1/libraries/{libraryId}/elements:
+    get:
+      operationId: getLibraryElements
+      summary: Adobe Premiere List Library Elements
+      description: "Retrieve a paginated list of elements within a Creative Cloud Library. Elements include colors, character styles, brushes, graphics, patterns, and videos."
+      tags:
+        - Elements
+      parameters:
+        - name: libraryId
+          in: path
+          required: true
+          description: "Unique identifier of the library."
+          schema:
+            type: string
+        - name: start
+          in: query
+          description: "The first result to include for a paged response."
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: "Maximum number of elements to return."
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: "List of library elements."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ElementList'
+        '404':
+          description: "Library not found."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createLibraryElement
+      summary: Adobe Premiere Create a Library Element
+      description: "Add a new element to a Creative Cloud Library."
+      tags:
+        - Elements
+      parameters:
+        - name: libraryId
+          in: path
+          required: true
+          description: "Unique identifier of the library."
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: "Element creation request."
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ElementInput'
+      responses:
+        '201':
+          description: "Element created successfully."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Element'
+        '400':
+          description: "Invalid element data."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/v1/libraries/{libraryId}/elements/{elementId}:
+    get:
+      operationId: getLibraryElement
+      summary: Adobe Premiere Get a Library Element
+      description: "Retrieve details of a specific element in a Creative Cloud Library."
+      tags:
+        - Elements
+      parameters:
+        - name: libraryId
+          in: path
+          required: true
+          description: "Unique identifier of the library."
+          schema:
+            type: string
+        - name: elementId
+          in: path
+          required: true
+          description: "Unique identifier of the element."
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Element details."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Element'
+        '404':
+          description: "Element or library not found."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteLibraryElement
+      summary: Adobe Premiere Delete a Library Element
+      description: "Remove an element from a Creative Cloud Library."
+      tags:
+        - Elements
+      parameters:
+        - name: libraryId
+          in: path
+          required: true
+          description: "Unique identifier of the library."
+          schema:
+            type: string
+        - name: elementId
+          in: path
+          required: true
+          description: "Unique identifier of the element."
+          schema:
+            type: string
+      responses:
+        '204':
+          description: "Element deleted successfully."
+        '404':
+          description: "Element or library not found."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/v1/libraries/{libraryId}/elements/{elementId}/representations/{representationId}:
+    get:
+      operationId: getElementRepresentation
+      summary: Adobe Premiere Get an Element Representation
+      description: "Retrieve a specific representation or rendition of a library element."
+      tags:
+        - Representations
+      parameters:
+        - name: libraryId
+          in: path
+          required: true
+          description: "Unique identifier of the library."
+          schema:
+            type: string
+        - name: elementId
+          in: path
+          required: true
+          description: "Unique identifier of the element."
+          schema:
+            type: string
+        - name: representationId
+          in: path
+          required: true
+          description: "Unique identifier of the representation."
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Representation details."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Representation'
+        '404':
+          description: "Representation not found."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            creative_sdk: "Access Creative Cloud Libraries"
+            openid: "OpenID Connect"
+            profile: "User profile access"
+  schemas:
+    Library:
+      type: object
+      description: "A Creative Cloud Library containing design elements."
+      properties:
+        id:
+          type: string
+          description: "Unique identifier of the library."
+          example: "lib-abc123"
+        name:
+          type: string
+          description: "Human-readable name of the library."
+          example: "Premiere Pro Brand Assets"
+        created_date:
+          type: string
+          format: date-time
+          description: "ISO 8601 timestamp when the library was created."
+          example: "2025-03-15T14:30:00Z"
+        modified_date:
+          type: string
+          format: date-time
+          description: "ISO 8601 timestamp when the library was last modified."
+          example: "2025-03-15T14:30:00Z"
+        total_elements:
+          type: integer
+          description: "Total number of elements in the library."
+          example: 42
+        links:
+          $ref: '#/components/schemas/Links'
+    LibraryInput:
+      type: object
+      description: "Request body for creating or updating a library."
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: "Name of the library."
+          example: "New Video Assets Library"
+    LibraryList:
+      type: object
+      description: "Paginated list of Creative Cloud Libraries."
+      properties:
+        libraries:
+          type: array
+          description: "Array of library objects."
+          items:
+            $ref: '#/components/schemas/Library'
+        total_count:
+          type: integer
+          description: "Total number of libraries available."
+          example: 15
+        start:
+          type: integer
+          description: "Starting index of the current page."
+          example: 0
+        limit:
+          type: integer
+          description: "Maximum results per page."
+          example: 20
+    Element:
+      type: object
+      description: "A design element within a Creative Cloud Library."
+      properties:
+        id:
+          type: string
+          description: "Unique identifier of the element."
+          example: "elem-xyz789"
+        name:
+          type: string
+          description: "Display name of the element."
+          example: "Brand Blue Color"
+        type:
+          type: string
+          description: "Type of the element."
+          enum:
+            - color
+            - characterstyle
+            - brushstyle
+            - graphic
+            - pattern
+            - video
+          example: "color"
+        created_date:
+          type: string
+          format: date-time
+          description: "Timestamp when the element was created."
+          example: "2025-03-15T14:30:00Z"
+        modified_date:
+          type: string
+          format: date-time
+          description: "Timestamp when the element was last modified."
+          example: "2025-03-15T14:30:00Z"
+        representations:
+          type: array
+          description: "Renditions and format-specific representations of the element."
+          items:
+            $ref: '#/components/schemas/Representation'
+    ElementInput:
+      type: object
+      description: "Request body for creating a library element."
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+          description: "Name of the element."
+          example: "Brand Red"
+        type:
+          type: string
+          description: "Type of the element."
+          enum:
+            - color
+            - characterstyle
+            - brushstyle
+            - graphic
+            - pattern
+            - video
+    ElementList:
+      type: object
+      description: "Paginated list of library elements."
+      properties:
+        elements:
+          type: array
+          description: "Array of element objects."
+          items:
+            $ref: '#/components/schemas/Element'
+        total_count:
+          type: integer
+          description: "Total number of elements in the library."
+          example: 8
+        start:
+          type: integer
+          description: "Starting index of current page."
+          example: 0
+        limit:
+          type: integer
+          description: "Maximum results per page."
+          example: 20
+    Representation:
+      type: object
+      description: "A format-specific representation or rendition of a library element."
+      properties:
+        id:
+          type: string
+          description: "Unique identifier of the representation."
+          example: "rep-001"
+        type:
+          type: string
+          description: "Format type of the representation."
+          example: "application/vnd.adobe.element.color+dcx"
+        content:
+          type: object
+          description: "Representation content payload (format depends on element type)."
+    Links:
+      type: object
+      description: "Hypermedia links for a resource."
+      properties:
+        self:
+          type: string
+          format: uri
+          description: "URL of the resource itself."
+          example: "https://cc-libraries.adobe.io/api/v1/libraries/lib-abc123"
+    ErrorResponse:
+      type: object
+      description: "API error response."
+      properties:
+        error_code:
+          type: string
+          description: "Machine-readable error code."
+          example: "NOT_FOUND"
+        message:
+          type: string
+          description: "Human-readable error description."
+          example: "The requested library was not found."

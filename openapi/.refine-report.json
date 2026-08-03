@@ -1,0 +1,18 @@
+{
+  "provider": "adobe-premiere",
+  "sources": [
+    "adobe-premiere-elements-api-openapi.yml",
+    "adobe-premiere-libraries-api-openapi.yml",
+    "adobe-premiere-representations-api-openapi.yml"
+  ],
+  "outputs": [
+    "adobe-premiere-elements-api-openapi.yml",
+    "adobe-premiere-libraries-api-openapi.yml",
+    "adobe-premiere-representations-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
