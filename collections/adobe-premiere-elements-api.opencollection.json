@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Adobe Creative Cloud Libraries Elements API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Elements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Premiere List Library Elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries/:libraryId/elements",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the library."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "The first result to include for a paged response."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of elements to return."
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of elements within a Creative Cloud Library. Elements include colors, character styles, brushes, graphics, patterns, and videos."
+        },
+        {
+          "info": {
+            "name": "Adobe Premiere Create a Library Element",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries/:libraryId/elements",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the library."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new element to a Creative Cloud Library."
+        },
+        {
+          "info": {
+            "name": "Adobe Premiere Get a Library Element",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries/:libraryId/elements/:elementId",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the library."
+              },
+              {
+                "name": "elementId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the element."
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific element in a Creative Cloud Library."
+        },
+        {
+          "info": {
+            "name": "Adobe Premiere Delete a Library Element",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries/:libraryId/elements/:elementId",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the library."
+              },
+              {
+                "name": "elementId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the element."
+              }
+            ]
+          },
+          "docs": "Remove an element from a Creative Cloud Library."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

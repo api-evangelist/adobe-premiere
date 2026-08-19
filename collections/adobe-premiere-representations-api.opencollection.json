@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Adobe Creative Cloud Libraries Elements Representations API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Representations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adobe Premiere Get an Element Representation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cc-libraries.adobe.io/api/v1/libraries/:libraryId/elements/:elementId/representations/:representationId",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the library."
+              },
+              {
+                "name": "elementId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the element."
+              },
+              {
+                "name": "representationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the representation."
+              }
+            ]
+          },
+          "docs": "Retrieve a specific representation or rendition of a library element."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
