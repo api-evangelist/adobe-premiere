@@ -11,8 +11,8 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: creativeCloudLibrariesApi
-  url: ../openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+- name: librariesApi
+  url: ../openapi/adobe-premiere-libraries-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: rename-and-verify-library
