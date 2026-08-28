@@ -4,6 +4,18 @@ name: Adobe Premiere Pro
 description: >-
   APIs for Adobe Premiere Pro, a professional video editing software that enables programmatic access to video editing,
   project management, and content creation workflows.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
