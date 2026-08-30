@@ -9,10 +9,13 @@
       "method": "feed"
     },
     {
-      "source": "https://developer.adobe.com/premiere-pro/docs/",
-      "error": "HTTPError"
+      "source": "https://developer.adobe.com/premiere-pro/uxp/",
+      "feed_url": "https://developer.adobe.com/premiere-pro/uxp/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 67,
-  "fetched": "2026-08-22T20:20:02Z"
+  "post_count": 68,
+  "fetched": "2026-08-30T22:33:40Z"
 }
