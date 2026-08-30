@@ -1,0 +1,69 @@
+# generated: '2026-08-30'
+# method: generated
+# source: API Evangelist enrichment pass; enhancements only — the underlying OpenAPI is never mutated.
+overlay: 1.0.0
+info:
+  title: Adobe Premiere Pro Libraries API — API Evangelist Overlay
+  version: 1.0.0
+extends: openapi/adobe-premiere-libraries-api-openapi.yml
+actions:
+- target: $.info
+  description: Record the provenance of this profile and the provider's own contract location.
+  update:
+    x-apievangelist-provider: adobe-premiere
+    x-apievangelist-enriched: '2026-08-30'
+    x-upstream-contract: https://raw.githubusercontent.com/AdobeDocs/cc-libraries-api-spec/main/openapi.json
+    x-upstream-docs: https://developer.adobe.com/creative-cloud-libraries/docs/api/
+- target: $.info
+  description: Point at the derived artifacts that carry the runtime semantics this spec omits.
+  update:
+    x-artifacts:
+      conventions: conventions/adobe-premiere-conventions.yml
+      errors: errors/adobe-premiere-problem-types.yml
+      authentication: authentication/adobe-premiere-authentication.yml
+      scopes: scopes/adobe-premiere-scopes.yml
+      data_model: data-model/adobe-premiere-data-model.yml
+      lifecycle: lifecycle/adobe-premiere-lifecycle.yml
+      rate_limits: rate-limits/adobe-premiere-rate-limits.yml
+      webhooks: asyncapi/adobe-premiere-libraries-webhooks.yml
+- target: $.info
+  description: >-
+    Record that this API requires BOTH an x-api-key (Developer Console Client ID) and an Adobe IMS
+    OAuth 2.0 bearer token — a 403 means the key, a 401 means the token.
+  update:
+    x-auth-note: >-
+      Every operation requires the x-api-key header (Adobe Developer Console Client ID) in addition to
+      the authorization bearer token issued by https://ims-na1.adobelogin.com/ims/token/v3.
+- target: $.info
+  description: Record the reversibility posture an agent needs before it calls a delete.
+  update:
+    x-reversibility:
+      grade: documented
+      note: >-
+        DELETE on a library element moves it to the library archive and is reversible with
+        POST /api/v1/libraries/{libraryId}/archive. DELETE on /archive is permanent. Adobe states no
+        archive retention window, so the reversal window is unknown.
+- target: $.info
+  description: Record the divergence from the Adobe-published contract.
+  update:
+    x-divergence-from-upstream:
+      upstream: openapi/adobe-premiere-cc-libraries-api-openapi.json
+      notes:
+      - 'createLibrary here is createLibraries upstream.'
+      - >-
+        updateLibrary here is a PATCH; upstream splits this into patchLibrary (PATCH
+        /api/v1/libraries/{libraryId}) and updateLibrary (PUT /api/v1/libraries/{libraryId}/metadata).
+      - >-
+        Upstream also ships the bookmark endpoints, the /api/v1/search endpoint and the
+        /api/v1/public/libraries reads, none of which appear here.
+- target: $.paths['/api/v1/libraries'].get
+  description: Document the real pagination bounds Adobe publishes for this operation.
+  update:
+    x-pagination:
+      offset_param: start
+      limit_param: limit
+      limit_max: 10
+      limit_default: 10
+      sort_param: orderBy
+      sort_default: '-modified_date'
+      note: start is required whenever limit is supplied; paging is unavailable on public libraries.

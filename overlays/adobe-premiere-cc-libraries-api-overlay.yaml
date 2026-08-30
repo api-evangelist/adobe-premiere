@@ -1,0 +1,56 @@
+# generated: '2026-08-30'
+# method: generated
+# source: API Evangelist enrichment pass; enhancements only — the underlying OpenAPI is never mutated.
+overlay: 1.0.0
+info:
+  title: Adobe Creative Cloud Libraries API — API Evangelist Overlay
+  version: 1.0.0
+extends: openapi/adobe-premiere-cc-libraries-api-openapi.json
+actions:
+- target: $.info
+  description: Record the provenance of this profile and the provider's own contract location.
+  update:
+    x-apievangelist-provider: adobe-premiere
+    x-apievangelist-enriched: '2026-08-30'
+    x-upstream-contract: https://raw.githubusercontent.com/AdobeDocs/cc-libraries-api-spec/main/openapi.json
+    x-upstream-docs: https://developer.adobe.com/creative-cloud-libraries/docs/api/
+- target: $.info
+  description: Point at the derived artifacts that carry the runtime semantics this spec omits.
+  update:
+    x-artifacts:
+      conventions: conventions/adobe-premiere-conventions.yml
+      errors: errors/adobe-premiere-problem-types.yml
+      authentication: authentication/adobe-premiere-authentication.yml
+      scopes: scopes/adobe-premiere-scopes.yml
+      data_model: data-model/adobe-premiere-data-model.yml
+      lifecycle: lifecycle/adobe-premiere-lifecycle.yml
+      rate_limits: rate-limits/adobe-premiere-rate-limits.yml
+      webhooks: asyncapi/adobe-premiere-libraries-webhooks.yml
+- target: $.info
+  description: >-
+    Record that this API requires BOTH an x-api-key (Developer Console Client ID) and an Adobe IMS
+    OAuth 2.0 bearer token — a 403 means the key, a 401 means the token.
+  update:
+    x-auth-note: >-
+      Every operation requires the x-api-key header (Adobe Developer Console Client ID) in addition to
+      the authorization bearer token issued by https://ims-na1.adobelogin.com/ims/token/v3.
+- target: $.info
+  description: Record the reversibility posture an agent needs before it calls a delete.
+  update:
+    x-reversibility:
+      grade: documented
+      note: >-
+        DELETE on a library element moves it to the library archive and is reversible with
+        POST /api/v1/libraries/{libraryId}/archive. DELETE on /archive is permanent. Adobe states no
+        archive retention window, so the reversal window is unknown.
+- target: $.info
+  description: >-
+    Flag that the Adobe-published document is Swagger 2.0 titled "Adobe CC Libraries APIs Test" with
+    no securityDefinitions, even though every operation requires x-api-key plus an IMS bearer token.
+  update:
+    x-contract-gaps:
+    - swagger 2.0 (not OpenAPI 3.x)
+    - 'info.title reads "Adobe CC Libraries APIs Test" and info.version is 0.1'
+    - securityDefinitions is empty; auth is expressed only as untyped header parameters
+    - no contact, no termsOfService, no license block
+    - no Retry-After or RateLimit-* response headers despite a declared 429

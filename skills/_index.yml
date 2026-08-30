@@ -1,0 +1,32 @@
+generated: '2026-08-30'
+method: generated
+source: >-
+  Packaged Agent Skills grounded in the Adobe-published Creative Cloud Libraries OpenAPI
+  (openapi/adobe-premiere-cc-libraries-api-openapi.json, harvested verbatim from
+  AdobeDocs/cc-libraries-api-spec on 2026-08-30) and in the Adobe I/O Events documentation for the
+  Libraries event surface. Every operationId referenced exists in that spec.
+provider: Adobe Premiere Pro
+providerId: adobe-premiere
+note: >-
+  These skills cover the HTTP surface a Premiere Pro panel calls (Creative Cloud Libraries). The
+  Premiere UXP API itself is an in-process JavaScript DOM with no HTTP contract, so it cannot be
+  packaged as an HTTP-calling skill; its runtime rules are recorded in
+  conventions/adobe-premiere-conventions.yml.
+skills:
+- name: adobe-premiere-list-libraries
+  file: skills/adobe-premiere-list-libraries.md
+  description: Page through a user's Creative Cloud Libraries and read one library's details.
+  operations: [getLibraries, getLibrary]
+- name: adobe-premiere-add-element-to-library
+  file: skills/adobe-premiere-add-element-to-library.md
+  description: Upload an asset and attach it to a library as a new element, in Adobe's required order.
+  operations: [getLibraries, postLibraryComponent, postLibraryElements, getLibraryElement]
+- name: adobe-premiere-archive-and-restore-elements
+  file: skills/adobe-premiere-archive-and-restore-elements.md
+  description: Reversible removal, restore from archive, and the two terminal purge operations.
+  operations: [getLibraryElements, archiveLibraryElement, archiveLibraryElements,
+    unArchiveLibraryElements, deleteLibraryElement, deleteLibraryElements]
+- name: adobe-premiere-subscribe-to-library-events
+  file: skills/adobe-premiere-subscribe-to-library-events.md
+  description: Register an Adobe I/O Events webhook and read the CloudEvents/XDM payload.
+  operations: [getLibraries, getLibrary, getLibraryElements]

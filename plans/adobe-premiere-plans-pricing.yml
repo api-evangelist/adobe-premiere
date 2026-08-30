@@ -3,161 +3,43 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
 provider: Adobe Premiere Pro
 providerId: adobe-premiere
+generated: '2026-08-30'
+method: searched
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-tags:
-  - Adobe
-  - Automation
-  - Creative Cloud
-  - Media
-  - Premiere Pro
-  - Video Editing
-  - Video Production
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
-plans:
-  - id: adobe-premiere-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Adobe Premiere Pro API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.adobe.io/premiere
-          - https://api.adobe.io/libraries
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.adobe.io/premiere
-          - https://api.adobe.io/libraries
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Adobe Premiere Pro API
-      - name: Adobe Creative Cloud Libraries API
-  - id: adobe-premiere-pro
-    name: Professional
-    type: paid
-    description: Production tier for Adobe Premiere Pro. Provides higher quotas, priority support, and
-      access to the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.adobe.io/premiere
-          - https://api.adobe.io/libraries
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.adobe.io/premiere
-          - https://api.adobe.io/libraries
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.adobe.io/premiere
-          - https://api.adobe.io/libraries
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Adobe Premiere Pro API
-      - name: Adobe Creative Cloud Libraries API
-  - id: adobe-premiere-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Adobe Premiere Pro. Includes dedicated capacity, contractual
-      SLAs, security review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://api.adobe.io/premiere
-          - https://api.adobe.io/libraries
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://api.adobe.io/premiere
-          - https://api.adobe.io/libraries
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Adobe Premiere Pro API
-      - name: Adobe Creative Cloud Libraries API
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+modified: '2026-08-30'
+source: >-
+  Searched https://developer.adobe.com/premiere-pro/uxp/ (200), the Creative Cloud Libraries
+  documentation tree (overview / integrate / go-live, all 200) and
+  https://developer.adobe.com/console/ on 2026-08-30. No pricing, plan, tier or quota page exists for
+  either the Premiere UXP API or the Creative Cloud Libraries API.
+supersedes: >-
+  This file previously carried a bulk-sweep scaffold dated 2026-05-04 that invented Free / Pro /
+  Enterprise tiers with placeholder prices. Adobe publishes no such tiers. The scaffold has been
+  removed rather than left to be read as provider-published pricing.
+plan_count: 0
+plans: []
+note: >-
+  Adobe does not price these APIs as a product. Access to the Premiere UXP API is a property of
+  owning Premiere Pro — the plugin surface ships with the application and costs nothing extra to
+  build against. Access to the Creative Cloud Libraries REST API is granted per Adobe Developer
+  Console project and is gated by review, not by a price list: an integration goes through Adobe's
+  submission and review process before it can go live
+  (https://developer.adobe.com/creative-cloud-libraries/docs/go-live/review-process/). The commercial
+  relationship that actually applies is the end user's Creative Cloud subscription, sold on
+  adobe.com and not exposed as a developer plan.
+monetization_for_developers:
+  detail: >-
+    Adobe does publish the reverse direction — how a DEVELOPER charges for a plugin. UXP plugins
+    distributed through the Creative Cloud Marketplace may be free or paid, and require Adobe review;
+    directly distributed plugins require no review.
+  source: https://developer.adobe.com/premiere-pro/uxp/plugins/distribution/overview/
+evidence:
+- url: https://developer.adobe.com/premiere-pro/uxp/
+  status: 200
+  finding: No pricing entry in the Premiere UXP documentation navigation.
+- url: https://developer.adobe.com/creative-cloud-libraries/docs/
+  status: 200
+  finding: 'Documentation sections are Overview, Integrate, Go live, Community. No pricing section.'
+- url: https://developer.adobe.com/console/
+  status: 200
+  finding: Console shell; entitlement is granted per project, no public price list.

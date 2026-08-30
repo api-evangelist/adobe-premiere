@@ -1,0 +1,108 @@
+generated: '2026-08-30'
+method: derived
+status: candidate
+source: >-
+  Searched developer.adobe.com/premiere-pro/uxp/, blog.developer.adobe.com, the github.com/adobe
+  organization and the npm registry on 2026-08-30. Adobe publishes an official MCP server for
+  Adobe Express add-on development, but none for Premiere Pro or for the Creative Cloud Libraries API.
+  POST tools/list probes returned: https://mcp.adobe.com/mcp <no response / DNS>,
+  https://cc-libraries.adobe.io/mcp 404, https://developer.adobe.com/mcp 405.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+note: >-
+  Adobe ships no first-party MCP server for Premiere Pro. The tools below are a DERIVED candidate
+  list bound to real operationIds in the Adobe-published Creative Cloud Libraries OpenAPI
+  (openapi/adobe-premiere-cc-libraries-api-openapi.json) — the REST surface a Premiere panel uses for
+  shared assets. Nothing here is served by Adobe today.
+third_party_servers:
+  note: >-
+    A community cluster of Premiere Pro MCP bridges exists on npm. All are local-stdio, all drive
+    Premiere through CEP/ExtendScript or UXP on the editor's own machine, and none are published or
+    endorsed by Adobe. Listed for completeness; they are not a provider agent surface.
+  servers:
+  - package: premiere-pro-mcp
+    version: 1.14.4
+    published: '2026-08-29'
+    mode: local-stdio
+    official: false
+  - package: adobe-premiere-pro-mcp
+    version: 1.2.4
+    published: '2026-08-28'
+    mode: local-stdio
+    official: false
+  - package: '@compimprove/adobe-premiere-mcp'
+    version: 1.3.0
+    published: '2026-08-20'
+    mode: local-stdio
+    official: false
+  - package: '@synthetic-ai/premiere-mcp'
+    version: 2.0.0
+    published: '2026-06-10'
+    mode: local-stdio
+    official: false
+tools:
+- name: list_libraries
+  description: List the Creative Cloud Libraries available to the authenticated user.
+  rest: [getLibraries]
+- name: create_library
+  description: Create a new Creative Cloud Library.
+  rest: [createLibraries]
+- name: get_library
+  description: Retrieve a single Creative Cloud Library by id.
+  rest: [getLibrary]
+- name: update_library
+  description: Update a library's metadata (name and other fields).
+  rest: [updateLibrary, patchLibrary]
+- name: delete_library
+  description: Delete a Creative Cloud Library.
+  rest: [deleteLibrary]
+- name: list_library_elements
+  description: List the elements (colors, graphics, videos, character styles) inside a library.
+  rest: [getLibraryElements]
+- name: get_library_element
+  description: Retrieve one element from a library.
+  rest: [getLibraryElement]
+- name: create_library_elements
+  description: Create, copy or move elements within or between libraries.
+  rest: [postLibraryElements]
+- name: update_library_element_metadata
+  description: Update metadata on one or more library elements.
+  rest: [updateLibraryElements]
+- name: archive_library_element
+  description: Move a library element to the archive (soft delete, reversible).
+  rest: [archiveLibraryElement, archiveLibraryElements]
+- name: restore_archived_elements
+  description: Restore elements from a library's archive.
+  rest: [unArchiveLibraryElements]
+- name: purge_archived_elements
+  description: Permanently delete archived elements. Irreversible.
+  rest: [deleteLibraryElements, deleteLibraryElement]
+- name: put_element_representations
+  description: Replace the representations/renditions attached to a library element.
+  rest: [putLibraryElementRepresentations]
+- name: upload_representation_content
+  description: Upload the binary content backing an element representation.
+  rest: [postLibraryComponent]
+- name: list_bookmarks
+  description: List the user's library bookmarks.
+  rest: [getBookmarks]
+- name: add_bookmark
+  description: Bookmark a library.
+  rest: [addLibraryBookmarks]
+- name: update_bookmark
+  description: Update a library bookmark.
+  rest: [putLibraryBookmark]
+- name: remove_bookmark
+  description: Remove a library bookmark.
+  rest: [removeLibraryBookmark]
+- name: get_public_library
+  description: Retrieve a public (shared) library without user context.
+  rest: [getPublicLibrary, getPublicLibraryElements, getPublicLibraryElement]
+- name: search_libraries
+  description: Search across libraries and elements.
+  rest: [search]

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Adobe Creative Cloud Libraries Elements Representations API
   description: The Adobe Creative Cloud Libraries API provides programmatic access to Creative Cloud Libraries, enabling applications to list, create, and manage libraries and their elements (colors, character styles, brushes, graphics, patterns, and videos) for use across Adobe Creative applications including Premiere Pro, Photoshop, Illustrator, and After Effects. Authentication uses OAuth 2.0.
@@ -63,6 +63,18 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: API error response.
+      properties:
+        error_code:
+          type: string
+          description: Machine-readable error code.
+          example: NOT_FOUND
+        message:
+          type: string
+          description: Human-readable error description.
+          example: The requested library was not found.
     Representation:
       type: object
       description: A format-specific representation or rendition of a library element.
@@ -78,18 +90,6 @@ components:
         content:
           type: object
           description: Representation content payload (format depends on element type).
-    ErrorResponse:
-      type: object
-      description: API error response.
-      properties:
-        error_code:
-          type: string
-          description: Machine-readable error code.
-          example: NOT_FOUND
-        message:
-          type: string
-          description: Human-readable error description.
-          example: The requested library was not found.
   securitySchemes:
     oauth2:
       type: oauth2

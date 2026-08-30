@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Adobe Creative Cloud Libraries Elements API
   description: The Adobe Creative Cloud Libraries API provides programmatic access to Creative Cloud Libraries, enabling applications to list, create, and manage libraries and their elements (colors, character styles, brushes, graphics, patterns, and videos) for use across Adobe Creative applications including Premiere Pro, Photoshop, Illustrator, and After Effects. Authentication uses OAuth 2.0.
@@ -166,59 +166,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Element:
-      type: object
-      description: A design element within a Creative Cloud Library.
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the element.
-          example: elem-xyz789
-        name:
-          type: string
-          description: Display name of the element.
-          example: Brand Blue Color
-        type:
-          type: string
-          description: Type of the element.
-          enum:
-          - color
-          - characterstyle
-          - brushstyle
-          - graphic
-          - pattern
-          - video
-          example: color
-        created_date:
-          type: string
-          format: date-time
-          description: Timestamp when the element was created.
-          example: '2025-03-15T14:30:00Z'
-        modified_date:
-          type: string
-          format: date-time
-          description: Timestamp when the element was last modified.
-          example: '2025-03-15T14:30:00Z'
-        representations:
-          type: array
-          description: Renditions and format-specific representations of the element.
-          items:
-            $ref: '#/components/schemas/Representation'
-    Representation:
-      type: object
-      description: A format-specific representation or rendition of a library element.
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the representation.
-          example: rep-001
-        type:
-          type: string
-          description: Format type of the representation.
-          example: application/vnd.adobe.element.color+dcx
-        content:
-          type: object
-          description: Representation content payload (format depends on element type).
     ElementInput:
       type: object
       description: Request body for creating a library element.
@@ -273,6 +220,59 @@ components:
           type: integer
           description: Maximum results per page.
           example: 20
+    Representation:
+      type: object
+      description: A format-specific representation or rendition of a library element.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the representation.
+          example: rep-001
+        type:
+          type: string
+          description: Format type of the representation.
+          example: application/vnd.adobe.element.color+dcx
+        content:
+          type: object
+          description: Representation content payload (format depends on element type).
+    Element:
+      type: object
+      description: A design element within a Creative Cloud Library.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the element.
+          example: elem-xyz789
+        name:
+          type: string
+          description: Display name of the element.
+          example: Brand Blue Color
+        type:
+          type: string
+          description: Type of the element.
+          enum:
+          - color
+          - characterstyle
+          - brushstyle
+          - graphic
+          - pattern
+          - video
+          example: color
+        created_date:
+          type: string
+          format: date-time
+          description: Timestamp when the element was created.
+          example: '2025-03-15T14:30:00Z'
+        modified_date:
+          type: string
+          format: date-time
+          description: Timestamp when the element was last modified.
+          example: '2025-03-15T14:30:00Z'
+        representations:
+          type: array
+          description: Renditions and format-specific representations of the element.
+          items:
+            $ref: '#/components/schemas/Representation'
   securitySchemes:
     oauth2:
       type: oauth2

@@ -1,0 +1,62 @@
+generated: '2026-08-30'
+method: searched
+source: https://developer.adobe.com/premiere-pro/uxp/changelog/
+provider: Adobe Premiere Pro
+providerId: adobe-premiere
+scheme: host-application-version
+current_version: 26.3.0
+note: >-
+  The dated, per-release changelog Adobe maintains for the programmable surface is the Premiere UXP
+  changelog. The Creative Cloud Libraries REST API publishes no changelog of its own; its spec
+  repository (AdobeDocs/cc-libraries-api-spec) is the only versioned record.
+entries:
+- version: 26.3.0
+  breaking: true
+  highlights:
+  - >-
+    BREAKING — Sequence.setSelection is now synchronous and returns a boolean directly instead of a
+    Promise<boolean>; await and .then() call sites must be rewritten.
+  - >-
+    BREAKING — Action instances created through the create*Action functions must now be created
+    inside a project.lockedAccess(() => { ... }) block, enforced consistently for the first time.
+  - Added createSetNameAction to AudioTrack, CaptionTrack and VideoTrack for renaming.
+  - Added ClipProjectItem.createSubClipAction for creating sub clips.
+  - >-
+    EncoderManager gained launchEncoder, setEmbeddedXMPEnabled, setSidecarXMPEnabled and
+    startBatchEncode for Adobe Media Encoder workflows.
+  - Marker objects gained a unique guid property.
+  - New ObjectMaskUtils class.
+  - Project.createSequenceWithPresetPath added alongside Project.createSequence.
+  - ProjectConverter.exportAAF added for AAF interchange, with an AAFExportOptions class.
+  - SourceMonitor.setPosition added.
+  - Transcript gained querySupportedLanguages and hasTranscript.
+  - >-
+    Companion @adobe/eslint-plugin-premierepro rules published to catch lockedAccess and Action
+    misuse statically.
+- version: 26.2.0
+  breaking: false
+  highlights:
+  - >-
+    UXP Hybrid Plugin support became official — UXP plugins can extend into native C++ libraries
+    (.uxpaddon) for audio/video processing, ML inference and native SDK integration.
+  - UXP Hybrid Plugin SDK (C++ headers, utilities, templates) published on the Adobe Developer Console.
+  - New Overview, Building Hybrid Plugins and FAQ documentation.
+- version: 25.6.0
+  breaking: false
+  highlights:
+  - Official (non-beta) release of UXP extensibility in Premiere Pro.
+  - UXP APIs reached near-parity with what was previously possible via CEP and ExtendScript.
+  - >-
+    Full documentation overhaul, including a new distribution section covering Marketplace
+    submission, enterprise and independent distribution, packaging, listing creation and review.
+  - Premiere API Reference regenerated at v25.6.
+- version: 25.2.0
+  date: '2024-12-04'
+  breaking: false
+  highlights:
+  - Initial public beta of UXP in Premiere Pro Beta.
+  - APIs published for creating and managing UXP-based plugins.
+  known_issues:
+  - Limited third-party development workflow support in the beta.
+  - Spectrum Web Component support not yet complete for Premiere Pro.
+  - Command Plugins did not yet work as standalone plugins.

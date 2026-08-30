@@ -1,0 +1,138 @@
+generated: '2026-08-30'
+method: derived
+source: >-
+  openapi/adobe-premiere-cc-libraries-api-openapi.json — $ref links and id-reference fields in the
+  60 definitions of the Adobe-published Creative Cloud Libraries spec
+  (https://raw.githubusercontent.com/AdobeDocs/cc-libraries-api-spec/main/openapi.json).
+provider: Adobe Premiere Pro
+providerId: adobe-premiere
+note: >-
+  This is the object graph of the Creative Cloud Libraries REST surface — the assets a Premiere Pro
+  panel reads and writes. The Premiere UXP DOM (Project, Sequence, Track, ClipProjectItem, Marker,
+  Transcript) is a separate in-process object model with no HTTP contract; it is described in
+  conventions/adobe-premiere-conventions.yml and documented at
+  https://developer.adobe.com/premiere-pro/uxp/ppro-reference/ .
+entities:
+- name: Library
+  schema: DbLibraryInfo
+  id_field: id
+  urn_field: library_urn
+  key_fields: [id, name, creator, ownership, created_date, modified_date, version, region,
+    storage_used, elements_count, removed_elements_count]
+  operations: [getLibraries, createLibraries, getLibrary, patchLibrary, updateLibrary, deleteLibrary,
+    getPublicLibrary]
+- name: LibraryDetail
+  schema: DbLibraryDetail
+  key_fields: [etag, state, manifest_format_version, num_elements, num_archived_elements, types,
+    element_type_counts]
+  note: Embedded summary block on a Library; carries the etag used by if-match/if-none-match.
+- name: Element
+  schema: DbLibraryElementData
+  id_field: id
+  key_fields: [id, name, type, element_type, source, thumbnail, storage_used, created_date,
+    modified_date, assetSubType, parent_id, manifest_etag]
+  operations: [getLibraryElements, getLibraryElement, postLibraryElements, updateLibraryElements,
+    archiveLibraryElement, archiveLibraryElements, unArchiveLibraryElements, deleteLibraryElement,
+    deleteLibraryElements, getPublicLibraryElements, getPublicLibraryElement]
+- name: ElementDetail
+  schema: DbLibraryElementDetailData
+  key_fields: [tags, description, created, lastModified]
+- name: Representation
+  schema: DbLibraryElementRepresentationData
+  id_field: id
+  key_fields: [id, type, relationship, path, linkurl, linktype, is_full_size, is_external_link,
+    width, height, content_length, asset_id, version, md5, etag, storage_href,
+    representation_order, is_preferred_thumbnail, is_component]
+  operations: [putLibraryElementRepresentations, postLibraryComponent]
+- name: Rendition
+  schema: DbLibraryElementRenditionData
+  key_fields: [type, rendition]
+- name: Group
+  schema: DbLibraryGroup
+  id_field: id
+  key_fields: [id, name, classifier, order, parent_id, created_date, modified_date]
+- name: Bookmark
+  schema: DbLibraryBookmark
+  id_field: id
+  key_fields: [id, type, url, urn, role, can_share, can_comment, created]
+  operations: [getBookmarks, addLibraryBookmarks, putLibraryBookmark, removeLibraryBookmark]
+- name: Collaboration
+  schema: DbLibraryCollaborationData
+  note: Sharing state attached to a Library.
+- name: Collaborator
+  schema: DbLibraryCollaboratorData
+  key_fields: [email, displayName, collaborator, role, canComment, canShare]
+- name: Invitation
+  schema: DbLibraryInvitationData
+relationships:
+- from: Library
+  to: Element
+  type: has_many
+  via: elements (LibraryElementsInfo.elements); Element.parent_id references the owning Library
+- from: Library
+  to: LibraryDetail
+  type: has_one
+  via: details
+- from: Library
+  to: Group
+  type: has_many
+  via: groups
+- from: Library
+  to: Bookmark
+  type: has_one
+  via: bookmark
+- from: Library
+  to: Collaboration
+  type: has_one
+  via: collaboration
+- from: Collaboration
+  to: Collaborator
+  type: has_many
+  via: collaborators
+- from: Collaboration
+  to: Invitation
+  type: has_many
+  via: invitations
+- from: Element
+  to: Representation
+  type: has_many
+  via: representations
+- from: Element
+  to: ElementDetail
+  type: has_one
+  via: details
+- from: Element
+  to: Group
+  type: has_many
+  via: groups
+- from: Element
+  to: Element
+  type: belongs_to
+  via: parent_id
+- from: Representation
+  to: Rendition
+  type: has_many
+  via: rendition_grid on the Library, keyed by representation type
+- from: Group
+  to: Group
+  type: belongs_to
+  via: parent_id
+collections:
+- name: LibrariesInfo
+  wraps: Library
+  fields: [total_count, libraries, _page, _links]
+- name: LibraryElementsInfo
+  wraps: Element
+  fields: [total_count, elements, _page, _links]
+identifiers:
+  style: opaque-string
+  urns: >-
+    Libraries additionally carry `library_urn` and `manifest_urn`; Adobe I/O Events partition on the
+    Repository id, which appears as CloudEvents `source`.
+  prefixes: >-
+    No documented id prefix scheme (no stripe-style `lib_`/`el_` prefixes). Ids are opaque.
+hypermedia:
+  style: Melville hypermedia links
+  schemas: [MelvilleHypermediaLibraryLinks, MelvilleHypermediaLibraryElementLinks,
+    MelvilleHypermediaRepresentationLinks, MelvilleHypermediaListLinks, MelvilleHypermediaLink]
+  note: Every resource and collection carries a `_links` object built from Adobe's Melville link shapes.

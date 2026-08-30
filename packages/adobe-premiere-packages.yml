@@ -1,0 +1,82 @@
+generated: '2026-08-30'
+method: searched
+source: >-
+  npm registry metadata (registry.npmjs.org) for the @adobe scope, cross-checked against
+  the first-party GitHub repositories named in each package manifest and against
+  https://developer.adobe.com/premiere-pro/uxp/ppro-reference/ which links the TypeScript declarations.
+note: >-
+  Adobe Premiere Pro's programmable surface is UXP (Unified Extensibility Platform) — an in-process
+  JavaScript DOM, not an HTTP API — so the first-party "SDK" is a set of TypeScript declaration
+  packages plus a lint plugin, published to npm by the `adobe-admin` account from repositories in the
+  github.com/adobe organization. The Creative Cloud Libraries REST API used by Premiere panels ships
+  no first-party client library; Adobe distributes a Postman collection and a raw spec repository
+  instead (see collections/ and openapi/).
+summary:
+  total: 3
+  official: 3
+  registries:
+  - npm
+packages:
+- name: '@adobe/premierepro'
+  registry: npm
+  url: https://www.npmjs.com/package/@adobe/premierepro
+  language: typescript
+  official: true
+  version: 26.3.0
+  published: '2026-06-12'
+  first_published: '2026-04-23'
+  release_count: 23
+  license: Apache-2.0
+  repository: https://github.com/adobe/premierepro-types
+  description: TypeScript definitions and declarations for the UXP APIs in Adobe Premiere Pro.
+  evidence: https://registry.npmjs.org/@adobe/premierepro
+- name: '@adobe/eslint-plugin-premierepro'
+  registry: npm
+  url: https://www.npmjs.com/package/@adobe/eslint-plugin-premierepro
+  language: javascript
+  official: true
+  version: 26.3.0
+  published: '2026-06-12'
+  first_published: '2026-04-23'
+  release_count: 16
+  license: Apache-2.0
+  repository: https://github.com/adobe/eslint-plugin-premierepro
+  description: >-
+    ESLint rules for Adobe Premiere Pro UXP API usage — catches Action instances created outside a
+    project.lockedAccess() block and other correctness traps called out in the v26.3.0 changelog.
+  evidence: https://registry.npmjs.org/@adobe/eslint-plugin-premierepro
+- name: '@adobe/cc-ext-uxp-types'
+  registry: npm
+  url: https://www.npmjs.com/package/@adobe/cc-ext-uxp-types
+  language: typescript
+  official: true
+  version: 7.3.1
+  published: '2023-10-19'
+  first_published: '2023-10-13'
+  release_count: 2
+  license: null
+  repository: https://github.com/adobe/cc-ext-uxp-types
+  description: TypeScript definitions for the Adobe UXP JS API (host-agnostic UXP platform types).
+  decay_signal: >-
+    Last published 2023-10-19, more than two years before the Premiere UXP API reached v26.3.0
+    (2026-06-12). The Premiere-specific declarations in @adobe/premierepro are the current surface;
+    this package covers the shared UXP platform layer only.
+  evidence: https://registry.npmjs.org/@adobe/cc-ext-uxp-types
+not_found:
+- registry: pypi
+  note: No first-party Adobe Premiere Pro package found.
+- registry: maven-central
+  note: No first-party Adobe Premiere Pro package found.
+- registry: nuget
+  note: No first-party Adobe Premiere Pro package found.
+- registry: rubygems
+  note: No first-party Adobe Premiere Pro package found.
+- registry: crates.io
+  note: No first-party Adobe Premiere Pro package found.
+- registry: pkg.go.dev
+  note: No first-party Adobe Premiere Pro package found.
+third_party_note: >-
+  npm also carries a cluster of community MCP bridges for Premiere Pro (premiere-pro-mcp,
+  adobe-premiere-pro-mcp, @compimprove/adobe-premiere-mcp, @synthetic-ai/premiere-mcp) and the
+  bolt-uxp scaffolding toolchain. None are published by Adobe; they are recorded in
+  mcp/adobe-premiere-mcp.yml as third-party, not as provider packages.

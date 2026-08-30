@@ -1,0 +1,67 @@
+generated: '2026-08-30'
+method: searched
+source: >-
+  https://developer.adobe.com/creative-cloud-libraries/docs/integrate/guides/configuring-events-webhooks/ (200)
+  and https://developer.adobe.com/creative-cloud-libraries/docs/integrate/references/event-properties/ (200)
+provider: Adobe Premiere Pro
+providerId: adobe-premiere
+type: Webhooks
+asyncapi_published: false
+asyncapi_note: >-
+  Adobe documents this event surface in prose plus a full property reference and publishes a sample
+  event payload, but ships no AsyncAPI document for it. Probed /asyncapi.yaml and /asyncapi.json on
+  cc-libraries.adobe.io and developer.adobe.com — no spec. NOT fabricated here.
+transport:
+  name: Adobe I/O Events
+  style: HTTP webhook (push)
+  registration: >-
+    Event registrations are created in the Adobe Developer Console against a project that has the
+    Creative Cloud Libraries API added. The webhook URL must be publicly reachable.
+  handshake: >-
+    Adobe I/O Events sends a challenge to the registered webhook URL before delivering any events;
+    the endpoint must echo the challenge correctly or the registration will not activate.
+  envelope: CloudEvents
+events:
+- name: Creative Cloud Library Created
+  action: created
+  description: >-
+    Triggers whenever a user creates a new Library, including adding a public library to "Your Work".
+- name: Creative Cloud Library Deleted
+  action: deleted
+  description: Triggers when a user deletes a Library.
+- name: Creative Cloud Library Updated
+  action: updated
+  description: >-
+    Triggers whenever anything about a Library changes, including an element being added, deleted or
+    updated, or Library metadata being changed.
+  limitation: >-
+    Adobe states there is currently no way to subscribe to element-level changes only; any element
+    change surfaces as a Library Updated event. Adobe records this as on the roadmap.
+payload:
+  envelope_fields:
+  - {name: id, type: string, description: Generated unique id of the event.}
+  - {name: source, type: string, description: Partition key — the Repository id for CC Libraries events.}
+  - {name: specversion, type: string, description: CloudEvents spec version.}
+  - {name: type, type: string, description: The event type.}
+  - {name: datacontenttype, type: string, description: Content type of the data object.}
+  - {name: dataschema, type: string, description: URN of the events schema.}
+  - {name: dataschemaversion, type: string, description: Version of the events schema.}
+  - {name: time, type: string, description: Timestamp of event creation.}
+  - {name: xactionid, type: string, description: 'Request id used for debugging — correlates with the
+      x-request-id header sent on the REST call that caused the change.'}
+  - {name: recipient.userid, type: string, description: IMS user id of the recipient.}
+  - {name: recipient.clientid, type: string, description: Application client id of the recipient.}
+  data_fields:
+  - {name: data.xdmEntity, type: object, description: 'XDM entity holding the changed resources.'}
+  - {name: 'data.xdmEntity.event:resources', type: object, description: 'Resource-change objects keyed
+      by link relation. A Repository Metadata resource is always embedded, even when unaffected.'}
+  - {name: 'data.xdmEntity.event:resources.<rel>.event:action', type: string,
+     description: 'created | updated | deleted | none.'}
+  - {name: 'data.xdmEntity.event:resources.<rel>.event:embedded', type: object,
+     description: Embedded JSON representation of the changed resource.}
+samples:
+- url: https://github.com/AdobeDocs/cc-libraries-api-samples/blob/main/sample-events/cc-library-created.json
+  description: Adobe-published sample Creative Cloud Library Created event.
+tooling:
+  reference_receiver: https://github.com/adobeio/io-event-sample-webhook
+  note: Adobe's tutorial uses this sample Node webhook plus ngrok for local development.

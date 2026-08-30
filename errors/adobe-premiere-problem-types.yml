@@ -1,0 +1,83 @@
+generated: '2026-08-30'
+method: derived
+source: >-
+  openapi/adobe-premiere-cc-libraries-api-openapi.json — the Adobe-published Creative Cloud Libraries
+  spec harvested verbatim from https://raw.githubusercontent.com/AdobeDocs/cc-libraries-api-spec/main/openapi.json
+format: adobe-error-response
+media_type: application/json
+envelope:
+  schema: ErrorResponse
+  note: >-
+    Errors are NOT RFC 9457 problem+json. The spec declares a bespoke `ErrorResponse` definition
+    returned as application/json on every non-2xx response.
+summary:
+  operations_analysed: 25
+  distinct_status_codes: 11
+problem_types:
+- status: 400
+  title: Bad Request
+  detail: The request is invalid.
+  occurrences: 25
+  remediation: >-
+    Validate query parameters against the spec — `limit` on getLibraries is capped at 10, `start` is
+    0-based and required whenever `limit` is supplied, and `orderBy` accepts only name and
+    modified_date vectors.
+- status: 401
+  title: Unauthorized
+  detail: Authorization Token is not accepted.
+  occurrences: 25
+  remediation: >-
+    Refresh the Adobe IMS access token at https://ims-na1.adobelogin.com/ims/token/v3 and resend it in
+    the `authorization` header. Observed live: GET https://cc-libraries.adobe.io/api/v1/libraries
+    returns 401 unauthenticated (probed 2026-08-30).
+- status: 403
+  title: Forbidden
+  detail: API Key is not accepted.
+  occurrences: 25
+  remediation: >-
+    The `x-api-key` header must carry the Client ID from the Adobe Developer Console project that was
+    granted the Creative Cloud Libraries API. A valid token with the wrong key still 403s.
+- status: 404
+  title: Not Found
+  detail: The specified resource could not be found.
+  occurrences: 8
+  remediation: Confirm the libraryId/elementId; archived elements are not returned by the element endpoints.
+- status: 406
+  title: Not Acceptable
+  detail: The requested format is not accepted for this method.
+  occurrences: 24
+  remediation: Send Accept application/json; representation uploads use their own content types.
+- status: 412
+  title: Precondition Failed
+  detail: The server does not meet one of the preconditions on the request header fields.
+  occurrences: 4
+  remediation: >-
+    Raised by the `if-match` / `if-none-match` conditional headers. Re-read the resource, take the
+    current validator, and retry — this is the API's optimistic-concurrency signal.
+- status: 413
+  title: Payload Too Large
+  detail: The request is larger than the server is willing or able to process.
+  occurrences: 2
+  remediation: Upload large assets as representation content before creating the element, rather than inline.
+- status: 415
+  title: Unsupported Media Type
+  detail: The request entity has a media type which is not supported.
+  occurrences: 4
+  remediation: Check the content type declared for representation and component uploads.
+- status: 429
+  title: Too Many Requests
+  detail: The user has sent too many requests in a given amount of time.
+  occurrences: 4
+  remediation: >-
+    Back off and retry. Adobe declares no Retry-After or RateLimit-* response header in this spec and
+    publishes no numeric limit, so back-off must be blind — see rate-limits/adobe-premiere-rate-limits.yml.
+- status: 500
+  title: Internal Server Error
+  detail: We had a problem with our server.
+  occurrences: 25
+  remediation: Retry with jittered back-off; include the `x-request-id` you sent when contacting Adobe support.
+- status: 503
+  title: Service Unavailable
+  detail: We are temporarily offline for maintenance, please try again later.
+  occurrences: 25
+  remediation: Retry later; check https://status.adobe.com/ for Creative Cloud service incidents.

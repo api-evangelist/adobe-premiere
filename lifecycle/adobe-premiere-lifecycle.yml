@@ -1,0 +1,66 @@
+generated: '2026-08-30'
+method: searched
+source: >-
+  https://developer.adobe.com/premiere-pro/uxp/changelog/ ,
+  https://developer.adobe.com/premiere-pro/uxp/ppro-reference/ ,
+  https://developer.adobe.com/premiere-pro/uxp/plugins/distribution/overview/ ,
+  https://status.adobe.com/ (200, probed 2026-08-30).
+provider: Adobe Premiere Pro
+providerId: adobe-premiere
+versioning:
+  scheme: host-application-version
+  detail: >-
+    The Premiere UXP API is versioned to the Premiere Pro application release it ships in — v25.2.0
+    (initial public beta), v25.6.0 (official release), v26.2.0, v26.3.0. Each class member in the
+    Premiere API reference carries a MIN VERSION tag naming the Premiere release where it was
+    introduced or last significantly changed.
+  current: 26.3.0
+  reference: https://developer.adobe.com/premiere-pro/uxp/ppro-reference/
+  rest_api:
+    scheme: uri-path
+    detail: The Creative Cloud Libraries REST API pins /api/v1/ in the path on cc-libraries.adobe.io.
+    current: v1
+deprecation:
+  policy_published: true
+  detail: >-
+    Breaking changes are announced per release in the UXP changelog with before/after migration code,
+    not through HTTP Deprecation/Sunset headers. v26.3.0 made Sequence.setSelection synchronous
+    (removing the Promise return) and now requires Action instances to be created inside a
+    project.lockedAccess() block; the changelog ships the diff for both.
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  source: https://developer.adobe.com/premiere-pro/uxp/changelog/
+  predecessor_surfaces:
+  - name: CEP (Common Extensibility Platform)
+    status: legacy
+    note: >-
+      Adobe states UXP "is the current extensibility standard for Adobe Creative Cloud applications".
+      CEP/ExtendScript panels still run but new development is directed at UXP; the reference page
+      frames the UXP DOM as the successor to the synchronous ExtendScript DOM.
+  - name: ExtendScript
+    status: legacy
+    note: Synchronous scripting DOM superseded by the asynchronous UXP DOM.
+deprecated_operations: []
+deprecated_operations_note: >-
+  No operation in the Adobe-published Creative Cloud Libraries spec carries `deprecated: true`.
+status_page:
+  url: https://status.adobe.com/
+  status: 200
+  machine_readable: false
+  note: >-
+    Adobe Status is a client-rendered React application; the root URL returns a 200 HTML shell and no
+    JSON status document was found at /api/v1/status (probed 2026-08-30, returns the same shell).
+sla:
+  published: false
+  note: >-
+    No SLA is published for the Creative Cloud Libraries API or the Premiere UXP surface on the public
+    developer site. Availability commitments, where they exist, sit inside Adobe enterprise agreements.
+support:
+  url: https://developer.adobe.com/developer-support/
+  forums: https://forums.creativeclouddeveloper.com/
+distribution_review:
+  detail: >-
+    Plugins distributed through the Creative Cloud Marketplace require Adobe review and approval;
+    direct/enterprise distribution requires no review. Both paths use the .ccx package format.
+  source: https://developer.adobe.com/premiere-pro/uxp/plugins/distribution/overview/

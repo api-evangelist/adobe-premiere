@@ -1,6 +1,7 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+generated: '2026-08-30'
+method: searched
+source: openapi/adobe-premiere-elements-api-openapi.yml, openapi/adobe-premiere-libraries-api-openapi.yml,
+  openapi/adobe-premiere-representations-api-openapi.yml
 summary:
   types:
   - oauth2
@@ -15,4 +16,6 @@ schemes:
     tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
     scopes: 3
   sources:
-  - openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+  - openapi/adobe-premiere-elements-api-openapi.yml
+  - openapi/adobe-premiere-libraries-api-openapi.yml
+  - openapi/adobe-premiere-representations-api-openapi.yml

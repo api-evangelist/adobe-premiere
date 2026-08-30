@@ -1,0 +1,83 @@
+generated: '2026-08-30'
+method: probed
+source: live unauthenticated HTTP probes, 2026-08-30
+note: >-
+  developer.adobe.com is an Adobe Experience Manager / Franklin single-page host whose catch-all
+  answers HTTP 200 with a ~1.2 MB HTML shell for EVERY /.well-known/* path. Those 200s are NOT
+  documents and are recorded here as shell responses, not hits. The only real well-known document
+  Adobe serves across these hosts is the PGP-signed security.txt on www.adobe.com.
+hosts:
+- host: www.adobe.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: adobe-premiere-security.txt
+    content_type: text/plain
+    note: PGP-signed; Contact https://hackerone.com/adobe and psirt@adobe.com; Expires 2027-07-30.
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: developer.adobe.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: SPA catch-all shell (text/html, ~1.2 MB) — not a document. Treated as a miss.
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: SPA catch-all shell — not a document. Treated as a miss.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: SPA catch-all shell — not a document. Treated as a miss.
+  - path: /.well-known/api-catalog
+    status: 200
+    note: SPA catch-all shell — not a document. Treated as a miss.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    note: SPA catch-all shell — not a document. Treated as a miss.
+  - path: /.well-known/agent-card.json
+    status: 200
+    note: SPA catch-all shell — not a document. Treated as a miss.
+  - path: /.well-known/agent.json
+    status: 200
+    note: SPA catch-all shell — not a document. Treated as a miss.
+- host: cc-libraries.adobe.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: api.adobe.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404

@@ -1,0 +1,106 @@
+generated: '2026-08-30'
+method: searched
+source: >-
+  https://developer.adobe.com/creative-cloud-libraries/docs/integrate/setup/oauth/ ,
+  https://developer.adobe.com/developer-console/docs/guides/authentication/ ,
+  https://developer.adobe.com/creative-cloud-libraries/docs/integrate/references/event-properties/ ,
+  and openapi/adobe-premiere-cc-libraries-api-openapi.json (Adobe-published, AdobeDocs/cc-libraries-api-spec).
+provider: Adobe Premiere Pro
+providerId: adobe-premiere
+standards:
+- id: oauth2
+  name: OAuth 2.0
+  conforms: true
+  evidence: >-
+    Adobe IMS OAuth 2.0 authorization-code flow. authorizationUrl
+    https://ims-na1.adobelogin.com/ims/authorize/v2 , tokenUrl https://ims-na1.adobelogin.com/ims/token/v3 ,
+    documented at https://developer.adobe.com/creative-cloud-libraries/docs/integrate/setup/oauth/ .
+    Refresh-token grant documented with grant_type/client_id/client_secret/refresh_token parameters.
+- id: oidc
+  name: OpenID Connect
+  conforms: true
+  evidence: >-
+    The `openid` and `profile` scopes are documented on the Creative Cloud Libraries OAuth setup page
+    alongside `creative_sdk` and the AdobeID scope. No /.well-known/openid-configuration is served on
+    any of the provider's own hosts (probed 2026-08-30, 404), so discovery is documentation-only.
+- id: bearer-token
+  name: RFC 6750 Bearer token
+  conforms: true
+  evidence: >-
+    Every operation in the Adobe-published spec takes a required `x-api-key` header plus an
+    `authorization` header carrying the IMS access token.
+- id: cloudevents
+  name: CloudEvents
+  conforms: true
+  evidence: >-
+    Creative Cloud Libraries events delivered through Adobe I/O Events carry the CloudEvents envelope
+    fields id, source, specversion, type, datacontenttype, dataschema and time, documented at
+    https://developer.adobe.com/creative-cloud-libraries/docs/integrate/references/event-properties/ .
+- id: conditional-requests
+  name: RFC 7232 conditional requests
+  conforms: true
+  evidence: >-
+    `if-match` and `if-none-match` request headers are declared on library and element write
+    operations in the Adobe-published spec.
+- id: pagination
+  name: Offset/limit pagination
+  conforms: true
+  evidence: >-
+    getLibraries and getLibraryElements declare `start` (0-based offset), `limit` (1..10 for libraries)
+    and `orderBy` query parameters, with reverse sort via a leading `-` and multi-vector sort via commas.
+- id: rfc9457
+  name: RFC 9457 Problem Details for HTTP APIs
+  conforms: false
+  evidence: >-
+    Errors use a bespoke `ErrorResponse` definition served as application/json, not
+    application/problem+json. No `type`/`title`/`detail`/`instance` members.
+- id: idempotency
+  name: Idempotency keys
+  conforms: false
+  evidence: >-
+    No Idempotency-Key header appears in the Adobe-published spec or in the Creative Cloud Libraries
+    docs. Retry safety rests on HTTP method semantics and conditional headers only.
+- id: json-api
+  name: JSON:API
+  conforms: false
+  evidence: Responses use Adobe's own Melville hypermedia link shapes, not the JSON:API media type.
+- id: odata
+  name: OData
+  conforms: false
+  evidence: No $metadata surface on cc-libraries.adobe.io (probed 2026-08-30).
+- id: scim
+  name: SCIM
+  conforms: false
+  evidence: No SCIM schema URNs in the spec; user provisioning is not part of this surface.
+- id: asyncapi
+  name: AsyncAPI
+  conforms: false
+  evidence: >-
+    Adobe documents the Libraries event surface in prose and property tables, and publishes a sample
+    event JSON, but ships no AsyncAPI document. Captured as a webhook catalog in
+    asyncapi/adobe-premiere-libraries-webhooks.yml instead.
+domain_standards:
+- id: xdm
+  name: Adobe Experience Data Model (XDM)
+  conforms: true
+  evidence: >-
+    The Libraries event payload nests an `xdmEntity` object carrying `event:resources` keyed by link
+    relation, with `event:action` values created/updated/deleted/none — the XDM resource-change shape.
+    Documented at
+    https://developer.adobe.com/creative-cloud-libraries/docs/integrate/references/event-properties/ .
+  note: >-
+    XDM is Adobe's own cross-product data model rather than a neutral industry standard; it is
+    recorded because it is DECLARED in the event contract, and an integrator who already speaks XDM
+    (from Experience Platform) can consume Libraries events with no bespoke mapping.
+- id: ccx-package
+  name: UXP .ccx plugin package format
+  conforms: true
+  evidence: >-
+    https://developer.adobe.com/premiere-pro/uxp/plugins/distribution/overview/ names `.ccx` as the
+    UXP package format installable through Creative Cloud desktop across every supported host app.
+note: >-
+  Video production and post-production have no cross-vendor API standard comparable to FHIR or PSD2;
+  interchange happens at the file level (AAF, XMP, EDL). Adobe's UXP surface exposes AAF export
+  (ProjectConverter.exportAAF) and XMP sidecar/embedded metadata toggles (EncoderManager), both added
+  in Premiere Pro v26.3.0 — file-format interchange rather than API conformance, so they are not
+  scored as domain_standard conformance here.

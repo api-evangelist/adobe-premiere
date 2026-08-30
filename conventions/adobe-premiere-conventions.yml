@@ -1,0 +1,182 @@
+generated: '2026-08-30'
+method: searched
+source: >-
+  openapi/adobe-premiere-cc-libraries-api-openapi.json (Adobe-published),
+  https://developer.adobe.com/creative-cloud-libraries/docs/integrate/setup/oauth/ ,
+  https://developer.adobe.com/creative-cloud-libraries/docs/integrate/references/event-properties/ ,
+  https://developer.adobe.com/premiere-pro/uxp/ppro-reference/ ,
+  https://developer.adobe.com/premiere-pro/uxp/changelog/
+provider: Adobe Premiere Pro
+providerId: adobe-premiere
+scope_note: >-
+  Two very different surfaces sit under this provider. (1) The Premiere UXP API is an in-process
+  JavaScript DOM inside the Premiere Pro desktop application — no HTTP, no base URL, no auth. (2) The
+  Creative Cloud Libraries REST API on cc-libraries.adobe.io is the HTTP surface a Premiere panel
+  calls for shared assets. The HTTP conventions below describe surface 2; the runtime conventions
+  section describes surface 1.
+auth:
+  style: oauth2-bearer + api-key
+  detail: >-
+    Every operation requires BOTH a required `x-api-key` header carrying the Adobe Developer Console
+    Client ID and an `authorization` header carrying an Adobe IMS OAuth 2.0 access token. A valid
+    token with a wrong key returns 403; a wrong token returns 401.
+  authorization_url: https://ims-na1.adobelogin.com/ims/authorize/v2
+  token_url: https://ims-na1.adobelogin.com/ims/token/v3
+  refresh: grant_type=refresh_token with client_id, client_secret and refresh_token
+  scopes: [creative_sdk, openid, profile, AdobeID]
+  see: authentication/adobe-premiere-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  detail: >-
+    No Idempotency-Key header is declared anywhere in the Adobe-published spec or in the Creative
+    Cloud Libraries documentation. Safe retry rests on HTTP method semantics plus the conditional
+    headers below; a repeated POST /api/v1/libraries creates a second library.
+pagination:
+  style: offset-limit
+  params:
+    offset: start
+    limit: limit
+    sort: orderBy
+  detail: >-
+    `start` is 0-based and is required whenever `limit` is supplied. `limit` on getLibraries is
+    capped at 10 (min 1) and defaults to 10. `orderBy` defaults to -modified_date; a leading `-`
+    reverses a vector and commas combine vectors (e.g. name,-modified_date). Paging and sorting are
+    NOT available on the public-library endpoints.
+  response_fields: [_links, total_count]
+field_expansion:
+  supported: false
+  detail: Element representations are returned inline; there is no `expand`/`fields` selector.
+metadata:
+  supported: true
+  detail: >-
+    Libraries and elements carry updatable metadata, written through PUT
+    /api/v1/libraries/{libraryId}/metadata (updateLibrary) and PUT
+    /api/v1/libraries/{libraryId}/elements/metadata (updateLibraryElements).
+request_id_tracing:
+  supported: true
+  request_header: x-request-id
+  detail: >-
+    An optional `x-request-id` request header is declared on every operation. The same value appears
+    as `xactionid` in the Adobe I/O Events payload, described in the event reference as "the request
+    ID, which is used for debugging" — so a caller-supplied id can be correlated across the REST
+    call and the resulting event.
+conditional_requests:
+  supported: true
+  headers: [if-match, if-none-match]
+  detail: >-
+    Declared on library and element write operations. A failed precondition returns 412 — this is the
+    API's optimistic-concurrency control and the closest thing it offers to a conflict guard.
+caching:
+  headers: [x-use-cdn, x-cdn-origin]
+  detail: >-
+    Two optional Adobe-specific headers let a caller opt representation reads into or out of the CDN
+    origin path.
+versioning:
+  style: uri-path
+  current: v1
+  detail: /api/v1/ on cc-libraries.adobe.io. See lifecycle/adobe-premiere-lifecycle.yml.
+error_envelope:
+  media_type: application/json
+  schema: ErrorResponse
+  rfc9457: false
+  see: errors/adobe-premiere-problem-types.yml
+rate_limit_signaling:
+  headers: []
+  status_on_exhaustion: 429
+  detail: >-
+    429 "Too Many Requests" is declared on 4 operations, but the spec declares no Retry-After and no
+    X-RateLimit-* / RateLimit-* response headers, and Adobe publishes no numeric limits. An agent has
+    no runtime signal to pace itself with and must back off blind.
+  see: rate-limits/adobe-premiere-rate-limits.yml
+events:
+  transport: Adobe I/O Events webhooks
+  envelope: CloudEvents
+  detail: >-
+    create / delete / update events for a user's Creative Cloud Libraries, delivered to a publicly
+    reachable webhook URL registered in the Adobe Developer Console. The endpoint must answer an
+    Adobe challenge before events flow.
+  see: asyncapi/adobe-premiere-libraries-webhooks.yml
+reversibility:
+  grade: documented
+  has_write_surface: true
+  detail: >-
+    The Creative Cloud Libraries API implements deletion as a two-stage archive: DELETE on an element
+    MOVES it to the library archive rather than destroying it, and a separate POST restores it. Only
+    the /archive DELETE operations are terminal. Adobe documents the operations but states no
+    retention window for the archive anywhere in the spec or the docs, so an agent knows a delete can
+    be taken back but not for how long — hence `documented`, not `verified`.
+  operations:
+  - action: archive a library element (soft delete)
+    operationId: archiveLibraryElement
+    method: DELETE
+    path: /api/v1/libraries/{libraryId}/elements/{elementId}
+    reversal: unArchiveLibraryElements
+    reversal_method: POST
+    reversal_path: /api/v1/libraries/{libraryId}/archive
+    window: null
+    window_note: No archive retention window is stated in the Adobe-published spec or documentation.
+    docs: https://developer.adobe.com/creative-cloud-libraries/docs/api/
+  - action: archive many library elements (soft delete)
+    operationId: archiveLibraryElements
+    method: DELETE
+    path: /api/v1/libraries/{libraryId}/elements
+    reversal: unArchiveLibraryElements
+    reversal_method: POST
+    reversal_path: /api/v1/libraries/{libraryId}/archive
+    window: null
+    window_note: No archive retention window is stated.
+    docs: https://developer.adobe.com/creative-cloud-libraries/docs/api/
+  - action: permanently delete archived elements
+    operationId: deleteLibraryElements
+    method: DELETE
+    path: /api/v1/libraries/{libraryId}/archive
+    reversal: null
+    window: null
+    window_note: Irreversible. The spec summary is literally "Permanently delete archived elements".
+  - action: permanently delete one archived element
+    operationId: deleteLibraryElement
+    method: DELETE
+    path: /api/v1/libraries/{libraryId}/archive/{elementId}
+    reversal: null
+    window: null
+    window_note: Irreversible.
+  - action: delete a library
+    operationId: deleteLibrary
+    method: DELETE
+    path: /api/v1/libraries/{libraryId}
+    reversal: null
+    window: null
+    window_note: >-
+      No library-level restore operation exists in the spec. The Creative Cloud desktop and web
+      clients offer their own recovery UI, but it is not exposed through this API.
+  - action: remove a library bookmark
+    operationId: removeLibraryBookmark
+    method: DELETE
+    path: /api/v1/libraries/bookmarks/{bookmarkId}
+    reversal: addLibraryBookmarks
+    reversal_method: POST
+    reversal_path: /api/v1/libraries/bookmarks
+    window: unbounded
+    window_note: Re-adding the bookmark restores the association; nothing is destroyed.
+dry_run_mode:
+  supported: false
+  detail: No preview/validate-only mode is declared on any write operation.
+runtime_conventions_uxp:
+  surface: Premiere UXP API (in-process JavaScript, no HTTP)
+  entry_point: const app = require('premierepro')
+  async_model: >-
+    Methods are asynchronous and do not block the Premiere UI thread; properties (get and set) were
+    deliberately designed synchronous for parity with the ExtendScript DOM. As of v26.3.0
+    Sequence.setSelection is also synchronous.
+  transactions: >-
+    Mutations go through Action objects composed into a CompoundAction and applied via
+    project.executeTransaction(), which is what puts them on Premiere's Undo history — the UXP
+    surface's own reversibility mechanism.
+  locking: >-
+    Since v26.3.0 every create*Action call must happen inside project.lockedAccess(() => { ... }) so
+    actions are sequenced against concurrent edits by the human editor. The
+    @adobe/eslint-plugin-premierepro package enforces this statically.
+  min_version_tags: >-
+    Every property and method in the Premiere API reference carries a MIN VERSION tag naming the
+    Premiere release it was introduced or last significantly changed in.

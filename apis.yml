@@ -2,8 +2,13 @@ aid: adobe-premiere
 url: https://raw.githubusercontent.com/api-evangelist/adobe-premiere/refs/heads/main/apis.yml
 name: Adobe Premiere Pro
 description: >-
-  APIs for Adobe Premiere Pro, a professional video editing software that enables programmatic access to video editing,
-  project management, and content creation workflows.
+  Adobe Premiere Pro is a professional non-linear video editor. Its programmable surface has two
+  halves: the Premiere UXP API, an in-process JavaScript DOM for plugins and panels that automate
+  editing, extend the timeline and integrate hardware or media asset management systems inside the
+  desktop application; and the Adobe Creative Cloud Libraries REST API on cc-libraries.adobe.io,
+  which is what a Premiere panel calls over HTTP to read and write shared assets — colors, character
+  styles, graphics, patterns and video — along with an Adobe I/O Events webhook surface for library
+  changes.
 deliveryModel:
   model: saas
   open_source: false
@@ -42,7 +47,12 @@ apis:
     integrate with external hardware, and extend the Premiere Pro user interface.
   image: https://www.adobe.com/content/dam/cc/icons/premiere.svg
   humanURL: https://developer.adobe.com/premiere-pro/
-  baseURL: https://api.adobe.io/premiere
+  baseURL: https://developer.adobe.com/premiere-pro/uxp/
+  x-base-url-note: >-
+    The Premiere UXP API is an in-process JavaScript DOM inside the Premiere Pro desktop application
+    (const app = require('premierepro')). It has NO HTTP endpoint. The previous value
+    https://api.adobe.io/premiere was a guess and returns 404 (probed 2026-08-30); the documentation
+    root is recorded instead rather than inventing a host.
   tags:
   - Automation
   - Creative Cloud
@@ -51,18 +61,22 @@ apis:
   - Video Production
   properties:
   - type: Documentation
-    url: https://developer.adobe.com/premiere-pro/docs/
+    url: https://developer.adobe.com/premiere-pro/uxp/
+  - type: APIReference
+    url: https://developer.adobe.com/premiere-pro/uxp/ppro-reference/
   - type: SDKs
-    url: https://developer.adobe.com/developer-console/docs/guides/
+    url: packages/adobe-premiere-packages.yml
   - type: Authentication
     url: https://developer.adobe.com/developer-console/docs/guides/authentication/
   - type: GettingStarted
-    url: https://developer.adobe.com/premiere-pro/docs/getting-started/
+    url: https://developer.adobe.com/premiere-pro/uxp/introduction/
+  - type: ChangeLog
+    url: https://developer.adobe.com/premiere-pro/uxp/changelog/
 - aid: adobe-premiere:adobe-premiere-elements-api
   name: Adobe Premiere Pro Elements API
   description: Manage library elements (colors, graphics, fonts, etc.)
   humanURL: https://developer.adobe.com/premiere-pro/
-  baseURL: https://api.adobe.io/premiere
+  baseURL: https://cc-libraries.adobe.io
   tags:
   - Elements
   properties:
@@ -82,7 +96,7 @@ apis:
   name: Adobe Premiere Pro Libraries API
   description: Manage Creative Cloud Libraries
   humanURL: https://developer.adobe.com/premiere-pro/
-  baseURL: https://api.adobe.io/premiere
+  baseURL: https://cc-libraries.adobe.io
   tags:
   - Libraries
   properties:
@@ -102,7 +116,7 @@ apis:
   name: Adobe Premiere Pro Representations API
   description: Manage element representations and renditions
   humanURL: https://developer.adobe.com/premiere-pro/
-  baseURL: https://api.adobe.io/premiere
+  baseURL: https://cc-libraries.adobe.io
   tags:
   - Representations
   properties:
@@ -118,6 +132,37 @@ apis:
     url: json-schema/creative-cloud-libraries-element-list-schema.json
   - type: JSONSchema
     url: json-schema/creative-cloud-libraries-element-schema.json
+- aid: adobe-premiere:adobe-creative-cloud-libraries-api
+  name: Adobe Creative Cloud Libraries API
+  description: >-
+    Adobe's published REST API for Creative Cloud Libraries — the shared asset store (colors,
+    character styles, brushes, graphics, patterns and video) that Premiere Pro panels read and write.
+    25 operations across libraries, elements, representations, bookmarks, public libraries and
+    search, on https://cc-libraries.adobe.io. Adobe publishes the contract itself from its own
+    AdobeDocs GitHub organization and renders it at developer.adobe.com/creative-cloud-libraries.
+  humanURL: https://developer.adobe.com/creative-cloud-libraries/docs/
+  baseURL: https://cc-libraries.adobe.io
+  tags:
+  - Creative Cloud
+  - Libraries
+  - Assets
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-premiere-cc-libraries-api-openapi.json
+    name: Adobe-published Creative Cloud Libraries contract (Swagger 2.0, verbatim)
+  - type: Documentation
+    url: https://developer.adobe.com/creative-cloud-libraries/docs/
+  - type: APIReference
+    url: https://developer.adobe.com/creative-cloud-libraries/docs/api/
+  - type: GettingStarted
+    url: https://developer.adobe.com/creative-cloud-libraries/docs/integrate/setup/developer-credentials/
+  - type: Authentication
+    url: https://developer.adobe.com/creative-cloud-libraries/docs/integrate/setup/oauth/
+  - type: Overlay
+    url: overlays/adobe-premiere-cc-libraries-api-overlay.yaml
+  - type: Webhooks
+    url: asyncapi/adobe-premiere-libraries-webhooks.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
@@ -130,6 +175,8 @@ tags:
   - Video Editing
   - Video Production
 common:
+  - type: Website
+    url: https://www.adobe.com/products/premiere.html
   - type: AgenticAccess
     url: agentic-access/adobe-premiere-agentic-access.yml
   - type: VulnerabilityDisclosure
@@ -168,7 +215,7 @@ common:
   - type: Portal
     url: https://developer.adobe.com/premiere-pro/
   - type: Documentation
-    url: https://developer.adobe.com/premiere-pro/docs/
+    url: https://developer.adobe.com/premiere-pro/uxp/
   - type: Blog
     url: https://blog.developer.adobe.com/
   - type: Support
@@ -184,9 +231,9 @@ common:
   - type: StatusPage
     url: https://status.adobe.com/
   - type: YouTube
-    url: https://www.youtube.com/user/AdobeDeveloperTV
+    url: https://www.youtube.com/c/AdobeDevelopers
   - type: GettingStarted
-    url: https://developer.adobe.com/premiere-pro/docs/getting-started/
+    url: https://developer.adobe.com/premiere-pro/uxp/introduction/
   - type: Features
     data:
       - name: UXP Plugin Development
@@ -245,5 +292,62 @@ common:
     url: rules/adobe-premiere-spectral-rules.yml
   - type: Vocabulary
     url: vocabulary/adobe-premiere-vocabulary.yaml
+  - type: Packages
+    url: packages/adobe-premiere-packages.yml
+  - type: SDKs
+    url: packages/adobe-premiere-packages.yml
+  - type: WellKnown
+    url: well-known/adobe-premiere-well-known.yml
+  - type: SecurityTxt
+    url: well-known/adobe-premiere-security.txt
+  - type: Security
+    url: security/adobe-premiere-vulnerability-disclosure.yml
+  - type: MCPServer
+    url: mcp/adobe-premiere-mcp.yml
+  - type: LLMsTxt
+    url: llms/adobe-premiere-llms.txt
+  - type: Overlay
+    url: overlays/adobe-premiere-cc-libraries-api-overlay.yaml
+  - type: Overlay
+    url: overlays/adobe-premiere-elements-api-overlay.yaml
+  - type: Overlay
+    url: overlays/adobe-premiere-libraries-api-overlay.yaml
+  - type: Overlay
+    url: overlays/adobe-premiere-representations-api-overlay.yaml
+  - type: Conformance
+    url: conformance/adobe-premiere-conformance.yml
+  - type: ErrorCatalog
+    url: errors/adobe-premiere-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/adobe-premiere-lifecycle.yml
+  - type: Deprecation
+    url: lifecycle/adobe-premiere-lifecycle.yml
+  - type: Conventions
+    url: conventions/adobe-premiere-conventions.yml
+  - type: ChangeLog
+    url: changelog/adobe-premiere-changelog.yml
+  - type: DataModel
+    url: data-model/adobe-premiere-data-model.yml
+  - type: Webhooks
+    url: asyncapi/adobe-premiere-libraries-webhooks.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Plans
+    url: plans/adobe-premiere-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/adobe-premiere-rate-limits.yml
+  - type: APIReference
+    url: https://developer.adobe.com/premiere-pro/uxp/ppro-reference/
+  - type: Quickstart
+    url: https://developer.adobe.com/premiere-pro/uxp/plugins/tutorials/
+  - type: HelpCenter
+    url: https://forums.creativeclouddeveloper.com/
   - type: JSONLD
     url: json-ld/adobe-premiere-creative-cloud-libraries-context.jsonld
+x-enrichment:
+  date: '2026-08-30'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1
+x-parent: adobe
+x-relationship: product

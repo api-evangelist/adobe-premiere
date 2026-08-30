@@ -1,9 +1,22 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+generated: '2026-08-30'
+method: searched
+source: openapi/adobe-premiere-elements-api-openapi.yml, openapi/adobe-premiere-libraries-api-openapi.yml,
+  openapi/adobe-premiere-representations-api-openapi.yml
 schemes:
 - name: oauth2
-  source: openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+  source: openapi/adobe-premiere-elements-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+    tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+- name: oauth2
+  source: openapi/adobe-premiere-libraries-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+    tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+- name: oauth2
+  source: openapi/adobe-premiere-representations-api-openapi.yml
   flows:
   - flow: authorizationCode
     authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
@@ -14,16 +27,30 @@ scopes:
   flows:
   - authorizationCode
   sources:
-  - openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+  - openapi/adobe-premiere-elements-api-openapi.yml
+  - openapi/adobe-premiere-libraries-api-openapi.yml
+  - openapi/adobe-premiere-representations-api-openapi.yml
 - scope: openid
   description: OpenID Connect
   flows:
   - authorizationCode
   sources:
-  - openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+  - openapi/adobe-premiere-elements-api-openapi.yml
+  - openapi/adobe-premiere-libraries-api-openapi.yml
+  - openapi/adobe-premiere-representations-api-openapi.yml
 - scope: profile
   description: User profile access
   flows:
   - authorizationCode
   sources:
-  - openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+  - openapi/adobe-premiere-elements-api-openapi.yml
+  - openapi/adobe-premiere-libraries-api-openapi.yml
+  - openapi/adobe-premiere-representations-api-openapi.yml
+- scope: AdobeID
+  description: >-
+    Core Adobe Identity Management System scope required alongside openid for an authorization-code
+    flow against Adobe IMS.
+  flows:
+  - authorizationCode
+  sources:
+  - https://developer.adobe.com/creative-cloud-libraries/docs/integrate/setup/oauth/
