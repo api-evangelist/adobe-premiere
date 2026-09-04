@@ -1,17 +1,17 @@
 ---
 kin_checks:
   slug: adobe-premiere
-  schema_version: 0.17.2
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T063623
+  schema_version: 0.18.2
+  scored_at: '2026-09-04'
+  run_ts: 2026-09-04T062714
   note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.17.2.yml; counts below let you verify that.
+    in rubric/scoring-0.18.2.yml; counts below let you verify that.
   counts:
-    total: 130
-    earned: 58
-    partial: 14
-    missed: 34
-    na: 24
+    total: 132
+    earned: 56
+    partial: 15
+    missed: 36
+    na: 25
   checks:
   - id: multiple_apis
     status: missed
@@ -32,6 +32,8 @@ kin_checks:
   - id: webhooks_or_callbacks
     status: missed
     detail: 0 of 4 openapi documents pass
+  - id: inbound_contract_published
+    status: missed
   - id: domain_standard_conformance
     status: missed
   - id: overlay_published
@@ -66,6 +68,8 @@ kin_checks:
   - id: reg_compliance_published
     status: missed
   - id: reversibility_documented
+    status: missed
+  - id: mcp_server
     status: missed
   - id: idempotency
     status: missed
@@ -118,14 +122,13 @@ kin_checks:
     status: partial
     earned: 1.0
     detail: pointer liveness 0.5
+  - id: agent_skill_present
+    status: partial
+    earned: 0.75
   - id: agentic_access
     status: partial
     earned: 2.5
     detail: 'authorship: derived'
-  - id: mcp_server
-    status: partial
-    earned: 4.8
-    detail: 'grade: documented'
   - id: auth_clarity
     status: partial
     earned: 7.5
@@ -134,6 +137,10 @@ kin_checks:
     status: partial
     earned: 3.5
     detail: 'grade: documented'
+  - id: agent_skills
+    status: partial
+    earned: 1.25
+    detail: 'authorship: derived'
   - id: delegated_identity
     status: partial
     earned: 3.0
