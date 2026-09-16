@@ -1,19 +1,73 @@
-generated: '2026-07-15'
+generated: '2026-09-16'
 method: generated
-source: openapi/adobe-premiere-creative-cloud-libraries-openapi.yml
+source: openapi/adobe-premiere-elements-api-openapi.yml, openapi/adobe-premiere-libraries-api-openapi.yml,
+  openapi/adobe-premiere-library-service-api-openapi.yml, openapi/adobe-premiere-library-service-bookmarks-api-openapi.yml,
+  openapi/adobe-premiere-library-service-public-api-openapi.yml, openapi/adobe-premiere-representations-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 10
+  operations: 28
   by_action_class:
-    connected: 5
-    acting: 5
+    connected: 11
+    acting: 17
   by_consequence:
-    read: 5
-    write: 5
+    read: 11
+    write: 17
   human_in_the_loop_required: 0
 operations:
+- path: /api/v1/libraries/{libraryId}/elements
+  method: get
+  operationId: getLibraryElements
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/libraries/{libraryId}/elements
+  method: post
+  operationId: createLibraryElement
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/elements/{elementId}
+  method: get
+  operationId: getLibraryElement
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/libraries/{libraryId}/elements/{elementId}
+  method: delete
+  operationId: deleteLibraryElement
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /api/v1/libraries
   method: get
   operationId: getLibraries
@@ -82,9 +136,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v1/libraries/{libraryId}/elements
-  method: get
-  operationId: getLibraryElements
+- path: /api/v1/libraries/{libraryId}
+  method: head
+  operationId: headLibrary
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -92,9 +146,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/v1/libraries/{libraryId}/elements
+- path: /api/v1/libraries/{libraryId}/archive
   method: post
-  operationId: createLibraryElement
+  operationId: unArchiveLibraryElements
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -108,17 +162,23 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v1/libraries/{libraryId}/elements/{elementId}
-  method: get
-  operationId: getLibraryElement
+- path: /api/v1/libraries/{libraryId}/archive
+  method: delete
+  operationId: deleteLibraryElements
   x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
     token:
-      max-ttl: 3600
-    audit: none
-- path: /api/v1/libraries/{libraryId}/elements/{elementId}
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/archive/{elementId}
   method: delete
   operationId: deleteLibraryElement
   x-agentic-access:
@@ -134,6 +194,200 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v1/libraries/{libraryId}/elements
+  method: delete
+  operationId: archiveLibraryElements
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/elements/metadata
+  method: put
+  operationId: updateLibraryElements
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/elements/{elementId}/representations
+  method: put
+  operationId: putLibraryElementRepresentations
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/metadata
+  method: put
+  operationId: updateLibrary
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/{libraryId}/representations/content
+  method: post
+  operationId: postLibraryComponent
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search
+  method: post
+  operationId: search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/bookmarks
+  method: get
+  operationId: getBookmarks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/libraries/bookmarks
+  method: post
+  operationId: addLibraryBookmarks
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/bookmarks/{bookmarkId}
+  method: put
+  operationId: putLibraryBookmark
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/libraries/bookmarks/{bookmarkId}
+  method: delete
+  operationId: removeLibraryBookmark
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/public/libraries/{libraryId}
+  method: get
+  operationId: getPublicLibrary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/public/libraries/{libraryId}
+  method: head
+  operationId: headPublicLibrary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/public/libraries/{libraryId}/elements
+  method: get
+  operationId: getPublicLibraryElements
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/public/libraries/{libraryId}/elements/{elementId}
+  method: get
+  operationId: getPublicLibraryElement
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v1/libraries/{libraryId}/elements/{elementId}/representations/{representationId}
   method: get
   operationId: getElementRepresentation
