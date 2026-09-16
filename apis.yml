@@ -49,10 +49,10 @@ apis:
   humanURL: https://developer.adobe.com/premiere-pro/
   baseURL: https://developer.adobe.com/premiere-pro/uxp/
   x-base-url-note: >-
-    The Premiere UXP API is an in-process JavaScript DOM inside the Premiere Pro desktop application
-    (const app = require('premierepro')). It has NO HTTP endpoint. The previous value
-    https://api.adobe.io/premiere was a guess and returns 404 (probed 2026-08-30); the documentation
-    root is recorded instead rather than inventing a host.
+    The Premiere UXP API is an in-process JavaScript DOM inside the Premiere Pro desktop application (const
+    app = require('premierepro')). It has NO HTTP endpoint. The previous value https://api.adobe.io/premiere
+    was a guess and returns 404 (probed 2026-08-30); the documentation root is recorded instead rather
+    than inventing a host.
   tags:
   - Automation
   - Creative Cloud
@@ -132,35 +132,67 @@ apis:
     url: json-schema/creative-cloud-libraries-element-list-schema.json
   - type: JSONSchema
     url: json-schema/creative-cloud-libraries-element-schema.json
-- aid: adobe-premiere:adobe-creative-cloud-libraries-api
-  name: Adobe Creative Cloud Libraries API
-  description: >-
-    Adobe's published REST API for Creative Cloud Libraries — the shared asset store (colors,
-    character styles, brushes, graphics, patterns and video) that Premiere Pro panels read and write.
-    25 operations across libraries, elements, representations, bookmarks, public libraries and
-    search, on https://cc-libraries.adobe.io. Adobe publishes the contract itself from its own
-    AdobeDocs GitHub organization and renders it at developer.adobe.com/creative-cloud-libraries.
-  humanURL: https://developer.adobe.com/creative-cloud-libraries/docs/
-  baseURL: https://cc-libraries.adobe.io
+- aid: adobe-premiere:adobe-premiere-library-service-api
+  name: Adobe Premiere Pro Library Service API
+  description: App-facing APIs for Adobe CC Libraries.
+  humanURL: https://developer.adobe.com/premiere-pro/
+  baseURL: https://developer.adobe.com/premiere-pro/uxp/
   tags:
-  - Creative Cloud
-  - Libraries
-  - Assets
-  - Media
+  - Library Service
   properties:
   - type: OpenAPI
-    url: openapi/adobe-premiere-cc-libraries-api-openapi.json
-    name: Adobe-published Creative Cloud Libraries contract (Swagger 2.0, verbatim)
+    url: openapi/adobe-premiere-library-service-api-openapi.yml
   - type: Documentation
     url: https://developer.adobe.com/creative-cloud-libraries/docs/
   - type: APIReference
     url: https://developer.adobe.com/creative-cloud-libraries/docs/api/
   - type: GettingStarted
-    url: https://developer.adobe.com/creative-cloud-libraries/docs/integrate/setup/developer-credentials/
+    url: >-
+      https://developer.adobe.com/creative-cloud-libraries/docs/integrate/setup/developer-credentials/
   - type: Authentication
     url: https://developer.adobe.com/creative-cloud-libraries/docs/integrate/setup/oauth/
-  - type: Overlay
-    url: overlays/adobe-premiere-cc-libraries-api-overlay.yaml
+  - type: Webhooks
+    url: asyncapi/adobe-premiere-libraries-webhooks.yml
+- aid: adobe-premiere:adobe-premiere-library-service-bookmarks-api
+  name: Adobe Premiere Pro Library Service - Bookmarks API
+  description: App-facing APIs specifically for Adobe CC Library Bookmarks.
+  humanURL: https://developer.adobe.com/premiere-pro/
+  baseURL: https://developer.adobe.com/premiere-pro/uxp/
+  tags:
+  - Library Service - Bookmarks
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-premiere-library-service-bookmarks-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/creative-cloud-libraries/docs/
+  - type: APIReference
+    url: https://developer.adobe.com/creative-cloud-libraries/docs/api/
+  - type: GettingStarted
+    url: >-
+      https://developer.adobe.com/creative-cloud-libraries/docs/integrate/setup/developer-credentials/
+  - type: Authentication
+    url: https://developer.adobe.com/creative-cloud-libraries/docs/integrate/setup/oauth/
+  - type: Webhooks
+    url: asyncapi/adobe-premiere-libraries-webhooks.yml
+- aid: adobe-premiere:adobe-premiere-library-service-public-api
+  name: Adobe Premiere Pro Library Service - Public API
+  description: App-facing APIs specifically for Adobe CC Public Libraries.
+  humanURL: https://developer.adobe.com/premiere-pro/
+  baseURL: https://developer.adobe.com/premiere-pro/uxp/
+  tags:
+  - Library Service - Public
+  properties:
+  - type: OpenAPI
+    url: openapi/adobe-premiere-library-service-public-api-openapi.yml
+  - type: Documentation
+    url: https://developer.adobe.com/creative-cloud-libraries/docs/
+  - type: APIReference
+    url: https://developer.adobe.com/creative-cloud-libraries/docs/api/
+  - type: GettingStarted
+    url: >-
+      https://developer.adobe.com/creative-cloud-libraries/docs/integrate/setup/developer-credentials/
+  - type: Authentication
+    url: https://developer.adobe.com/creative-cloud-libraries/docs/integrate/setup/oauth/
   - type: Webhooks
     url: asyncapi/adobe-premiere-libraries-webhooks.yml
 maintainers:
