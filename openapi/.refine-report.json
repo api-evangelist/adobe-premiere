@@ -1,20 +1,34 @@
 {
   "provider": "adobe-premiere",
   "sources": [
-    "adobe-premiere-elements-api-openapi.yml",
-    "adobe-premiere-libraries-api-openapi.yml",
-    "adobe-premiere-representations-api-openapi.yml"
+    "_original/adobe-premiere-creative-cloud-libraries-openapi.yml",
+    "adobe-premiere-library-service-api-openapi.yml",
+    "adobe-premiere-library-service-bookmarks-api-openapi.yml",
+    "adobe-premiere-library-service-public-api-openapi.yml"
   ],
   "outputs": [
     "adobe-premiere-elements-api-openapi.yml",
     "adobe-premiere-libraries-api-openapi.yml",
-    "adobe-premiere-representations-api-openapi.yml"
+    "adobe-premiere-representations-api-openapi.yml",
+    "adobe-premiere-library-service-api-openapi.yml",
+    "adobe-premiere-library-service-bookmarks-api-openapi.yml",
+    "adobe-premiere-library-service-public-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
-  "warnings": [],
+  "warnings": [
+    "adobe-premiere-library-service-api-openapi.yml: previously refined output kept for 10 operation(s) no archived document covers (e.g. /api/v1/libraries/{libraryId} head, /api/v1/libraries/{libraryId}/archive delete, /api/v1/libraries/{libraryId}/archive post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "adobe-premiere-library-service-bookmarks-api-openapi.yml: previously refined output kept for 4 operation(s) no archived document covers (e.g. /api/v1/libraries/bookmarks get, /api/v1/libraries/bookmarks post, /api/v1/libraries/bookmarks/{bookmarkId} delete); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "adobe-premiere-library-service-public-api-openapi.yml: previously refined output kept for 4 operation(s) no archived document covers (e.g. /api/v1/public/libraries/{libraryId} get, /api/v1/public/libraries/{libraryId} head, /api/v1/public/libraries/{libraryId}/elements get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "adobe-premiere-creative-cloud-libraries-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "adobe-premiere-elements-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "adobe-premiere-libraries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "adobe-premiere-representations-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

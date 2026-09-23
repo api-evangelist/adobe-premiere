@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Adobe Creative Cloud Libraries Elements Representations API
+  title: Adobe Creative Cloud Libraries Representations API
   description: The Adobe Creative Cloud Libraries API provides programmatic access to Creative Cloud Libraries, enabling applications to list, create, and manage libraries and their elements (colors, character styles, brushes, graphics, patterns, and videos) for use across Adobe Creative applications including Premiere Pro, Photoshop, Illustrator, and After Effects. Authentication uses OAuth 2.0.
   version: '1'
   contact:

@@ -166,39 +166,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ElementInput:
-      type: object
-      description: Request body for creating a library element.
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-          description: Name of the element.
-          example: Brand Red
-        type:
-          type: string
-          description: Type of the element.
-          enum:
-          - color
-          - characterstyle
-          - brushstyle
-          - graphic
-          - pattern
-          - video
-    ErrorResponse:
-      type: object
-      description: API error response.
-      properties:
-        error_code:
-          type: string
-          description: Machine-readable error code.
-          example: NOT_FOUND
-        message:
-          type: string
-          description: Human-readable error description.
-          example: The requested library was not found.
     ElementList:
       type: object
       description: Paginated list of library elements.
@@ -220,21 +187,6 @@ components:
           type: integer
           description: Maximum results per page.
           example: 20
-    Representation:
-      type: object
-      description: A format-specific representation or rendition of a library element.
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the representation.
-          example: rep-001
-        type:
-          type: string
-          description: Format type of the representation.
-          example: application/vnd.adobe.element.color+dcx
-        content:
-          type: object
-          description: Representation content payload (format depends on element type).
     Element:
       type: object
       description: A design element within a Creative Cloud Library.
@@ -273,6 +225,54 @@ components:
           description: Renditions and format-specific representations of the element.
           items:
             $ref: '#/components/schemas/Representation'
+    ErrorResponse:
+      type: object
+      description: API error response.
+      properties:
+        error_code:
+          type: string
+          description: Machine-readable error code.
+          example: NOT_FOUND
+        message:
+          type: string
+          description: Human-readable error description.
+          example: The requested library was not found.
+    ElementInput:
+      type: object
+      description: Request body for creating a library element.
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: Name of the element.
+          example: Brand Red
+        type:
+          type: string
+          description: Type of the element.
+          enum:
+          - color
+          - characterstyle
+          - brushstyle
+          - graphic
+          - pattern
+          - video
+    Representation:
+      type: object
+      description: A format-specific representation or rendition of a library element.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the representation.
+          example: rep-001
+        type:
+          type: string
+          description: Format type of the representation.
+          example: application/vnd.adobe.element.color+dcx
+        content:
+          type: object
+          description: Representation content payload (format depends on element type).
   securitySchemes:
     oauth2:
       type: oauth2
