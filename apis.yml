@@ -98,6 +98,8 @@ apis:
   humanURL: https://developer.adobe.com/premiere-pro/
   baseURL: https://cc-libraries.adobe.io
   tags:
+  - Library
+  tags_raw:
   - Libraries
   properties:
   - type: OpenAPI
