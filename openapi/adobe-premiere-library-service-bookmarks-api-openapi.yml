@@ -368,15 +368,13 @@ components:
           description: This parameter will be ignored, populated with the timestamp upon creation and immutable after
         _fc:
           type: boolean
-    ErrorResponse:
+    BookmarksPayload:
       type: object
       properties:
-        reason:
-          type: string
-        message:
-          type: string
-      xml:
-        name: error
+        bookmarks:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryBookmark'
     DbLibraryBookmarks:
       type: object
       properties:
@@ -386,10 +384,12 @@ components:
             $ref: '#/components/schemas/DbLibraryBookmark'
         _fc:
           type: boolean
-    BookmarksPayload:
+    ErrorResponse:
       type: object
       properties:
-        bookmarks:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryBookmark'
+        reason:
+          type: string
+        message:
+          type: string
+      xml:
+        name: error

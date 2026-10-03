@@ -166,6 +166,63 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ElementInput:
+      type: object
+      description: Request body for creating a library element.
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: Name of the element.
+          example: Brand Red
+        type:
+          type: string
+          description: Type of the element.
+          enum:
+          - color
+          - characterstyle
+          - brushstyle
+          - graphic
+          - pattern
+          - video
+    Representation:
+      type: object
+      description: A format-specific representation or rendition of a library element.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the representation.
+          example: rep-001
+        type:
+          type: string
+          description: Format type of the representation.
+          example: application/vnd.adobe.element.color+dcx
+        content:
+          type: object
+          description: Representation content payload (format depends on element type).
+    ElementList:
+      type: object
+      description: Paginated list of library elements.
+      properties:
+        elements:
+          type: array
+          description: Array of element objects.
+          items:
+            $ref: '#/components/schemas/Element'
+        total_count:
+          type: integer
+          description: Total number of elements in the library.
+          example: 8
+        start:
+          type: integer
+          description: Starting index of current page.
+          example: 0
+        limit:
+          type: integer
+          description: Maximum results per page.
+          example: 20
     Element:
       type: object
       description: A design element within a Creative Cloud Library.
@@ -204,48 +261,6 @@ components:
           description: Renditions and format-specific representations of the element.
           items:
             $ref: '#/components/schemas/Representation'
-    ElementList:
-      type: object
-      description: Paginated list of library elements.
-      properties:
-        elements:
-          type: array
-          description: Array of element objects.
-          items:
-            $ref: '#/components/schemas/Element'
-        total_count:
-          type: integer
-          description: Total number of elements in the library.
-          example: 8
-        start:
-          type: integer
-          description: Starting index of current page.
-          example: 0
-        limit:
-          type: integer
-          description: Maximum results per page.
-          example: 20
-    ElementInput:
-      type: object
-      description: Request body for creating a library element.
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-          description: Name of the element.
-          example: Brand Red
-        type:
-          type: string
-          description: Type of the element.
-          enum:
-          - color
-          - characterstyle
-          - brushstyle
-          - graphic
-          - pattern
-          - video
     ErrorResponse:
       type: object
       description: API error response.
@@ -258,21 +273,6 @@ components:
           type: string
           description: Human-readable error description.
           example: The requested library was not found.
-    Representation:
-      type: object
-      description: A format-specific representation or rendition of a library element.
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the representation.
-          example: rep-001
-        type:
-          type: string
-          description: Format type of the representation.
-          example: application/vnd.adobe.element.color+dcx
-        content:
-          type: object
-          description: Representation content payload (format depends on element type).
   securitySchemes:
     oauth2:
       type: oauth2

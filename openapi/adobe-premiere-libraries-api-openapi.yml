@@ -205,15 +205,6 @@ components:
           example: 42
         links:
           $ref: '#/components/schemas/Links'
-    Links:
-      type: object
-      description: Hypermedia links for a resource.
-      properties:
-        self:
-          type: string
-          format: uri
-          description: URL of the resource itself.
-          example: https://cc-libraries.adobe.io/api/v1/libraries/lib-abc123
     ErrorResponse:
       type: object
       description: API error response.
@@ -257,6 +248,15 @@ components:
           type: string
           description: Name of the library.
           example: New Video Assets Library
+    Links:
+      type: object
+      description: Hypermedia links for a resource.
+      properties:
+        self:
+          type: string
+          format: uri
+          description: URL of the resource itself.
+          example: https://cc-libraries.adobe.io/api/v1/libraries/lib-abc123
   securitySchemes:
     oauth2:
       type: oauth2

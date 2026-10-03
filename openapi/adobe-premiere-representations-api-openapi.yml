@@ -63,18 +63,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: API error response.
-      properties:
-        error_code:
-          type: string
-          description: Machine-readable error code.
-          example: NOT_FOUND
-        message:
-          type: string
-          description: Human-readable error description.
-          example: The requested library was not found.
     Representation:
       type: object
       description: A format-specific representation or rendition of a library element.
@@ -90,6 +78,18 @@ components:
         content:
           type: object
           description: Representation content payload (format depends on element type).
+    ErrorResponse:
+      type: object
+      description: API error response.
+      properties:
+        error_code:
+          type: string
+          description: Machine-readable error code.
+          example: NOT_FOUND
+        message:
+          type: string
+          description: Human-readable error description.
+          example: The requested library was not found.
   securitySchemes:
     oauth2:
       type: oauth2
