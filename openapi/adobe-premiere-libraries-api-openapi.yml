@@ -177,34 +177,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Library:
-      type: object
-      description: A Creative Cloud Library containing design elements.
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the library.
-          example: lib-abc123
-        name:
-          type: string
-          description: Human-readable name of the library.
-          example: Premiere Pro Brand Assets
-        created_date:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the library was created.
-          example: '2025-03-15T14:30:00Z'
-        modified_date:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the library was last modified.
-          example: '2025-03-15T14:30:00Z'
-        total_elements:
-          type: integer
-          description: Total number of elements in the library.
-          example: 42
-        links:
-          $ref: '#/components/schemas/Links'
     ErrorResponse:
       type: object
       description: API error response.
@@ -257,6 +229,34 @@ components:
           format: uri
           description: URL of the resource itself.
           example: https://cc-libraries.adobe.io/api/v1/libraries/lib-abc123
+    Library:
+      type: object
+      description: A Creative Cloud Library containing design elements.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the library.
+          example: lib-abc123
+        name:
+          type: string
+          description: Human-readable name of the library.
+          example: Premiere Pro Brand Assets
+        created_date:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the library was created.
+          example: '2025-03-15T14:30:00Z'
+        modified_date:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the library was last modified.
+          example: '2025-03-15T14:30:00Z'
+        total_elements:
+          type: integer
+          description: Total number of elements in the library.
+          example: 42
+        links:
+          $ref: '#/components/schemas/Links'
   securitySchemes:
     oauth2:
       type: oauth2

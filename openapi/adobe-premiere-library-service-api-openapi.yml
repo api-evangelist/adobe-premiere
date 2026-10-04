@@ -952,6 +952,32 @@ paths:
               $ref: '#/components/schemas/USSSearchPayload'
 components:
   schemas:
+    DbLibraryDetail:
+      type: object
+      properties:
+        _fc:
+          type: boolean
+        etag:
+          type: string
+        state:
+          type: string
+        manifest_format_version:
+          type: string
+        num_elements:
+          type: integer
+          format: int32
+        num_archived_elements:
+          type: integer
+          format: int32
+        types:
+          type: array
+          items:
+            type: string
+        element_type_counts:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int32
     DbLibraryBookmark:
       type: object
       required:
@@ -987,64 +1013,68 @@ components:
           description: This parameter will be ignored, populated with the timestamp upon creation and immutable after
         _fc:
           type: boolean
-    AsyncResponsePayload:
+    ClientDeviceInfoPayload:
       type: object
       properties:
-        status:
+        deviceId:
           type: string
-          enum:
-          - OK
-          - CREATED
-          - ACCEPTED
-          - NO_CONTENT
-          - MOVED_PERMANENTLY
-          - SEE_OTHER
-          - NOT_MODIFIED
-          - TEMPORARY_REDIRECT
-          - BAD_REQUEST
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - NOT_FOUND
-          - NOT_ACCEPTABLE
-          - CONFLICT
-          - GONE
-          - PRECONDITION_FAILED
-          - UNSUPPORTED_MEDIA_TYPE
-          - INTERNAL_SERVER_ERROR
-          - SERVICE_UNAVAILABLE
+        device:
+          type: string
+        app:
+          type: string
+    DbLibraryElementRenditionData:
+      type: object
+      properties:
+        type:
+          type: string
+        rendition:
+          type: object
+          properties: {}
+    DbLibraryCollaboratorData:
+      type: object
+      properties:
+        email:
+          type: string
+          readOnly: true
+        displayName:
+          type: string
+          readOnly: true
+        collaborator:
+          type: string
+          readOnly: true
+        role:
+          type: string
+          readOnly: true
+        canComment:
+          type: boolean
+          readOnly: true
+        canShare:
+          type: boolean
+          readOnly: true
+    ErrorResponse:
+      type: object
+      properties:
+        reason:
+          type: string
         message:
           type: string
-    MelvilleHypermediaLink:
+      xml:
+        name: error
+    USSSearchResponse:
       type: object
       properties:
-        href:
-          type: string
-        rel:
-          type: string
-        type:
-          type: string
-        templated:
-          type: boolean
-    Link:
-      type: object
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-        name:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        mode:
-          type: string
-        additionalFields:
-          type: object
-          additionalProperties:
-            type: object
-            properties: {}
+        total_items:
+          type: integer
+          format: int32
+          readOnly: true
+        libraries:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryInfo'
+        elements:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryElementData'
     DbLibraryInvitationData:
       type: object
       properties:
@@ -1069,6 +1099,91 @@ components:
         canShare:
           type: boolean
           readOnly: true
+    PageSpec:
+      type: object
+      properties:
+        orderBy:
+          type: string
+          description: List orderby
+        start:
+          type: string
+          description: List start position
+        next:
+          type: string
+          description: List next position
+        count:
+          type: integer
+          format: int32
+          description: List page size
+        type:
+          type: string
+          description: List page type
+        property:
+          type: string
+          description: List page property
+    MelvilleHypermediaRepresentationLinks:
+      type: object
+      properties:
+        http://ns.adobe.com/melville/rel/primary:
+          description: Primary Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/path:
+          description: Path Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/id:
+          description: ID Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/ac/policy:
+          description: Policy Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/ac/check:
+          description: Check Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/ac/effective:
+          description: Effective Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/describedBy:
+          description: Metadata Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/metadata/application:
+          description: Application Metadata Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/metadata/repository:
+          description: Repository Metadata Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/rendition:
+          description: Rendition Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/version-history:
+          description: Version History Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/manifest:
+          description: Manifest Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/component:
+          description: Component Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/elements:
+          description: Elements Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/element:
+          description: Element Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/groups:
+          description: Groups Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/representations:
+          description: Representations Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/raw:
+          description: Raw Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        page:
+          description: Page Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        next:
+          description: Next Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
     DbLibraryElementRepresentationData:
       type: object
       properties:
@@ -1128,147 +1243,33 @@ components:
         page:
           description: Page Link
           $ref: '#/components/schemas/JsonNode'
-    DbLibraryElementRenditionData:
+    DbLibraryRenditionData:
       type: object
       properties:
-        type:
-          type: string
-        rendition:
-          type: object
-          properties: {}
-    DbLibraryCollaborationData:
-      type: object
-      properties:
-        rootURN:
-          type: string
-        ownerId:
-          type: string
-        state:
-          type: string
-        collaborators:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryCollaboratorData'
-        invitations:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryInvitationData'
-        public:
-          type: boolean
         _fc:
           type: boolean
-        directCollaborators:
+        main:
+          $ref: '#/components/schemas/DbLibraryElementRenditionData'
+        tiles:
           type: array
           items:
-            $ref: '#/components/schemas/DbLibraryCollaboratorData'
-        hasAdmin:
-          type: boolean
-          readOnly: true
-    JsonNode:
+            $ref: '#/components/schemas/DbLibraryElementRenditionData'
+    UpdateLibraryPayload:
       type: object
       properties:
-        array:
-          type: boolean
-        'null':
-          type: boolean
-        number:
-          type: boolean
-        int:
-          type: boolean
-        nodeType:
-          type: string
-          enum:
-          - ARRAY
-          - BINARY
-          - BOOLEAN
-          - MISSING
-          - 'NULL'
-          - NUMBER
-          - OBJECT
-          - POJO
-          - STRING
-        float:
-          type: boolean
-        binary:
-          type: boolean
-        short:
-          type: boolean
-        valueNode:
-          type: boolean
-        containerNode:
-          type: boolean
-        missingNode:
-          type: boolean
-        object:
-          type: boolean
-        pojo:
-          type: boolean
-        integralNumber:
-          type: boolean
-        floatingPointNumber:
-          type: boolean
-        long:
-          type: boolean
-        double:
-          type: boolean
-        bigDecimal:
-          type: boolean
-        bigInteger:
-          type: boolean
-        textual:
-          type: boolean
-        boolean:
-          type: boolean
-    DbLibraryElementData:
-      type: object
-      properties:
-        id:
-          type: string
         name:
           type: string
-        storage_used:
-          type: integer
-          format: int64
-          description: Storage used
-        created_date:
-          type: integer
-          format: int64
-        modified_date:
-          type: integer
-          format: int64
+    MelvilleHypermediaLink:
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
         type:
           type: string
-        source:
-          type: string
-        element_type:
-          type: array
-          items:
-            type: string
-        thumbnail:
-          readOnly: true
-          $ref: '#/components/schemas/DbLibraryElementRenditionData'
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryGroup'
-        representations:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryElementRepresentationData'
-        details:
-          $ref: '#/components/schemas/DbLibraryElementDetailData'
-        assetSubType:
-          type: string
-        _fc:
+        templated:
           type: boolean
-        sourceRef:
-          type: string
-        _links:
-          $ref: '#/components/schemas/MelvilleHypermediaLibraryElementLinks'
-        parent_id:
-          type: string
-        manifest_etag:
-          type: string
     AsyncMonitorResponseDTO:
       type: object
       properties:
@@ -1281,20 +1282,99 @@ components:
           format: int64
         _fc:
           type: boolean
-    UpdateLibraryPayload:
+    AsyncResponsePayload:
       type: object
       properties:
+        status:
+          type: string
+          enum:
+          - OK
+          - CREATED
+          - ACCEPTED
+          - NO_CONTENT
+          - MOVED_PERMANENTLY
+          - SEE_OTHER
+          - NOT_MODIFIED
+          - TEMPORARY_REDIRECT
+          - BAD_REQUEST
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - NOT_FOUND
+          - NOT_ACCEPTABLE
+          - CONFLICT
+          - GONE
+          - PRECONDITION_FAILED
+          - UNSUPPORTED_MEDIA_TYPE
+          - INTERNAL_SERVER_ERROR
+          - SERVICE_UNAVAILABLE
+        message:
+          type: string
+    PostLibraryElementsPayload:
+      type: object
+      required:
+      - client
+      - name
+      - type
+      properties:
+        id:
+          type: string
+          description: Ignored if submitted. The result will have a different ID.
+        description:
+          type: string
+          description: Description of new element
         name:
           type: string
-    ClientDeviceInfoPayload:
+          description: Display name for new element
+        type:
+          type: string
+          description: Element type
+        client:
+          description: Client identification information
+          $ref: '#/components/schemas/ClientDeviceInfoPayload'
+        representations:
+          type: array
+          description: Add or associate existing content to the new element
+          items:
+            $ref: '#/components/schemas/DbLibraryElementRepresentationData'
+        sourceRef:
+          type: string
+          description: Reference other content as inspiration for this element
+        source:
+          description: Required if copying an element to this library.
+          $ref: '#/components/schemas/ElementListPayload'
+        self:
+          description: Required if moving an element to this library.
+          $ref: '#/components/schemas/ElementListPayload'
+    EffectiveACL:
       type: object
       properties:
-        deviceId:
+        _links:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/Link'
+        _fc:
+          type: boolean
+    ElementListPayload:
+      type: object
+      required:
+      - elements
+      properties:
+        elements:
+          type: array
+          description: Array of elements to be copied to the targeted library
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/ElementListPayloadElement'
+        id:
           type: string
-        device:
-          type: string
-        app:
-          type: string
+          description: URN of the source library, not required if copying elements within the same library
+          readOnly: true
+        elementIds:
+          type: array
+          items:
+            type: string
     MelvilleHypermediaLibraryLinks:
       type: object
       properties:
@@ -1358,54 +1438,124 @@ components:
         next:
           description: Next Link
           $ref: '#/components/schemas/MelvilleHypermediaLink'
-    ElementListPayload:
+    MelvilleHypermediaLibraryElementLinks:
       type: object
-      required:
-      - elements
       properties:
-        elements:
-          type: array
-          description: Array of elements to be copied to the targeted library
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/ElementListPayloadElement'
-        id:
-          type: string
-          description: URN of the source library, not required if copying elements within the same library
-          readOnly: true
-        elementIds:
-          type: array
-          items:
-            type: string
-    DbLibraryGroup:
+        http://ns.adobe.com/melville/rel/primary:
+          description: Primary Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/path:
+          description: Path Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/id:
+          description: ID Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/ac/policy:
+          description: Policy Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/ac/check:
+          description: Check Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/ac/effective:
+          description: Effective Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/describedBy:
+          description: Metadata Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/metadata/application:
+          description: Application Metadata Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/metadata/repository:
+          description: Repository Metadata Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/rendition:
+          description: Rendition Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/version-history:
+          description: Version History Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/manifest:
+          description: Manifest Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/component:
+          description: Component Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/elements:
+          description: Elements Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/element:
+          description: Element Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/groups:
+          description: Groups Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/representations:
+          description: Representations Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        http://ns.adobe.com/melville/rel/raw:
+          description: Raw Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        page:
+          description: Page Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        next:
+          description: Next Link
+          $ref: '#/components/schemas/MelvilleHypermediaLink'
+    JsonNode:
       type: object
-      required:
-      - name
-      - order
       properties:
-        id:
+        array:
+          type: boolean
+        'null':
+          type: boolean
+        number:
+          type: boolean
+        int:
+          type: boolean
+        nodeType:
           type: string
-          description: Group id.
-        name:
-          type: string
-          description: Group name.
-        classifier:
-          type: string
-          description: Group namespace. Currently defaults to $default. The default should be used unless there's a specific case to provide a custom classifiers. Non-default classifiers are presently not supported in any applications.
-        order:
-          type: string
-          description: Lexicographical string for setting the group's place in the group list, or for an element's place within a group.The client is responsible for providing and sorting using these strings.
-        created_date:
-          type: integer
-          format: int64
-          description: Group created date
-        modified_date:
-          type: integer
-          format: int64
-          description: Group modified date
-        parent_id:
-          type: string
-          description: Defines a relationship between nested groups.  If provided, and the specified parent group exists, this group will be the "child" of the parent group. If there is no group in the library that matches the supplied parentId the group will still be created or updated with an empty parentId.
+          enum:
+          - ARRAY
+          - BINARY
+          - BOOLEAN
+          - MISSING
+          - 'NULL'
+          - NUMBER
+          - OBJECT
+          - POJO
+          - STRING
+        float:
+          type: boolean
+        binary:
+          type: boolean
+        short:
+          type: boolean
+        valueNode:
+          type: boolean
+        containerNode:
+          type: boolean
+        missingNode:
+          type: boolean
+        object:
+          type: boolean
+        pojo:
+          type: boolean
+        integralNumber:
+          type: boolean
+        floatingPointNumber:
+          type: boolean
+        long:
+          type: boolean
+        double:
+          type: boolean
+        bigDecimal:
+          type: boolean
+        bigInteger:
+          type: boolean
+        textual:
+          type: boolean
+        boolean:
+          type: boolean
     DbLibraryInfo:
       type: object
       properties:
@@ -1592,116 +1742,6 @@ components:
         source_ref:
           type: string
           description: Search for elements with a specific sourceRef.
-    ArchiveDeleteElementListPayload:
-      type: object
-      properties:
-        elements:
-          type: array
-          readOnly: true
-          items:
-            type: string
-    PostLibraryElementsPayload:
-      type: object
-      required:
-      - client
-      - name
-      - type
-      properties:
-        id:
-          type: string
-          description: Ignored if submitted. The result will have a different ID.
-        description:
-          type: string
-          description: Description of new element
-        name:
-          type: string
-          description: Display name for new element
-        type:
-          type: string
-          description: Element type
-        client:
-          description: Client identification information
-          $ref: '#/components/schemas/ClientDeviceInfoPayload'
-        representations:
-          type: array
-          description: Add or associate existing content to the new element
-          items:
-            $ref: '#/components/schemas/DbLibraryElementRepresentationData'
-        sourceRef:
-          type: string
-          description: Reference other content as inspiration for this element
-        source:
-          description: Required if copying an element to this library.
-          $ref: '#/components/schemas/ElementListPayload'
-        self:
-          description: Required if moving an element to this library.
-          $ref: '#/components/schemas/ElementListPayload'
-    DbLibraryRenditionData:
-      type: object
-      properties:
-        _fc:
-          type: boolean
-        main:
-          $ref: '#/components/schemas/DbLibraryElementRenditionData'
-        tiles:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryElementRenditionData'
-    DbLibraryDetail:
-      type: object
-      properties:
-        _fc:
-          type: boolean
-        etag:
-          type: string
-        state:
-          type: string
-        manifest_format_version:
-          type: string
-        num_elements:
-          type: integer
-          format: int32
-        num_archived_elements:
-          type: integer
-          format: int32
-        types:
-          type: array
-          items:
-            type: string
-        element_type_counts:
-          type: object
-          additionalProperties:
-            type: integer
-            format: int32
-    LibraryElementsInfo:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          format: int32
-          description: Total results for query
-        elements:
-          type: array
-          description: Elements list
-          items:
-            $ref: '#/components/schemas/DbLibraryElementData'
-        _page:
-          description: List Page
-          $ref: '#/components/schemas/PageSpec'
-        _links:
-          description: List Links
-          $ref: '#/components/schemas/LinksSpec'
-    EffectiveACL:
-      type: object
-      properties:
-        _links:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/Link'
-        _fc:
-          type: boolean
     DbLibraryElementDetailsCreatedModifiedData:
       type: object
       properties:
@@ -1733,199 +1773,111 @@ components:
           type: string
           example: This is my favorite element.
           description: Description of element. If this is set to an empty string, the current description will be deleted.
-    USSSearchResponse:
+    ArchiveDeleteElementListPayload:
       type: object
       properties:
-        total_items:
-          type: integer
-          format: int32
-          readOnly: true
-        libraries:
-          type: array
-          items:
-            $ref: '#/components/schemas/DbLibraryInfo'
         elements:
           type: array
+          readOnly: true
           items:
-            $ref: '#/components/schemas/DbLibraryElementData'
-    DbLibraryCollaboratorData:
+            type: string
+    LibraryElementsInfo:
       type: object
       properties:
-        email:
-          type: string
-          readOnly: true
-        displayName:
-          type: string
-          readOnly: true
-        collaborator:
-          type: string
-          readOnly: true
-        role:
-          type: string
-          readOnly: true
-        canComment:
-          type: boolean
-          readOnly: true
-        canShare:
-          type: boolean
-          readOnly: true
-    MelvilleHypermediaLibraryElementLinks:
-      type: object
-      properties:
-        http://ns.adobe.com/melville/rel/primary:
-          description: Primary Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/path:
-          description: Path Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/id:
-          description: ID Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/ac/policy:
-          description: Policy Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/ac/check:
-          description: Check Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/ac/effective:
-          description: Effective Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/describedBy:
-          description: Metadata Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/metadata/application:
-          description: Application Metadata Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/metadata/repository:
-          description: Repository Metadata Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/rendition:
-          description: Rendition Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/version-history:
-          description: Version History Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/manifest:
-          description: Manifest Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/component:
-          description: Component Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/elements:
-          description: Elements Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/element:
-          description: Element Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/groups:
-          description: Groups Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/representations:
-          description: Representations Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/raw:
-          description: Raw Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        page:
-          description: Page Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        next:
-          description: Next Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-    ErrorResponse:
-      type: object
-      properties:
-        reason:
-          type: string
-        message:
-          type: string
-      xml:
-        name: error
-    PageSpec:
-      type: object
-      properties:
-        orderBy:
-          type: string
-          description: List orderby
-        start:
-          type: string
-          description: List start position
-        next:
-          type: string
-          description: List next position
-        count:
+        total_count:
           type: integer
           format: int32
-          description: List page size
-        type:
-          type: string
-          description: List page type
-        property:
-          type: string
-          description: List page property
-    MelvilleHypermediaRepresentationLinks:
+          description: Total results for query
+        elements:
+          type: array
+          description: Elements list
+          items:
+            $ref: '#/components/schemas/DbLibraryElementData'
+        _page:
+          description: List Page
+          $ref: '#/components/schemas/PageSpec'
+        _links:
+          description: List Links
+          $ref: '#/components/schemas/LinksSpec'
+    DbLibraryElementData:
       type: object
       properties:
-        http://ns.adobe.com/melville/rel/primary:
-          description: Primary Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/path:
-          description: Path Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/id:
-          description: ID Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/ac/policy:
-          description: Policy Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/ac/check:
-          description: Check Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/ac/effective:
-          description: Effective Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/describedBy:
-          description: Metadata Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/metadata/application:
-          description: Application Metadata Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/metadata/repository:
-          description: Repository Metadata Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/rendition:
-          description: Rendition Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/version-history:
-          description: Version History Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/manifest:
-          description: Manifest Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/component:
-          description: Component Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/elements:
-          description: Elements Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/element:
-          description: Element Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/groups:
-          description: Groups Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/representations:
-          description: Representations Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        http://ns.adobe.com/melville/rel/raw:
-          description: Raw Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        page:
-          description: Page Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
-        next:
-          description: Next Link
-          $ref: '#/components/schemas/MelvilleHypermediaLink'
+        id:
+          type: string
+        name:
+          type: string
+        storage_used:
+          type: integer
+          format: int64
+          description: Storage used
+        created_date:
+          type: integer
+          format: int64
+        modified_date:
+          type: integer
+          format: int64
+        type:
+          type: string
+        source:
+          type: string
+        element_type:
+          type: array
+          items:
+            type: string
+        thumbnail:
+          readOnly: true
+          $ref: '#/components/schemas/DbLibraryElementRenditionData'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryGroup'
+        representations:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryElementRepresentationData'
+        details:
+          $ref: '#/components/schemas/DbLibraryElementDetailData'
+        assetSubType:
+          type: string
+        _fc:
+          type: boolean
+        sourceRef:
+          type: string
+        _links:
+          $ref: '#/components/schemas/MelvilleHypermediaLibraryElementLinks'
+        parent_id:
+          type: string
+        manifest_etag:
+          type: string
+    DbLibraryGroup:
+      type: object
+      required:
+      - name
+      - order
+      properties:
+        id:
+          type: string
+          description: Group id.
+        name:
+          type: string
+          description: Group name.
+        classifier:
+          type: string
+          description: Group namespace. Currently defaults to $default. The default should be used unless there's a specific case to provide a custom classifiers. Non-default classifiers are presently not supported in any applications.
+        order:
+          type: string
+          description: Lexicographical string for setting the group's place in the group list, or for an element's place within a group.The client is responsible for providing and sorting using these strings.
+        created_date:
+          type: integer
+          format: int64
+          description: Group created date
+        modified_date:
+          type: integer
+          format: int64
+          description: Group modified date
+        parent_id:
+          type: string
+          description: Defines a relationship between nested groups.  If provided, and the specified parent group exists, this group will be the "child" of the parent group. If there is no group in the library that matches the supplied parentId the group will still be created or updated with an empty parentId.
     AsyncAcceptedResponse:
       type: object
       properties:
@@ -1936,3 +1888,51 @@ components:
         retryAfter:
           type: integer
           format: int64
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+        name:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        mode:
+          type: string
+        additionalFields:
+          type: object
+          additionalProperties:
+            type: object
+            properties: {}
+    DbLibraryCollaborationData:
+      type: object
+      properties:
+        rootURN:
+          type: string
+        ownerId:
+          type: string
+        state:
+          type: string
+        collaborators:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryCollaboratorData'
+        invitations:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryInvitationData'
+        public:
+          type: boolean
+        _fc:
+          type: boolean
+        directCollaborators:
+          type: array
+          items:
+            $ref: '#/components/schemas/DbLibraryCollaboratorData'
+        hasAdmin:
+          type: boolean
+          readOnly: true
