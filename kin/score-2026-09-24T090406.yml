@@ -1,37 +1,36 @@
-# Kin Score artifact — adobe-premiere — 2026-08-27T103455
+# Kin Score artifact — adobe-premiere — 2026-09-24T090406
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: adobe-premiere
-  schema_version: 0.15.1
-  scored_at: '2026-08-27'
-  run_ts: 2026-08-27T103455
-  composite: 48.8
-  band: developing
+  schema_version: 0.22.0
+  scored_at: '2026-09-24'
+  run_ts: 2026-09-24T090406
+  composite: 58.3
+  band: strong
   facets:
-    discoverability: 64.8
-    contract_quality: 74.8
-    governance: 28.8
-    operational_transparency: 10.5
-    developer_ergonomics: 57.1
-    commercial_clarity: 36.8
-    contract_governance: 28.8
-    access_clarity: 36.8
+    discoverability: 68.5
+    contract_quality: 76.2
+    contract_governance: 47.0
+    operational_transparency: 52.6
+    developer_ergonomics: 74.4
+    access_clarity: 28.9
   agent_readiness:
-    score: 30.6
+    score: 40.0
     band: agent-ready
+    band_gated_from: agent-native
     dimensions:
       spec_presence: true
       agentic_access: derived
-      reversibility_documented: false
+      reversibility_documented: documented
       mcp_server: false
       auth_clarity: negotiable
       idempotency: false
       error_semantics: verified
-      openapi_examples: false
+      openapi_examples: partial
       rate_limit_signal: documented
-      event_surface_described: false
-      agent_skills: false
+      event_surface_described: true
+      agent_skills: derived
       well_known_catalog: false
       consent_identity: false
       agent_card: false
@@ -41,9 +40,12 @@ kin_score:
       dynamic_client_registration: false
       agentic_commerce: false
   provenance:
+    mcp: derived
+    skills: derived
     agentic_access: derived
+    conformance: first-party
     contracts:
-      total: 3
+      total: 6
       derived: 0
       coverage: 0.0
       callable: 100.0
