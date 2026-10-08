@@ -209,6 +209,8 @@ tags:
   - Video Editing
   - Video Production
 common:
+  - type: FinOps
+    url: finops/adobe-premiere-finops.yml
   - type: Website
     url: https://www.adobe.com/products/premiere.html
   - type: AgenticAccess
