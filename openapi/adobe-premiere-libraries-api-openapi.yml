@@ -177,58 +177,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: API error response.
-      properties:
-        error_code:
-          type: string
-          description: Machine-readable error code.
-          example: NOT_FOUND
-        message:
-          type: string
-          description: Human-readable error description.
-          example: The requested library was not found.
-    LibraryList:
-      type: object
-      description: Paginated list of Creative Cloud Libraries.
-      properties:
-        libraries:
-          type: array
-          description: Array of library objects.
-          items:
-            $ref: '#/components/schemas/Library'
-        total_count:
-          type: integer
-          description: Total number of libraries available.
-          example: 15
-        start:
-          type: integer
-          description: Starting index of the current page.
-          example: 0
-        limit:
-          type: integer
-          description: Maximum results per page.
-          example: 20
-    LibraryInput:
-      type: object
-      description: Request body for creating or updating a library.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name of the library.
-          example: New Video Assets Library
-    Links:
-      type: object
-      description: Hypermedia links for a resource.
-      properties:
-        self:
-          type: string
-          format: uri
-          description: URL of the resource itself.
-          example: https://cc-libraries.adobe.io/api/v1/libraries/lib-abc123
     Library:
       type: object
       description: A Creative Cloud Library containing design elements.
@@ -257,6 +205,58 @@ components:
           example: 42
         links:
           $ref: '#/components/schemas/Links'
+    Links:
+      type: object
+      description: Hypermedia links for a resource.
+      properties:
+        self:
+          type: string
+          format: uri
+          description: URL of the resource itself.
+          example: https://cc-libraries.adobe.io/api/v1/libraries/lib-abc123
+    ErrorResponse:
+      type: object
+      description: API error response.
+      properties:
+        error_code:
+          type: string
+          description: Machine-readable error code.
+          example: NOT_FOUND
+        message:
+          type: string
+          description: Human-readable error description.
+          example: The requested library was not found.
+    LibraryInput:
+      type: object
+      description: Request body for creating or updating a library.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name of the library.
+          example: New Video Assets Library
+    LibraryList:
+      type: object
+      description: Paginated list of Creative Cloud Libraries.
+      properties:
+        libraries:
+          type: array
+          description: Array of library objects.
+          items:
+            $ref: '#/components/schemas/Library'
+        total_count:
+          type: integer
+          description: Total number of libraries available.
+          example: 15
+        start:
+          type: integer
+          description: Starting index of the current page.
+          example: 0
+        limit:
+          type: integer
+          description: Maximum results per page.
+          example: 20
   securitySchemes:
     oauth2:
       type: oauth2
