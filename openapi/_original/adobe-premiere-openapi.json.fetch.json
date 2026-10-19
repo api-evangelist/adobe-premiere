@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/AdobeDocs/cc-libraries-api-spec/main/openapi.json",
+ "final": "https://raw.githubusercontent.com/AdobeDocs/cc-libraries-api-spec/main/openapi.json",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 225751,
+ "sha256": "010d99b63ab633f62a1d8dc9c97dfd8c4b5eb3f34660d9ee0bd074485692fa65",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}
