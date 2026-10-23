@@ -1236,3 +1236,9 @@ components:
         hasAdmin:
           type: boolean
           readOnly: true
+x-provenance:
+  method: harvested
+  publisher: Adobe Premiere Pro
+  source: https://raw.githubusercontent.com/AdobeDocs/cc-libraries-api-spec/main/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
