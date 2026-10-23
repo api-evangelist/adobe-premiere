@@ -1,0 +1,500 @@
+edges:
+- partner_name: DataCore Software
+  app: Perifery
+  apps:
+  - Perifery
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/109627/perifery
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: http://www.datacore.com/
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+  partner_held:
+    candidate: datacore
+    why: 'market-fit gate: partner''s own tags carry no creative / media / marketing / analytics / content / commerce
+      / e-sign / work-management term'
+- partner_name: Dropbox, Inc.
+  app: Dropbox Replay
+  apps:
+  - Dropbox Replay
+  listing_count: 1
+  partner: dropbox
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/107770/dropbox-replay
+  category: Adobe Exchange Creative Cloud listing (After Effects, Premiere Pro)
+  products:
+  - After Effects
+  - Premiere Pro
+  partner_url: https://dropbox.com
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: Epidemic Sound AB
+  app: Epidemic Sound
+  apps:
+  - Epidemic Sound
+  listing_count: 1
+  partner: epidemic-sound
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/200592/epidemic-sound
+  category: Adobe Exchange Creative Cloud listing (After Effects, Audition, Premiere Pro)
+  products:
+  - After Effects
+  - Audition
+  - Premiere Pro
+  partner_url: https://www.epidemicsound.com/
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: iconik
+  app: iconik
+  apps:
+  - iconik
+  listing_count: 1
+  partner: iconik
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/100304/iconik
+  category: Adobe Exchange Creative Cloud listing (After Effects, Audition, Illustrator, Photoshop)
+  products:
+  - After Effects
+  - Audition
+  - Illustrator
+  - Photoshop
+  - Premiere Pro
+  partner_url: https://iconik.io
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: Kaltura Inc
+  app: Kaltura Plugin for Premiere Pro
+  apps:
+  - Kaltura Plugin for Premiere Pro
+  listing_count: 1
+  partner: kaltura
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/163a7b84/kaltura-plugin-for-premiere-pro
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: https://corp.kaltura.com/
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: LottieFiles
+  app: LottieFiles for Premiere Pro
+  apps:
+  - LottieFiles for Premiere Pro
+  listing_count: 1
+  partner: lottiefiles
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/202173/lottiefiles-for-premiere-pro
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: https://www.lottiefiles.com
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: LucidLink
+  app: LucidLink
+  apps:
+  - LucidLink
+  listing_count: 1
+  partner: lucidlink
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/200528/lucidlink
+  category: Adobe Exchange Creative Cloud listing (After Effects, Premiere Pro)
+  products:
+  - After Effects
+  - Premiere Pro
+  partner_url: https://www.lucidlink.com/
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: Mirelo AI
+  app: Mirelo AI
+  apps:
+  - Mirelo AI
+  listing_count: 1
+  partner: mirelo
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/8a13d073/mirelo-ai
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: https://www.mirelo.ai/
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: Moises
+  app: Moises
+  apps:
+  - Moises
+  listing_count: 1
+  partner: moises
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/df227e93/moises
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: https://moises.ai
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: Moonvalley
+  app: Moonvalley
+  apps:
+  - Moonvalley
+  listing_count: 1
+  partner: moonvalley
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/203754/moonvalley
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: https://moonvalley.com
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: Mux
+  app: Mux Robots
+  apps:
+  - Mux Robots
+  listing_count: 1
+  partner: mux-com
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/9b724b8d/mux-robots
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: https://www.mux.com
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: Optimizely North America Inc.
+  app: Optimizely for Creative Cloud
+  apps:
+  - Optimizely for Creative Cloud
+  listing_count: 1
+  partner: optimizely
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/202272/optimizely-for-creative-cloud
+  category: Adobe Exchange Creative Cloud listing (After Effects, Illustrator, Premiere Pro)
+  products:
+  - After Effects
+  - Illustrator
+  - Premiere Pro
+  partner_url: https://www.optimizely.com
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: OpusClip
+  app: OpusClip Captions
+  apps:
+  - OpusClip Captions
+  listing_count: 1
+  partner: opusclip
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/205953/opusclip-captions
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: https://www.opus.pro
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: 'Percolate: A Seismic Company'
+  app: Percolate Proof
+  apps:
+  - Percolate Proof
+  listing_count: 1
+  partner: percolate
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/103488/percolate-proof
+  category: Adobe Exchange Creative Cloud listing (After Effects, Illustrator, InCopy, InDesign)
+  products:
+  - After Effects
+  - Illustrator
+  - InCopy
+  - InDesign
+  - Photoshop
+  - Premiere Pro
+  partner_url: http://www.percolate.com
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: Soundstripe
+  app: Soundstripe for Premiere Pro
+  apps:
+  - Soundstripe for Premiere Pro
+  listing_count: 1
+  partner: soundstripe
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/103010/soundstripe-for-premiere-pro
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: https://soundstripe.com
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: sync.
+  app: sync.
+  apps:
+  - sync.
+  listing_count: 1
+  partner: sync-labs
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/546120d7/sync.
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: https://sync.so
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: TVU Networks Corp
+  app: TVU Search Plug-In for Adobe Premiere Pro
+  apps:
+  - TVU Search Plug-In for Adobe Premiere Pro
+  listing_count: 1
+  partner: tvu-networks
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/200363/tvu-search-plug-in-for-adobe-premiere-pro
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: https://www.tvunetworks.com/
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: Verbit
+  app: Verbit
+  apps:
+  - Verbit
+  listing_count: 1
+  partner: verbit
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/203133/verbit
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: https://verbit.ai/
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: VideoGen
+  app: VideoGen for Premiere Pro
+  apps:
+  - VideoGen for Premiere Pro
+  listing_count: 1
+  partner: videogen-io
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/9ec6d134/videogen-for-premiere-pro
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: https://videogen.io
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: Wasabi Technologies
+  app: Wasabi Hot Cloud Storage
+  apps:
+  - Wasabi Hot Cloud Storage
+  listing_count: 1
+  partner: wasabi
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/204210/wasabi-hot-cloud-storage
+  category: Adobe Exchange Creative Cloud listing (After Effects, Illustrator, Photoshop, Premiere Pro)
+  products:
+  - After Effects
+  - Illustrator
+  - Photoshop
+  - Premiere Pro
+  partner_url: https://wasabi.com/
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: WellSaid
+  app: WellSaid Voiceover
+  apps:
+  - WellSaid Voiceover
+  listing_count: 1
+  partner: wellsaid
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/202085/wellsaid-voiceover
+  category: Adobe Exchange Creative Cloud listing (Premiere Pro)
+  products:
+  - Premiere Pro
+  partner_url: https://wellsaidlabs.com/
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+- partner_name: Wrike
+  app: Wrike Extension for Adobe Creative Cloud
+  apps:
+  - Wrike Extension for Adobe Creative Cloud
+  listing_count: 1
+  partner: wrike
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.adobe.com/apps/cc/100791/wrike-extension-for-adobe-creative-cloud
+  category: Adobe Exchange Creative Cloud listing (Illustrator, InDesign, Photoshop, Premiere Pro)
+  products:
+  - Illustrator
+  - InDesign
+  - Photoshop
+  - Premiere Pro
+  partner_url: https://wrike.com
+  signal_note: Adobe Exchange listing (publisher website from the listing JSON the public browse page loads); listing
+    count and app names are context, never counted
+  detected_by: sweep-adobe-exchange.py
+  detected: '2026-10-23'
+generated: '2026-10-23'
+method: searched
+source:
+- https://exchange.adobe.com/apps
+- https://exchange.adobe.com/apps/browse/ec
+- https://exchange.adobe.com/apps/browse/cc
+- https://exchange.adobe.com/robots.txt
+checked:
+- https://exchange.adobe.com/apps
+- https://exchange.adobe.com/apps/browse/cc
+- https://exchange.adobe.com/apps/browse/ec
+- https://exchange.adobe.com/robots.txt
