@@ -1,4 +1,4 @@
-# Adobe Premiere Pro (adobe-premiere)
+# Adobe Premiere Pro
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,103 +64,233 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-APIs for Adobe Premiere Pro, a professional video editing software that enables programmatic access to video editing, project management, and content creation workflows.
+Adobe Premiere Pro is a professional non-linear video editor. Its programmable surface has two halves: the Premiere UXP API, an in-process JavaScript DOM for plugins and panels that automate editing, extend the timeline and integrate hardware or media asset management systems inside the desktop application; and the Adobe Creative Cloud Libraries REST API on cc-libraries.adobe.io, which is what a Premiere panel calls over HTTP to read and write shared assets — colors, character styles, graphics, patterns and video — along with an Adobe I/O Events webhook surface for library changes.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/adobe-premiere/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/adobe-premiere/refs/heads/main/apis.yml)
+**Areas:** Adobe · Automation · Creative Cloud · Media · Premiere Pro · Video Editing · Video Production
 
-## Scope
+## Adobe Premiere Pro on APIs.io
 
-- **Type:** Index
+Everything profiled for Adobe Premiere Pro is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/adobe-premiere/](https://apis.io/providers/adobe-premiere/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- Adobe
-- Automation
-- Creative Cloud
-- Media
-- Premiere Pro
-- Video Editing
-- Video Production
+- [Adobe Premiere Pro API](https://apis.io/apis/adobe-premiere/adobe-premiere-pro-api/) — Adobe Premiere Pro extension APIs using UXP (Unified Extensibility Platform) and CEP (Common Extensibility Platform) for building plugins and panels that…
+- [Adobe Premiere Pro Elements API](https://apis.io/apis/adobe-premiere/adobe-premiere-elements-api/) — Manage library elements (colors, graphics, fonts, etc.)
+- [Adobe Premiere Pro Libraries API](https://apis.io/apis/adobe-premiere/adobe-premiere-libraries-api/) — Manage Creative Cloud Libraries
+- [Adobe Premiere Pro Representations API](https://apis.io/apis/adobe-premiere/adobe-premiere-representations-api/) — Manage element representations and renditions
+- [Adobe Premiere Pro Library Service API](https://apis.io/apis/adobe-premiere/adobe-premiere-library-service-api/) — App-facing APIs for Adobe CC Libraries.
+- [Adobe Premiere Pro Library Service - Bookmarks API](https://apis.io/apis/adobe-premiere/adobe-premiere-library-service-bookmarks-api/) — App-facing APIs specifically for Adobe CC Library Bookmarks.
+- [Adobe Premiere Pro Library Service - Public API](https://apis.io/apis/adobe-premiere/adobe-premiere-library-service-public-api/) — App-facing APIs specifically for Adobe CC Public Libraries.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-04-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Arazzo workflows (7)
 
-### Adobe Premiere Pro API
+Multi-step workflows that chain operations into a business task.
 
-Adobe Premiere Pro extension APIs using UXP (Unified Extensibility Platform) and CEP (Common Extensibility Platform) for building plugins and panels that automate video editing workflows, add custom effects, integrate with external hardware, and extend the Premiere Pro user interface.
+- [Adobe Premiere Add Element to Creative Cloud Library](https://apis.io/arazzos/adobe-premiere/adobe-premiere-add-element-to-library-workflow/)
+- [Adobe Premiere Catalog Creative Cloud Library Elements](https://apis.io/arazzos/adobe-premiere/adobe-premiere-catalog-library-elements-workflow/)
+- [Adobe Premiere Fetch Library Element Representation](https://apis.io/arazzos/adobe-premiere/adobe-premiere-fetch-element-representation-workflow/)
+- [Adobe Premiere Find or Create Creative Cloud Library](https://apis.io/arazzos/adobe-premiere/adobe-premiere-find-or-create-library-workflow/)
+- [Adobe Premiere Provision Creative Cloud Library](https://apis.io/arazzos/adobe-premiere/adobe-premiere-provision-library-workflow/)
+- [Adobe Premiere Purge Creative Cloud Library](https://apis.io/arazzos/adobe-premiere/adobe-premiere-purge-library-workflow/)
+- [Adobe Premiere Rename and Verify Creative Cloud Library](https://apis.io/arazzos/adobe-premiere/adobe-premiere-rename-and-verify-library-workflow/)
 
-- **Human URL:** [https://developer.adobe.com/premiere-pro/](https://developer.adobe.com/premiere-pro/)
-- **Base URL:** `https://api.adobe.io/premiere`
+#### AsyncAPI (1)
 
-#### Tags
+Event-driven and webhook contracts.
 
-- Automation
-- Creative Cloud
-- Media
-- Video Editing
-- Video Production
+- [Adobe Premiere Libraries Webhooks](https://apis.io/asyncapis/adobe-premiere/adobe-premiere-libraries-webhooks/)
 
-#### Properties
+#### MCP servers (1)
 
-- [Documentation](https://developer.adobe.com/premiere-pro/docs/)
-- [SDK](https://developer.adobe.com/developer-console/docs/guides/)
-- [Authentication](https://developer.adobe.com/developer-console/docs/guides/authentication/)
-- [Getting Started](https://developer.adobe.com/premiere-pro/docs/getting-started/)
-- [Postman Collection](collections/adobe-premiere-creative-cloud-libraries.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/adobe-premiere-creative-cloud-libraries.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Model Context Protocol servers that expose the API to agents.
 
-### Adobe Creative Cloud Libraries API
+- [adobe-premiere-mcp.yml](https://apis.io/servers/adobe-premiere/adobe-premiere-mcp-yml/)
 
-REST API for accessing and managing Adobe Creative Cloud Libraries that store shared design assets (colors, graphics, fonts, brushes, patterns, and videos) for use across Adobe Creative applications including Premiere Pro, Photoshop, Illustrator, and After Effects.
+#### Agentic access (1)
 
-- **Human URL:** [https://developer.adobe.com/creative-cloud-libraries/docs/](https://developer.adobe.com/creative-cloud-libraries/docs/)
-- **Base URL:** `https://api.adobe.io/libraries`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Adobe Premiere Agentic Access](https://apis.io/agentic-access/adobe-premiere/adobe-premiere-agentic-access/)
 
-- Assets
-- Creative Cloud
-- Libraries
-- Media Management
+#### JSON Schema (8)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://developer.adobe.com/creative-cloud-libraries/docs/)
-- [OpenAPI](openapi/adobe-premiere-creative-cloud-libraries-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/adobe-premiere-creative-cloud-libraries.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/adobe-premiere-creative-cloud-libraries.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Authentication](https://developer.adobe.com/developer-console/docs/guides/authentication/)
-- [JSON Schema](json-schema/creative-cloud-libraries-element-input-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/creative-cloud-libraries-element-list-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/creative-cloud-libraries-element-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Element](https://apis.io/schemas/adobe-premiere/creative-cloud-libraries-element/)
+- [ElementInput](https://apis.io/schemas/adobe-premiere/creative-cloud-libraries-element-input/)
+- [ElementList](https://apis.io/schemas/adobe-premiere/creative-cloud-libraries-element-list/)
+- [Library](https://apis.io/schemas/adobe-premiere/creative-cloud-libraries-library/)
+- [LibraryInput](https://apis.io/schemas/adobe-premiere/creative-cloud-libraries-library-input/)
+- [LibraryList](https://apis.io/schemas/adobe-premiere/creative-cloud-libraries-library-list/)
+- [Links](https://apis.io/schemas/adobe-premiere/creative-cloud-libraries-links/)
+- [Representation](https://apis.io/schemas/adobe-premiere/creative-cloud-libraries-representation/)
 
-## Common Properties
+#### JSON Structure (8)
 
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [LinkedIn](https://www.linkedin.com/company/adobepremierepro)
-- [Portal](https://developer.adobe.com/premiere-pro/)
-- [Documentation](https://developer.adobe.com/premiere-pro/docs/)
-- [Blog](https://blog.developer.adobe.com/)
+Data models expressed in JSON Structure.
+
+- [Creative Cloud Libraries Element Input Structure](https://apis.io/json-structure/adobe-premiere/creative-cloud-libraries-element-input-structure/)
+- [Creative Cloud Libraries Element List Structure](https://apis.io/json-structure/adobe-premiere/creative-cloud-libraries-element-list-structure/)
+- [Creative Cloud Libraries Element Structure](https://apis.io/json-structure/adobe-premiere/creative-cloud-libraries-element-structure/)
+- [Creative Cloud Libraries Library Input Structure](https://apis.io/json-structure/adobe-premiere/creative-cloud-libraries-library-input-structure/)
+- [Creative Cloud Libraries Library List Structure](https://apis.io/json-structure/adobe-premiere/creative-cloud-libraries-library-list-structure/)
+- [Creative Cloud Libraries Library Structure](https://apis.io/json-structure/adobe-premiere/creative-cloud-libraries-library-structure/)
+- [Creative Cloud Libraries Links Structure](https://apis.io/json-structure/adobe-premiere/creative-cloud-libraries-links-structure/)
+- [Creative Cloud Libraries Representation Structure](https://apis.io/json-structure/adobe-premiere/creative-cloud-libraries-representation-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Adobe Premiere Creative Cloud Libraries Context](https://apis.io/jsonld/adobe-premiere/adobe-premiere-creative-cloud-libraries-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Adobe Premiere Vocabulary](https://apis.io/vocabularies/adobe-premiere/adobe-premiere-vocabulary/)
+
+#### Examples (8)
+
+Example requests and responses.
+
+- [Creative Cloud Libraries Element Example](https://apis.io/examples/adobe-premiere/creative-cloud-libraries-element-example/)
+- [Creative Cloud Libraries Element Input Example](https://apis.io/examples/adobe-premiere/creative-cloud-libraries-element-input-example/)
+- [Creative Cloud Libraries Element List Example](https://apis.io/examples/adobe-premiere/creative-cloud-libraries-element-list-example/)
+- [Creative Cloud Libraries Library Example](https://apis.io/examples/adobe-premiere/creative-cloud-libraries-library-example/)
+- [Creative Cloud Libraries Library Input Example](https://apis.io/examples/adobe-premiere/creative-cloud-libraries-library-input-example/)
+- [Creative Cloud Libraries Library List Example](https://apis.io/examples/adobe-premiere/creative-cloud-libraries-library-list-example/)
+- [Creative Cloud Libraries Links Example](https://apis.io/examples/adobe-premiere/creative-cloud-libraries-links-example/)
+- [Creative Cloud Libraries Representation Example](https://apis.io/examples/adobe-premiere/creative-cloud-libraries-representation-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [Adobe Creative Cloud Libraries API](https://apis.io/collections/adobe-premiere/open-adobe-premiere-creative-cloud-libraries/)
+- [Adobe Creative Cloud Libraries Elements API](https://apis.io/collections/adobe-premiere/open-adobe-premiere-elements-api/)
+- [Adobe Creative Cloud Elements Libraries API](https://apis.io/collections/adobe-premiere/open-adobe-premiere-libraries-api/)
+- [Adobe Creative Cloud Libraries Elements Representations API](https://apis.io/collections/adobe-premiere/open-adobe-premiere-representations-api/)
+- [Adobe Creative Cloud Libraries API](https://apis.io/collections/adobe-premiere/postman-adobe-premiere-creative-cloud-libraries/)
+
+#### Overlays (4)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Adobe Premiere Cc Libraries Api Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-cc-libraries-api-overlay/)
+- [Adobe Premiere Elements Api Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-elements-api-overlay/)
+- [Adobe Premiere Libraries Api Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-libraries-api-overlay/)
+- [Adobe Premiere Representations Api Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-representations-api-overlay/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Adobe Premiere Pro — jsonschema rules](https://apis.io/rules/adobe-premiere/adobe-premiere-jsonschema-spectral-rules/)
+- [Adobe Premiere Pro API Rules](https://apis.io/rules/adobe-premiere/adobe-premiere-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Adobe Premiere Authentication](https://apis.io/security/adobe-premiere/adobe-premiere-authentication/)
+- [Adobe Premiere Domain Security](https://apis.io/security/adobe-premiere/adobe-premiere-domain-security/)
+- [Adobe Premiere Vulnerability Disclosure](https://apis.io/security/adobe-premiere/adobe-premiere-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Adobe Premiere Scopes](https://apis.io/scopes/adobe-premiere/adobe-premiere-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Adobe Premiere Plans Pricing](https://apis.io/plans/adobe-premiere/adobe-premiere-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Adobe Premiere Rate Limits](https://apis.io/rate-limits/adobe-premiere/adobe-premiere-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Adobe Premiere Finops](https://apis.io/finops/adobe-premiere/adobe-premiere-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.adobe.com/products/premiere.html)
+- [Documentation](https://developer.adobe.com/premiere-pro/uxp/)
+- [Getting started](https://developer.adobe.com/premiere-pro/uxp/introduction/)
+- [API reference](https://developer.adobe.com/premiere-pro/uxp/ppro-reference/)
 - [Support](https://developer.adobe.com/support/)
-- [Console](https://developer.adobe.com/console/)
-- [GitHub Organization](https://github.com/adobe)
-- [Terms of Service](https://www.adobe.com/legal/terms.html)
-- [Privacy Policy](https://www.adobe.com/privacy.html)
-- [Status Page](https://status.adobe.com/)
-- [YouTube](https://www.youtube.com/user/AdobeDeveloperTV)
-- [Getting Started](https://developer.adobe.com/premiere-pro/docs/getting-started/)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Spectral Rules](rules/adobe-premiere-spectral-rules.yml)
-- [Vocabulary](vocabulary/adobe-premiere-vocabulary.yaml)
-- [JSON-LD](json-ld/adobe-premiere-creative-cloud-libraries-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Blog](https://blog.developer.adobe.com/)
+- [Terms of service](https://www.adobe.com/legal/terms.html)
+- [Privacy policy](https://www.adobe.com/privacy.html)
+- [GitHub](https://github.com/adobe)
+- [Status](https://status.adobe.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 57.4** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 65.4 |
+| Contract governance | 45.5 |
+| Operational transparency | 52.6 |
+| Developer ergonomics | 74.4 |
+| Access clarity | 21.1 |
+
+**Agent readiness 38.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 40.2** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/adobe-premiere/](https://apis.io/providers/adobe-premiere/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Adobe Premiere Pro: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/adobe-premiere/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
