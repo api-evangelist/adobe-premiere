@@ -72,12 +72,9 @@ Adobe Premiere Pro is a professional non-linear video editor. Its programmable s
 
 Everything profiled for Adobe Premiere Pro is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/adobe-premiere/](https://apis.io/providers/adobe-premiere/)** — or go straight to one of the APIs or properties below.
 
-### APIs (7)
+### APIs (4)
 
 - [Adobe Premiere Pro API](https://apis.io/apis/adobe-premiere/adobe-premiere-pro-api/) — Adobe Premiere Pro extension APIs using UXP (Unified Extensibility Platform) and CEP (Common Extensibility Platform) for building plugins and panels that…
-- [Adobe Premiere Pro Elements API](https://apis.io/apis/adobe-premiere/adobe-premiere-elements-api/) — Manage library elements (colors, graphics, fonts, etc.)
-- [Adobe Premiere Pro Libraries API](https://apis.io/apis/adobe-premiere/adobe-premiere-libraries-api/) — Manage Creative Cloud Libraries
-- [Adobe Premiere Pro Representations API](https://apis.io/apis/adobe-premiere/adobe-premiere-representations-api/) — Manage element representations and renditions
 - [Adobe Premiere Pro Library Service API](https://apis.io/apis/adobe-premiere/adobe-premiere-library-service-api/) — App-facing APIs for Adobe CC Libraries.
 - [Adobe Premiere Pro Library Service - Bookmarks API](https://apis.io/apis/adobe-premiere/adobe-premiere-library-service-bookmarks-api/) — App-facing APIs specifically for Adobe CC Library Bookmarks.
 - [Adobe Premiere Pro Library Service - Public API](https://apis.io/apis/adobe-premiere/adobe-premiere-library-service-public-api/) — App-facing APIs specifically for Adobe CC Public Libraries.
@@ -114,12 +111,26 @@ Model Context Protocol servers that expose the API to agents.
 
 Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Adobe Premiere Agentic Access](https://apis.io/agentic-access/adobe-premiere/adobe-premiere-agentic-access/)
+- [Adobe Premiere Pro Agentic Access](https://apis.io/agentic-access/adobe-premiere/adobe-premiere-agentic-access/)
 
-#### JSON Schema (8)
+#### JSON Schema (22)
 
 The data models the API reads and writes.
 
+- [AsyncResponsePayload](https://apis.io/schemas/adobe-premiere/adobe-premiere-async-response-payload/)
+- [BookmarksPayload](https://apis.io/schemas/adobe-premiere/adobe-premiere-bookmarks-payload/)
+- [DbLibraryBookmarks](https://apis.io/schemas/adobe-premiere/adobe-premiere-db-library-bookmarks/)
+- [DbLibraryElementData](https://apis.io/schemas/adobe-premiere/adobe-premiere-db-library-element-data/)
+- [DbLibraryInfo](https://apis.io/schemas/adobe-premiere/adobe-premiere-db-library-info/)
+- [ElementListPayload](https://apis.io/schemas/adobe-premiere/adobe-premiere-element-list-payload/)
+- [Library](https://apis.io/schemas/adobe-premiere/adobe-premiere-library/)
+- [LibraryElementsInfo](https://apis.io/schemas/adobe-premiere/adobe-premiere-library-elements-info/)
+- [LibraryInput](https://apis.io/schemas/adobe-premiere/adobe-premiere-library-input/)
+- [LibraryList](https://apis.io/schemas/adobe-premiere/adobe-premiere-library-list/)
+- [PostLibraryElementsPayload](https://apis.io/schemas/adobe-premiere/adobe-premiere-post-library-elements-payload/)
+- [Representation](https://apis.io/schemas/adobe-premiere/adobe-premiere-representation/)
+- [USSSearchPayload](https://apis.io/schemas/adobe-premiere/adobe-premiere-usssearch-payload/)
+- [USSSearchResponse](https://apis.io/schemas/adobe-premiere/adobe-premiere-usssearch-response/)
 - [Element](https://apis.io/schemas/adobe-premiere/creative-cloud-libraries-element/)
 - [ElementInput](https://apis.io/schemas/adobe-premiere/creative-cloud-libraries-element-input/)
 - [ElementList](https://apis.io/schemas/adobe-premiere/creative-cloud-libraries-element-list/)
@@ -177,14 +188,21 @@ Postman and Open Collection request collections.
 - [Adobe Creative Cloud Libraries Elements Representations API](https://apis.io/collections/adobe-premiere/open-adobe-premiere-representations-api/)
 - [Adobe Creative Cloud Libraries API](https://apis.io/collections/adobe-premiere/postman-adobe-premiere-creative-cloud-libraries/)
 
-#### Overlays (4)
+#### Overlays (11)
 
 OpenAPI overlays, including conversational phrasing for each operation.
 
-- [Adobe Premiere Cc Libraries Api Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-cc-libraries-api-overlay/)
-- [Adobe Premiere Elements Api Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-elements-api-overlay/)
-- [Adobe Premiere Libraries Api Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-libraries-api-overlay/)
-- [Adobe Premiere Representations Api Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-representations-api-overlay/)
+- [Adobe Premiere Pro Cc Libraries Api Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-cc-libraries-api-overlay/)
+- [Adobe Premiere Pro Elements Api Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-elements-api-overlay/)
+- [Adobe Premiere Pro Elements Api Phrasing Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-elements-api-phrasing-overlay/)
+- [Adobe Premiere Pro Libraries Api Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-libraries-api-overlay/)
+- [Adobe Premiere Pro Libraries Api Phrasing Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-libraries-api-phrasing-overlay/)
+- [Adobe Premiere Pro Library Service Api Phrasing Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-library-service-api-phrasing-overlay/)
+- [Adobe Premiere Pro Library Service Bookmarks Api Certification Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-library-service-bookmarks-api-certification-overlay/)
+- [Adobe Premiere Pro Library Service Bookmarks Api Phrasing Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-library-service-bookmarks-api-phrasing-overlay/)
+- [Adobe Premiere Pro Library Service Public Api Phrasing Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-library-service-public-api-phrasing-overlay/)
+- [Adobe Premiere Pro Representations Api Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-representations-api-overlay/)
+- [Adobe Premiere Pro Representations Api Phrasing Overlay](https://apis.io/overlays/adobe-premiere/adobe-premiere-representations-api-phrasing-overlay/)
 
 #### Governance rules (2)
 
@@ -197,33 +215,33 @@ Spectral rulesets for the provider's contracts.
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [Adobe Premiere Authentication](https://apis.io/security/adobe-premiere/adobe-premiere-authentication/)
-- [Adobe Premiere Domain Security](https://apis.io/security/adobe-premiere/adobe-premiere-domain-security/)
-- [Adobe Premiere Vulnerability Disclosure](https://apis.io/security/adobe-premiere/adobe-premiere-vulnerability-disclosure/)
+- [Adobe Premiere Pro Authentication](https://apis.io/security/adobe-premiere/adobe-premiere-authentication/)
+- [Adobe Premiere Pro Domain Security](https://apis.io/security/adobe-premiere/adobe-premiere-domain-security/)
+- [Adobe Premiere Pro Vulnerability Disclosure](https://apis.io/security/adobe-premiere/adobe-premiere-vulnerability-disclosure/)
 
 #### OAuth scopes (1)
 
 The permissions the API asks for.
 
-- [Adobe Premiere Scopes](https://apis.io/scopes/adobe-premiere/adobe-premiere-scopes/)
+- [Adobe Premiere Pro Scopes](https://apis.io/scopes/adobe-premiere/adobe-premiere-scopes/)
 
 #### Plans and pricing (1)
 
 Published plans, tiers and prices.
 
-- [Adobe Premiere Plans Pricing](https://apis.io/plans/adobe-premiere/adobe-premiere-plans-pricing/)
+- [Adobe Premiere Pro Plans Pricing](https://apis.io/plans/adobe-premiere/adobe-premiere-plans-pricing/)
 
 #### Rate limits (1)
 
 Published request limits.
 
-- [Adobe Premiere Rate Limits](https://apis.io/rate-limits/adobe-premiere/adobe-premiere-rate-limits/)
+- [Adobe Premiere Pro Rate Limits](https://apis.io/rate-limits/adobe-premiere/adobe-premiere-rate-limits/)
 
 #### FinOps (1)
 
 What the API costs to run, by operation.
 
-- [Adobe Premiere Finops](https://apis.io/finops/adobe-premiere/adobe-premiere-finops/)
+- [Adobe Premiere Pro Finops](https://apis.io/finops/adobe-premiere/adobe-premiere-finops/)
 
 ## Where to find this API
 
@@ -242,18 +260,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 57.4** — strong · rubric 0.25.0 · scored 2026-10-23
+**Kin Score 58.6** — strong · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
-| Discoverability | 66.1 |
-| Contract quality | 65.4 |
+| Discoverability | 83.9 |
+| Contract quality | 67.6 |
 | Contract governance | 45.5 |
-| Operational transparency | 52.6 |
+| Operational transparency | 50.0 |
 | Developer ergonomics | 74.4 |
-| Access clarity | 21.1 |
+| Access clarity | 17.0 |
 
-**Agent readiness 38.5** — agent-ready
+**Agent readiness 36.8** — agent-ready
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -277,7 +295,11 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Dynamic Client Registration | — |
 | Agentic Commerce | — |
 | Pagination Ratio | paginated |
-| Operation Distinctiveness | distinct |
+| Operation Distinctiveness | mostly (partial credit) |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
 **Regulatory alignment 40.2** — Horizontal (data, software, accessibility, platform)
 
